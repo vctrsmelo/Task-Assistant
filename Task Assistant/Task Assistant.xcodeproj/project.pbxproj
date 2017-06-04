@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECD1EE387730082F598 /* UserDAO.swift */; };
+		E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */; };
+		E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED21EE38DE50082F598 /* ContextDAO.swift */; };
+		E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */; };
+		E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */; };
+		E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */; };
+		E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7EDA1EE39B770082F598 /* TaskDAO.swift */; };
 		E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBCB1EDE642E00355D99 /* Activity.swift */; };
 		E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBCF1EDE6DCF00355D99 /* AvailableDay.swift */; };
 		E73DEBD21EDE70C200355D99 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD11EDE70C200355D99 /* Context.swift */; };
@@ -25,6 +32,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E72A7ECD1EE387730082F598 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
+		E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseConfig.swift; sourceTree = "<group>"; };
+		E72A7ED21EE38DE50082F598 /* ContextDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextDAO.swift; sourceTree = "<group>"; };
+		E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDayDAO.swift; sourceTree = "<group>"; };
+		E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDAO.swift; sourceTree = "<group>"; };
+		E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
+		E72A7EDA1EE39B770082F598 /* TaskDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDAO.swift; sourceTree = "<group>"; };
 		E73DEBCB1EDE642E00355D99 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E73DEBCF1EDE6DCF00355D99 /* AvailableDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDay.swift; sourceTree = "<group>"; };
 		E73DEBD11EDE70C200355D99 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
@@ -57,6 +71,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E72A7ED11EE38BD10082F598 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				E72A7ECD1EE387730082F598 /* UserDAO.swift */,
+				E72A7ED21EE38DE50082F598 /* ContextDAO.swift */,
+				E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */,
+				E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */,
+				E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */,
+				E72A7EDA1EE39B770082F598 /* TaskDAO.swift */,
+				E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 		E73DEBD91EDE7D3200355D99 /* Core Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +140,7 @@
 				EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */,
 				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				E73DEBD91EDE7D3200355D99 /* Core Classes */,
+				E72A7ED11EE38BD10082F598 /* Persistence */,
 				EE2CD8621EDC43E200477F6B /* Main.storyboard */,
 				EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */,
 				EE2CD86A1EDC43E200477F6B /* Info.plist */,
@@ -212,16 +241,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */,
 				E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */,
+				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
+				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
+				E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */,
+				E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */,
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
+				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
 				EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */,
 				EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */,
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
+				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
