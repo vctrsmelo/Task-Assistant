@@ -10,6 +10,21 @@ import UIKit
 
 class ChatCollectionView: UICollectionView {
 
+    private var messages: [Message] = []
+    
+    
+    public func add(message: Message){
+        
+        messages.append(message)
+        
+    }
+    
+    public func getMessages() -> [Message]{
+        
+        return messages
+        
+    }
+    
     /*
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
