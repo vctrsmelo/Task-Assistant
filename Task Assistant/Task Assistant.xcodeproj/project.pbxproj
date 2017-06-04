@@ -17,6 +17,8 @@
 		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
 		EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */; };
 		EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */; };
+		EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */; };
+		EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B751EE3B54F00EDC6D9 /* Message.swift */; };
 		EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */; };
 		EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD8601EDC43E200477F6B /* ViewController.swift */; };
 		EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8621EDC43E200477F6B /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionView.swift; sourceTree = "<group>"; };
 		EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveViewController.swift; sourceTree = "<group>"; };
+		EE0B0B751EE3B54F00EDC6D9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EE2CD85B1EDC43E200477F6B /* Task Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2CD8601EDC43E200477F6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 			children = (
 				EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */,
 				EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */,
+				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
+				EE0B0B751EE3B54F00EDC6D9 /* Message.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -153,7 +159,7 @@
 				TargetAttributes = {
 					EE2CD85A1EDC43E200477F6B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 2RF2ZQGYFL;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -219,7 +225,9 @@
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
 				EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */,
+				EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */,
 				EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */,
+				EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */,
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
 			);
@@ -344,7 +352,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2RF2ZQGYFL;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -361,7 +369,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2RF2ZQGYFL;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
