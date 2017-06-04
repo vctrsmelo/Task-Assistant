@@ -45,4 +45,9 @@ class Context {
 		self._title = title
 		self._availableDays = availableDays
 	}
+	
+	convenience init(title: String, availableDays: [AvailableDay], activities : [Activity]) {
+		self.init(title: title, availableDays: availableDays)
+		self._activities = activities
+	}
 }

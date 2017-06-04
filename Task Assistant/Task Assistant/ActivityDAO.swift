@@ -28,4 +28,11 @@ class ActivityDAO : Object {
 		self.priority = activity.priority.rawValue
 		self.finished = activity.finished
 	}
+	
+	// I believe it's actually never used
+	func intoActivity() -> Activity {
+		let priority = Priority(rawValue: self.priority)!
+		
+		return Activity(title: self.title, estimatedTime: self.estimatedTime, priority: priority, finished: self.finished)
+	}
 }

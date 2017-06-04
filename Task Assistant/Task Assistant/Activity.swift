@@ -54,9 +54,10 @@ class Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, finished : Bool = false) {
 		self._title = title
 		self._estimatedTime = estimatedTime
 		self._priority = priority
+		self._finished = finished
 	}
 }

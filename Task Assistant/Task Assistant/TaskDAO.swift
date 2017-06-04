@@ -19,4 +19,10 @@ class TaskDAO : ActivityDAO {
 		
 		self.dueDate = task.dueDate
 	}
+	
+	override func intoActivity() -> Task {
+		let priority = Priority(rawValue: self.priority)!
+		
+		return Task(title: self.title, estimatedTime: self.estimatedTime, priority: priority, dueDate: self.dueDate, finished: self.finished)
+	}
 }

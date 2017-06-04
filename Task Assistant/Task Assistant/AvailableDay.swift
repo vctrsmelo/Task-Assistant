@@ -58,9 +58,6 @@ struct AvailableDay {
 	}
 	
 	init(weekday : Int) {
-		self._available = false
-		self._weekday = weekday
-		self._startTime = nil
-		self._endTime = nil
+		self.init(available: false, weekday: weekday, startTime: nil, endTime: nil)
 	}
 }

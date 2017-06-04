@@ -11,8 +11,8 @@ import RealmSwift
 
 class ContextDAO : Object {
 	dynamic var title = ""
-	let availableDays = List<AvailableDayDAO>()
-	let activities = List<ActivityDAO>()
+	let availableDayDAOs = List<AvailableDayDAO>()
+	let activityDAOs = List<ActivityDAO>()
 	
 	
 	convenience init(_ context : Context) {
@@ -21,12 +21,27 @@ class ContextDAO : Object {
 		self.title = context.title
 		
 		for availableDay in context.availableDays {
-			self.availableDays.append(AvailableDayDAO(availableDay))
+			self.availableDayDAOs.append(AvailableDayDAO(availableDay))
 		}
 		
 		for activity in context.activities {
-			self.activities.append(ActivityDAO(activity))
+			self.activityDAOs.append(ActivityDAO(activity))
 		}
+	}
+	
+	func intoContext() -> Context {
+		var availableDays = [AvailableDay]()
+		var activities = [Activity]()
+		
+		for availableDayDAO in self.availableDayDAOs {
+			availableDays.append(availableDayDAO.intoAvailableDay())
+		}
+		
+		for activityDAO in self.activityDAOs {
+			activities.append(activityDAO.intoActivity())
+		}
+		
+		return Context(title: self.title, availableDays: availableDays, activities: activities)
 	}
 	
 }

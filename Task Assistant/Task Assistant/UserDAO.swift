@@ -11,7 +11,7 @@ import RealmSwift
 
 class UserDAO : Object {
 	dynamic var name = ""
-	let contexts = List<ContextDAO>()
+	let contextDAOs = List<ContextDAO>()
 	
 	convenience init(_ user : User) {
 		self.init()
@@ -19,13 +19,31 @@ class UserDAO : Object {
 		self.name = user.name
 		
 		for context in user.contexts {
-			self.contexts.append(ContextDAO(context))
+			self.contextDAOs.append(ContextDAO(context))
 		}
+	}
+	
+	func intoUser() -> User {
+		var contexts = [Context]()
+		
+		for contextDAO in self.contextDAOs {
+			contexts.append(contextDAO.intoContext())
+		}
+		
+		return User(name: self.name, contexts: contexts)
 	}
 	
 	static func save(_ user : User, on location : DBType = .userDefault) -> Bool {
 		let userDAO = UserDAO(user)
 		
 		return DataBaseConfig.save(userDAO, to: location)
+	}
+	
+	static func load(_ appleID : String, from location : DBType = .userDefault) -> User? {
+		let results = DataBaseConfig.load(UserDAO.self, to: location)
+		
+		let userDAO = results?.first as? UserDAO
+		
+		return userDAO?.intoUser()
 	}
 }

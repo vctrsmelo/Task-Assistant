@@ -23,4 +23,8 @@ class AvailableDayDAO : Object {
 		self.startTime = availableDay.startTime
 		self.endTime = availableDay.endTime
 	}
+	
+	func intoAvailableDay() -> AvailableDay {
+		return AvailableDay(available: self.available, weekday: self.weekday, startTime: self.startTime, endTime: self.endTime)
+	}
 }

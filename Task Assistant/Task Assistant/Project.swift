@@ -41,10 +41,10 @@ class Project : Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority, startDate: Date, endDate: Date) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, startDate: Date, endDate: Date, finished: Bool = false) {
 		self._startDate = startDate
 		self._endDate = endDate
 		
-		super.init(title: title, estimatedTime: estimatedTime, priority: priority)
+		super.init(title: title, estimatedTime: estimatedTime, priority: priority, finished: finished)
 	}
 }

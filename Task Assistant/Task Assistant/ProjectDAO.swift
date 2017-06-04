@@ -26,4 +26,10 @@ class ProjectDAO : ActivityDAO {
 			self.tasks.append(TaskDAO(task))
 		}
 	}
+	
+	override func intoActivity() -> Project {
+		let priority = Priority(rawValue: self.priority)!
+		
+		return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished)
+	}
 }
