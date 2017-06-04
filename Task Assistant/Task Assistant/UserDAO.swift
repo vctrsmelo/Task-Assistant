@@ -10,12 +10,20 @@ import Foundation
 import RealmSwift
 
 class UserDAO : Object {
+	dynamic var uniqueID = ""
+	dynamic var appleID = ""
 	dynamic var name = ""
 	let contextDAOs = List<ContextDAO>()
 	
-	convenience init(_ user : User) {
+	override static func primaryKey() -> String? {
+		return "uniqueID"
+	}
+	
+	convenience init(_ user : User, appleID : String) {
 		self.init()
 		
+		self.appleID = appleID
+		self.uniqueID = user.uniqueID
 		self.name = user.name
 		
 		for context in user.contexts {
@@ -30,17 +38,17 @@ class UserDAO : Object {
 			contexts.append(contextDAO.intoContext())
 		}
 		
-		return User(name: self.name, contexts: contexts)
+		return User(name: self.name, contexts: contexts, uniqueID: self.uniqueID)
 	}
 	
-	static func save(_ user : User, on location : DBType = .userDefault) -> Bool {
-		let userDAO = UserDAO(user)
+	static func save(_ user : User, appleID : String, on location : DBType = .userDefault, update : Bool = false) -> Bool {
+		let userDAO = UserDAO(user, appleID: appleID)
 		
-		return DataBaseConfig.save(userDAO, to: location)
+		return DataBaseConfig.save(userDAO, to: location, update: update)
 	}
 	
 	static func load(_ appleID : String, from location : DBType = .userDefault) -> User? {
-		let results = DataBaseConfig.load(UserDAO.self, to: location)
+		let results = DataBaseConfig.load(UserDAO.self, from: location)
 		
 		let userDAO = results?.first as? UserDAO
 		

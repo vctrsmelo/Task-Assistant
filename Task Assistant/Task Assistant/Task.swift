@@ -23,9 +23,9 @@ class Task : Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority, dueDate: Date, finished: Bool = false) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, dueDate: Date, finished: Bool = false, uniqueID: String = UUID().uuidString) {
 		self._dueDate = dueDate
 		
-		super.init(title: title, estimatedTime: estimatedTime, priority: priority, finished: finished)
+		super.init(title: title, estimatedTime: estimatedTime, priority: priority, finished: finished, uniqueID: uniqueID)
 	}
 }

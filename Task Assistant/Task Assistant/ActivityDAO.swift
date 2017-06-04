@@ -10,29 +10,22 @@ import Foundation
 import RealmSwift
 
 class ActivityDAO : Object {
+	dynamic var uniqueID = ""
 	dynamic var title = ""
 	dynamic var estimatedTime : TimeInterval = 0.0
 	dynamic var priority = 0
 	dynamic var finished = false
 	
-	convenience init(_ activity : Activity) {
-		self.init()
-		
-		self.activityInit(activity)
+	override static func primaryKey() -> String? {
+		return "uniqueID"
 	}
 	
 	// Due to not being able to chain the inits correctly this is necessary
 	func activityInit(_ activity : Activity) {
+		self.uniqueID = activity.uniqueID
 		self.title = activity.title
 		self.estimatedTime = activity.estimatedTime
 		self.priority = activity.priority.rawValue
 		self.finished = activity.finished
-	}
-	
-	// I believe it's actually never used
-	func intoActivity() -> Activity {
-		let priority = Priority(rawValue: self.priority)!
-		
-		return Activity(title: self.title, estimatedTime: self.estimatedTime, priority: priority, finished: self.finished)
 	}
 }

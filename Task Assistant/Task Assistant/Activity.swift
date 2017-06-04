@@ -14,12 +14,17 @@ enum Priority : Int {
 
 class Activity {
 	// MARK: Private Properties
+	private var _uniqueID : String
 	private var _title : String
 	private var _estimatedTime : TimeInterval
 	private var _priority : Priority
 	private var _finished = false
 	
 	// MARK: Public Properties
+	var uniqueID : String {
+		return _uniqueID
+	}
+	
 	var title : String {
 		get {
 			return _title
@@ -54,7 +59,8 @@ class Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority, finished : Bool = false) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, finished : Bool = false, uniqueID: String = UUID().uuidString) {
+		self._uniqueID = uniqueID
 		self._title = title
 		self._estimatedTime = estimatedTime
 		self._priority = priority

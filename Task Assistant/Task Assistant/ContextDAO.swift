@@ -10,14 +10,19 @@ import Foundation
 import RealmSwift
 
 class ContextDAO : Object {
+	dynamic var uniqueID = ""
 	dynamic var title = ""
 	let availableDayDAOs = List<AvailableDayDAO>()
-	let activityDAOs = List<ActivityDAO>()
+	let activityDAOs = List<PossibleActivitiesDAO>()
 	
+	override static func primaryKey() -> String? {
+		return "uniqueID"
+	}
 	
 	convenience init(_ context : Context) {
 		self.init()
 		
+		self.uniqueID = context.uniqueID
 		self.title = context.title
 		
 		for availableDay in context.availableDays {
@@ -25,7 +30,7 @@ class ContextDAO : Object {
 		}
 		
 		for activity in context.activities {
-			self.activityDAOs.append(ActivityDAO(activity))
+			self.activityDAOs.append(PossibleActivitiesDAO(activity))
 		}
 	}
 	
@@ -41,7 +46,7 @@ class ContextDAO : Object {
 			activities.append(activityDAO.intoActivity())
 		}
 		
-		return Context(title: self.title, availableDays: availableDays, activities: activities)
+		return Context(title: self.title, availableDays: availableDays, activities: activities, uniqueID: self.uniqueID)
 	}
 	
 }

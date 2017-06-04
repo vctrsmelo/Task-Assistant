@@ -10,10 +10,15 @@ import Foundation
 
 class User {
 	// MARK: Private Properties
+	private var _uniqueID : String
 	private var _name : String
 	private var _contexts : [Context]
 	
 	// MARK: Public Properties
+	var uniqueID : String {
+		return _uniqueID
+	}
+	
 	var name : String {
 		get {
 			return _name
@@ -32,7 +37,8 @@ class User {
 	}
 	
 	// MARK: Initializer
-	init(name: String, contexts: [Context]) {
+	init(name: String, contexts: [Context], uniqueID: String = UUID().uuidString) {
+		self._uniqueID = uniqueID
 		self._name = name
 		self._contexts = contexts
 	}

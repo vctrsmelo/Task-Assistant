@@ -30,12 +30,12 @@ class DataBaseConfig {
 	}
 	
 	// MARK: Public Methods
-	static func save(_ object : Object, to location : DBType = .userDefault) -> Bool {
+	static func save(_ object : Object, to location : DBType = .userDefault, update : Bool = false) -> Bool {
 		var result = false
 		
 		if let realm = getRealm(location) {
 			try! realm.write {
-				realm.add(object)
+				realm.add(object, update: update)
 				result = true
 			}
 		}
@@ -43,15 +43,19 @@ class DataBaseConfig {
 		return result
 	}
 	
-	static func load (_ objectType : Object.Type, to location : DBType = .userDefault, with filter : NSPredicate? = nil) -> Results<Object>? {
+	static func load (_ objectType : Object.Type, from location : DBType = .userDefault, with filter : NSPredicate? = nil) -> Results<Object>? {
 		var result : Results<Object>? = nil
 		
 		if let realm = getRealm(location) {
 			result = realm.objects(objectType)
-		}
-		
-		if filter != nil {
-			result = result?.filter(filter!)
+			
+			if filter != nil {
+				result = result!.filter(filter!)
+			}
+			
+			if result!.isEmpty {
+				result = nil
+			}
 		}
 		
 		return result

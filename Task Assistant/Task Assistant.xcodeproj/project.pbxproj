@@ -22,6 +22,7 @@
 		E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD71EDE78BE00355D99 /* Project.swift */; };
 		E7B0A2221EE384AE008D4037 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2201EE384AE008D4037 /* Realm.framework */; };
 		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
+		E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */; };
 		EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */; };
 		EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */; };
 		EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */; };
@@ -47,6 +48,7 @@
 		E73DEBD71EDE78BE00355D99 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		E7B0A2201EE384AE008D4037 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleActivitiesDAO.swift; sourceTree = "<group>"; };
 		EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionView.swift; sourceTree = "<group>"; };
 		EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE2CD85B1EDC43E200477F6B /* Task Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				E72A7ED21EE38DE50082F598 /* ContextDAO.swift */,
 				E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */,
 				E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */,
+				E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */,
 				E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */,
 				E72A7EDA1EE39B770082F598 /* TaskDAO.swift */,
 				E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */,
@@ -258,6 +261,7 @@
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
 				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
+				E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

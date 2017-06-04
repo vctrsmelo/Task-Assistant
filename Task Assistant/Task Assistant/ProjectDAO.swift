@@ -27,9 +27,9 @@ class ProjectDAO : ActivityDAO {
 		}
 	}
 	
-	override func intoActivity() -> Project {
+	func intoProject() -> Project {
 		let priority = Priority(rawValue: self.priority)!
 		
-		return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished)
+		return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished, uniqueID: self.uniqueID)
 	}
 }

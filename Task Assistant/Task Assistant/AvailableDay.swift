@@ -10,12 +10,17 @@ import Foundation
 
 struct AvailableDay {
 	// MARK: Private Properties
+	private var _uniqueID : String
 	private var _available : Bool
 	private var _weekday : Int
 	private var _startTime : Date?
 	private var _endTime : Date?
 	
 	// MARK: Public Properties
+	var uniqueID : String {
+		return _uniqueID
+	}
+	
 	var available : Bool {
 		get {
 			return _available
@@ -50,7 +55,8 @@ struct AvailableDay {
 	}
 	
 	// MARK: Initializers
-	init(available: Bool, weekday: Int, startTime: Date?, endTime: Date?) {
+	init(weekday: Int, startTime: Date?, endTime: Date?, available: Bool = true, uniqueID: String = UUID().uuidString) {
+		self._uniqueID = uniqueID
 		self._available = available
 		self._weekday = weekday
 		self._startTime = startTime
@@ -58,6 +64,6 @@ struct AvailableDay {
 	}
 	
 	init(weekday : Int) {
-		self.init(available: false, weekday: weekday, startTime: nil, endTime: nil)
+		self.init(weekday: weekday, startTime: nil, endTime: nil, available: false)
 	}
 }
