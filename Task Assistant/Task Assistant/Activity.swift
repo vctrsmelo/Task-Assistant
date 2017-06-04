@@ -8,8 +8,8 @@
 
 import Foundation
 
-enum Priority {
-	case canBeRescheduled, shouldNotBeRescheduled, cannotBeRescheduled
+enum Priority : Int {
+	case canBeRescheduled = 1, shouldNotBeRescheduled, cannotBeRescheduled
 }
 
 class Activity {

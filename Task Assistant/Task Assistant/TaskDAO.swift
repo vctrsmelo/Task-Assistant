@@ -9,11 +9,14 @@
 import Foundation
 import RealmSwift
 
-class TaskDAO : Object {
+class TaskDAO : ActivityDAO {
+	dynamic var dueDate = Date()
 	
 	convenience init(_ task : Task) {
 		self.init()
 		
+		self.activityInit(task)
 		
+		self.dueDate = task.dueDate
 	}
 }

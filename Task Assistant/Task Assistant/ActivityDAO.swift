@@ -10,10 +10,22 @@ import Foundation
 import RealmSwift
 
 class ActivityDAO : Object {
+	dynamic var title = ""
+	dynamic var estimatedTime : TimeInterval = 0.0
+	dynamic var priority = 0
+	dynamic var finished = false
 	
 	convenience init(_ activity : Activity) {
 		self.init()
 		
-		
+		self.activityInit(activity)
+	}
+	
+	// Due to not being able to chain the inits correctly this is necessary
+	func activityInit(_ activity : Activity) {
+		self.title = activity.title
+		self.estimatedTime = activity.estimatedTime
+		self.priority = activity.priority.rawValue
+		self.finished = activity.finished
 	}
 }

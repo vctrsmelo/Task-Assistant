@@ -9,11 +9,21 @@
 import Foundation
 import RealmSwift
 
-class ProjectDAO : Object {
+class ProjectDAO : ActivityDAO {
+	dynamic var startDate = Date()
+	dynamic var endDate = Date()
+	let tasks = List<TaskDAO>()
 	
 	convenience init(_ project : Project) {
 		self.init()
 		
+		self.activityInit(project)
 		
+		self.startDate = project.startDate
+		self.endDate = project.endDate
+		
+		for task in project.tasks {
+			self.tasks.append(TaskDAO(task))
+		}
 	}
 }

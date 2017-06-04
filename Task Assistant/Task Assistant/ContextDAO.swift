@@ -23,6 +23,10 @@ class ContextDAO : Object {
 		for availableDay in context.availableDays {
 			self.availableDays.append(AvailableDayDAO(availableDay))
 		}
+		
+		for activity in context.activities {
+			self.activities.append(ActivityDAO(activity))
+		}
 	}
 	
 }
