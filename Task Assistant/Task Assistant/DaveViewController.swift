@@ -18,12 +18,16 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     private let messageViewWidth: CGFloat = 250.0
     
+    //add text (name input)
     @IBOutlet weak var textInputView: UIView!
     @IBOutlet weak var textInputField: UITextField!
-    
     @IBOutlet weak var sendButton: UIButton!
     
-    var isUserTurn = false
+    //add project and add task
+    @IBOutlet weak var addActivityButtonsView: UIView!
+    @IBOutlet weak var addProjectButton: UIButton!
+    @IBOutlet weak var addTaskButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +38,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
         textInputView.isHidden = true
+    
+        
+        addActivityButtonsView.isHidden = true
         
         dave = Dave(isUserDefined: false)
         
@@ -62,7 +69,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var message = chatCollectionView.getMessages()[indexPath.row]
+        let message = chatCollectionView.getMessages()[indexPath.row]
         
         if(message.source == .Dave){
             
@@ -136,8 +143,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         if(dave.indexOfNextMessageToSend == 4){ //asked user name
             
             textInputView.isHidden = false
-            chatCollectionView.frame.size.height -= 55
-            isUserTurn = true
+            chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
             
         }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
         
@@ -173,7 +179,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }
             
             //restore original size of chatCollectionView
-            chatCollectionView.frame.size.height += 55
+            chatCollectionView.frame.size.height += textInputView.frame.size.height
             
             //closes keyboard
             self.view.endEditing(true)

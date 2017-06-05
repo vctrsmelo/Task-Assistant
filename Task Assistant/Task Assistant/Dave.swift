@@ -12,6 +12,7 @@ class Dave: NSObject {
 
     private(set) var messages: [String] = []
     private(set) var indexOfNextMessageToSend = 0
+    private var user: User?
     
     init(isUserDefined: Bool) {
         
@@ -48,11 +49,27 @@ class Dave: NSObject {
     
     }
     
-    private func suggestNextTask(){
+    private func orderTasks(user: User){
         
+        self.user = user
+        
+        for context in user.contexts{
+            
+            var orderedActivities : [Activity]
+            
+            for activity in context.activities{
+                
+                
+                
+            }
+            
+            
+            
+        }
         
         
     }
+    
     
     public func sendNextMessage(chatView chat : ChatCollectionView){
         

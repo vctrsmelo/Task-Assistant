@@ -143,14 +143,21 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
         
             
         } else {
-            self.allCharactersTyped = true
-            delegate?.daveTypedAllCharacters()
-            timer?.invalidate()
+            
+            Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.typeLetterConcluded), userInfo: nil, repeats: false)
             
         }
         
         myCounter += 1
     
+    }
+    
+    @objc private func typeLetterConcluded(){
+        
+        self.allCharactersTyped = true
+        delegate?.daveTypedAllCharacters()
+        timer?.invalidate()
+        
     }
     
 }

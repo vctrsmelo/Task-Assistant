@@ -14,6 +14,8 @@ class Context {
 	private var _title : String
 	private var _availableDays : [AvailableDay]
 	private var _activities : [Activity]
+    
+    public var isActivitiesOrdered = false
 	
 	// MARK: Public Properties
 	var uniqueID : String {
