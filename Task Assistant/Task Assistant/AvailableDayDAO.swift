@@ -13,8 +13,8 @@ class AvailableDayDAO : Object {
 	dynamic var uniqueID = ""
 	dynamic var available = false
 	dynamic var weekday = 0
-	dynamic var startTime : Date? = nil
-	dynamic var endTime : Date? = nil
+	let startTime = RealmOptional<Int>()
+	let endTime = RealmOptional<Int>()
 	
 	override static func primaryKey() -> String? {
 		return "uniqueID"
@@ -26,11 +26,11 @@ class AvailableDayDAO : Object {
 		self.uniqueID = availableDay.uniqueID
 		self.available = availableDay.available
 		self.weekday = availableDay.weekday
-		self.startTime = availableDay.startTime
-		self.endTime = availableDay.endTime
+		self.startTime.value = availableDay.startTime
+		self.endTime.value = availableDay.endTime
 	}
 	
 	func intoAvailableDay() -> AvailableDay {
-		return AvailableDay(weekday: self.weekday, startTime: self.startTime, endTime: self.endTime, available: self.available, uniqueID: self.uniqueID)
+		return AvailableDay(weekday: self.weekday, startTime: self.startTime.value, endTime: self.endTime.value, available: self.available, uniqueID: self.uniqueID)
 	}
 }

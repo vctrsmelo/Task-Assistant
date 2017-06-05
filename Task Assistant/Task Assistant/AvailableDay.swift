@@ -13,8 +13,8 @@ struct AvailableDay {
 	private var _uniqueID : String
 	private var _available : Bool
 	private var _weekday : Int
-	private var _startTime : Date?
-	private var _endTime : Date?
+	private var _startTime : Int?
+	private var _endTime : Int?
 	
 	// MARK: Public Properties
 	var uniqueID : String {
@@ -37,7 +37,7 @@ struct AvailableDay {
 			_weekday = newValue
 		}
 	}
-	var startTime : Date? {
+	var startTime : Int? {
 		get {
 			return _startTime
 		}
@@ -45,7 +45,7 @@ struct AvailableDay {
 			_startTime = newValue
 		}
 	}
-	var endTime : Date? {
+	var endTime : Int? {
 		get {
 			return _endTime
 		}
@@ -55,7 +55,7 @@ struct AvailableDay {
 	}
 	
 	// MARK: Initializers
-	init(weekday: Int, startTime: Date?, endTime: Date?, available: Bool = true, uniqueID: String = UUID().uuidString) {
+	init(weekday: Int, startTime: Int?, endTime: Int?, available: Bool = true, uniqueID: String = UUID().uuidString) {
 		self._uniqueID = uniqueID
 		self._available = available
 		self._weekday = weekday

@@ -15,11 +15,20 @@ class AvailableDaysSelectionView: UIView {
 	@IBOutlet weak var switchLabel: UILabel!
 	@IBOutlet weak var rangeSliderView: RangeSliderView!
 	
+	var timesForDays = [AvailableDay]()
+	
+	
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		self.addSubview(Bundle.main.loadNibNamed("AvailableDaysSelectionView", owner: self, options: nil)?.first as! UIView)
+		let xibView = Bundle.main.loadNibNamed("AvailableDaysSelectionView", owner: self, options: nil)?.first as! UIView
+		xibView.frame = self.bounds
+		xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		
+		self.addSubview(xibView)
+		
+		
 	}
 	
 	
