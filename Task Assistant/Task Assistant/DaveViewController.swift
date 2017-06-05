@@ -23,7 +23,11 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
     private var dave : Dave!
     private var user : User!
-
+    
+    private var projectBeingCreated : Project?
+    private var projectName: String!
+    
+    
     private var userName: String!
     private var userContexts: [Context]!
     
@@ -189,7 +193,6 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }else if(dave.indexOfNextMessageToSend == 7){ //user provided all information
                 
                 user = User(name: userName, contexts: userContexts)
-                addActivityButtonsView.isHidden = false
 
                 self.viewStatus = .none
                 
@@ -198,7 +201,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 if let indexPath = lastIndexPath{
                     self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
                 }
-            
+
+                addActivityButtonsView.isHidden = false
+
             }else{
             
                 dave.sendNextMessage(chatView: chatCollectionView)
@@ -208,6 +213,17 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             break
             
         case .registeringProject:
+            
+            if(dave.indexOfNextMessageToSend == 2){ //Dave asked for projects name
+            
+                textInputView.isHidden = false
+                chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
+                
+                if let indexPath = lastIndexPath{
+                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                }
+            }
+            
             break
             
         case .registeringTask:
@@ -239,6 +255,13 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             break
             
         case .registeringProject:
+            
+            if(dave.indexOfNextMessageToSend == 1){ //user sent the project name
+            
+                dave.sendNextMessage(chatView: chatCollectionView)
+                
+            }
+            
             break
             
         case .registeringTask:
@@ -266,16 +289,41 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             //closes keyboard
             self.view.endEditing(true)
             textInputView.isHidden = true
-            
-            self.userName = text
-            
-            //user manda mensagem dizendo seu nome
-            chatCollectionView.add(message: Message(text: self.userName, from: .User))
 
+            switch(viewStatus){
+                
+            case .registeringUser:
+                    self.userName = text
+                    break
+                
+            case .registeringProject:
+                    self.projectName = text
+                    break
+                
+            default:
+                break
+
+            }
+        
+            //user manda mensagem dizendo seu nome
+            chatCollectionView.add(message: Message(text: text, from: .User))
+            
+        
         }
         
         
         
+    }
+    
+    @IBAction func addProjectButtonTouched(_ sender: Any) {
+
+        print("addProjectTouched")
+        viewStatus = .registeringProject
+        
+        dave.beginAddProjectFlow()
+        dave.sendNextMessage(chatView: chatCollectionView)
+        addActivityButtonsView.isHidden = true
+    
     }
     
     @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {

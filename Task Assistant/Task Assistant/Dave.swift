@@ -24,12 +24,12 @@ class Dave: NSObject {
             
         }else{
             
-            self.addCreateAccountMessages()
+            self.addCreateAccountMessagesToQueue()
             
         }
     }
     
-    private func addCreateAccountMessages(){
+    private func addCreateAccountMessagesToQueue(){
         
         messages.append(contentsOf: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
                                       "With my help, you don’t need to spend time deciding about what to do. Just do it! :)",
@@ -38,6 +38,24 @@ class Dave: NSObject {
                                       "Nice to meet you",
                                       "To precisely suggest your next task, I need to know your daily time to dedicate for your tasks. Please, insert them below according to the weekday.",
                                       "Thank you for your information. You still have no task or project registered. You can add one now, so I can help you :)"])
+        
+    }
+    
+    
+    public func beginAddProjectFlow(){
+
+        messages = []
+        indexOfNextMessageToSend = 0
+        addProjectMessagesToQueue()
+        
+    }
+    
+    private func addProjectMessagesToQueue(){
+        
+        messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the final date of the project?",
+                                     "And how much hours working on this project do you estimate you need to complete it?",
+                                     "A last information, how important is to complete this project until"
+            ])
         
     }
     
