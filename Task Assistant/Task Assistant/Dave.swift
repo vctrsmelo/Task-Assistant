@@ -66,11 +66,12 @@ class Dave: NSObject {
             
             
         }
+
+    private func suggestNextTask(){
         
         
     }
-    
-    
+
     public func sendNextMessage(chatView chat : ChatCollectionView){
         
         if indexOfNextMessageToSend >= messages.count {

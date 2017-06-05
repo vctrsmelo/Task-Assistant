@@ -41,19 +41,28 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+<<<<<<< HEAD
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-oh-92h">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+=======
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-oh-92h">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+>>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                         </view>
+<<<<<<< HEAD
                                         <constraints>
                                             <constraint firstItem="ffJ-oh-92h" firstAttribute="top" secondItem="EI0-6W-6P7" secondAttribute="top" id="86c-At-t3J"/>
                                             <constraint firstAttribute="trailing" secondItem="ffJ-oh-92h" secondAttribute="trailing" id="Muo-I4-ws5"/>
                                             <constraint firstAttribute="bottom" secondItem="ffJ-oh-92h" secondAttribute="bottom" id="a0S-AZ-LzU"/>
                                             <constraint firstItem="ffJ-oh-92h" firstAttribute="leading" secondItem="EI0-6W-6P7" secondAttribute="leading" id="ovM-R1-6O4"/>
                                         </constraints>
+=======
+>>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
                                         <connections>
                                             <outlet property="textView" destination="ffJ-oh-92h" id="GEc-eS-eUz"/>
                                         </connections>
@@ -85,7 +94,11 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+<<<<<<< HEAD
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSv-70-Xxw">
+=======
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSv-70-Xxw">
+>>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
                                 <rect key="frame" x="0.0" y="563" width="375" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2h-SS-uf5">
@@ -114,6 +127,7 @@
                                     <constraint firstItem="1sP-Bk-Pqw" firstAttribute="centerY" secondItem="kSv-70-Xxw" secondAttribute="centerY" id="wqc-D7-hT5"/>
                                 </constraints>
                             </view>
+<<<<<<< HEAD
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dys-tg-Uw4">
                                 <rect key="frame" x="0.0" y="563" width="375" height="55"/>
                                 <subviews>
@@ -155,15 +169,28 @@
                             <constraint firstItem="bBk-MV-793" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bme-rP-3V9"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gOZ-3I-1A3"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="width" secondItem="kSv-70-Xxw" secondAttribute="width" id="jnC-pe-xn1"/>
+=======
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="kSv-70-Xxw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gmc-yn-wBN"/>
+                            <constraint firstItem="kSv-70-Xxw" firstAttribute="top" secondItem="bBk-MV-793" secondAttribute="bottom" constant="-55" id="Gmy-gd-3c0"/>
+                            <constraint firstAttribute="trailing" secondItem="bBk-MV-793" secondAttribute="trailing" id="W1X-fL-yvB"/>
+                            <constraint firstItem="bBk-MV-793" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bme-rP-3V9"/>
+                            <constraint firstItem="kSv-70-Xxw" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gOZ-3I-1A3"/>
+>>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
                             <constraint firstAttribute="trailing" secondItem="kSv-70-Xxw" secondAttribute="trailing" id="mYg-e3-10i"/>
                             <constraint firstItem="bBk-MV-793" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="uiP-P8-1lS"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Dave" id="arv-lo-HYz"/>
                     <connections>
+<<<<<<< HEAD
                         <outlet property="addActivityButtonsView" destination="dys-tg-Uw4" id="CED-w4-Qrt"/>
                         <outlet property="addProjectButton" destination="bcI-CL-tJZ" id="5ah-H9-vBY"/>
                         <outlet property="addTaskButton" destination="E0a-G9-1ZZ" id="Fpi-I2-ovq"/>
+=======
+>>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
                         <outlet property="chatCollectionView" destination="bBk-MV-793" id="TTR-t2-xTq"/>
                         <outlet property="sendButton" destination="x2h-SS-uf5" id="FX6-Rp-SAE"/>
                         <outlet property="textInputField" destination="1sP-Bk-Pqw" id="bhe-33-zGZ"/>
