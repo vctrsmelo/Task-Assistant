@@ -67,6 +67,8 @@ class Dave: NSObject {
             
         }
 
+    }
+
     private func suggestNextTask(){
         
         

@@ -18,7 +18,6 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     private let messageViewWidth: CGFloat = 250.0
     
-<<<<<<< HEAD
     //add text (name input)
     @IBOutlet weak var textInputView: UIView!
     @IBOutlet weak var textInputField: UITextField!
@@ -29,15 +28,6 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var addProjectButton: UIButton!
     @IBOutlet weak var addTaskButton: UIButton!
     
-=======
-    @IBOutlet weak var textInputView: UIView!
-    @IBOutlet weak var textInputField: UITextField!
-    
-    @IBOutlet weak var sendButton: UIButton!
-    
-    var isUserTurn = false
->>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     
@@ -47,12 +37,8 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
         textInputView.isHidden = true
-<<<<<<< HEAD
-    
-        
+
         addActivityButtonsView.isHidden = true
-=======
->>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
         
         dave = Dave(isUserDefined: false)
         
@@ -81,11 +67,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-<<<<<<< HEAD
         let message = chatCollectionView.getMessages()[indexPath.row]
-=======
-        var message = chatCollectionView.getMessages()[indexPath.row]
->>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
         
         if(message.source == .Dave){
             
@@ -159,12 +141,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         if(dave.indexOfNextMessageToSend == 4){ //asked user name
             
             textInputView.isHidden = false
-<<<<<<< HEAD
             chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
-=======
-            chatCollectionView.frame.size.height -= 55
-            isUserTurn = true
->>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
             
         }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
         
@@ -200,11 +177,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }
             
             //restore original size of chatCollectionView
-<<<<<<< HEAD
             chatCollectionView.frame.size.height += textInputView.frame.size.height
-=======
-            chatCollectionView.frame.size.height += 55
->>>>>>> 2730042ff23cb1ce1cc665caa315016cc9d01dad
             
             //closes keyboard
             self.view.endEditing(true)
