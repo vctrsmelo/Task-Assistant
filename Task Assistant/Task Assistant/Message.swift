@@ -20,7 +20,7 @@ class Message: NSObject {
     public let source: UserType
     public var text : String
     
-    init(withMessage text: String, from source: UserType){
+    init(text: String, from source: UserType){
         
         self.text = text
         self.source = source

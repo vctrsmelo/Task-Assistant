@@ -8,20 +8,38 @@
 
 import UIKit
 
-class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
+class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate {
 
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
-    
+    private var dave : Dave!
+    private var user : User!
 
+    private var userName: String!
+    
+    private let messageViewWidth: CGFloat = 250.0
+    
+    @IBOutlet weak var textInputView: UIView!
+    @IBOutlet weak var textInputField: UITextField!
+    
+    @IBOutlet weak var sendButton: UIButton!
+    
+    var isUserTurn = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
-        chatCollectionView.add(message: Message(withMessage: "Mensagem User", from: .User))
-        chatCollectionView.add(message: Message(withMessage: "Mensagem Dave", from: .Dave))
-        
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
+        textInputView.isHidden = true
+        
+        dave = Dave(isUserDefined: false)
+        
+        dave.sendNextMessage(chatView: chatCollectionView)
+
+        self.view.setNeedsDisplay()
     
     }
 
@@ -32,7 +50,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+
         return chatCollectionView.getMessages().count
         
     }
@@ -43,24 +61,149 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("tttt")
-        let messageCell:MessageCollectionViewCell = self.chatCollectionView.dequeueReusableCell(withReuseIdentifier: "messageCell", for: indexPath) as! MessageCollectionViewCell
         
-        messageCell.set(message: chatCollectionView.getMessages()[indexPath.row])
+        var message = chatCollectionView.getMessages()[indexPath.row]
         
-        print("past message \(messageCell.textView.text)")
-        return messageCell
+        if(message.source == .Dave){
+            
+            let messageCell:DaveMessageCollectionViewCell = self.chatCollectionView.dequeueReusableCell(withReuseIdentifier: "daveMessageCell", for: indexPath) as! DaveMessageCollectionViewCell
+                
+                
+                
+                if(chatCollectionView.getMessages().count == indexPath.row+1)
+                {
+                    
+                    messageCell.write(message: message, typingEffect: true)
+                    messageCell.delegate = self
+                
+                }else{
+                    
+                    messageCell.write(message: message, typingEffect: false)
+                    messageCell.delegate = nil
+                }
+                
+                collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+
+                return messageCell
+
+        }else{
+    
+            let messageCell:UserMessageCollectionViewCell = self.chatCollectionView.dequeueReusableCell(withReuseIdentifier: "userMessageCell", for: indexPath) as! UserMessageCollectionViewCell
+        
+            messageCell.write(message: message, typingEffect: false)
+            
+            if(chatCollectionView.getMessages().count == indexPath.row+1)
+            {
+                
+                messageCell.delegate = self
+                
+            }else{
+            
+                messageCell.delegate = nil
+            
+            }
+
+
+            collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+
+
+
+            return messageCell
+
+        }
+        
+        
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let cellWidth = self.view.frame.width
+        
+        let tempTextView = UITextView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500))
+        
+        tempTextView.text = chatCollectionView.getMessages()[indexPath.row].text
+        
+        let contentSize = tempTextView.sizeThatFits(tempTextView.bounds.size)
+        let cellHeight : CGFloat = contentSize.height
+        
+        return CGSize(width: cellWidth, height: (cellHeight+30))
+        
     }
-    */
+    
+    func daveTypedAllCharacters() {
+        
+        if(dave.indexOfNextMessageToSend == 4){ //asked user name
+            
+            textInputView.isHidden = false
+            isUserTurn = true
+            
+        }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
+        
+            print("pediu horarios")
+        
+        }else{
+        
+            dave.sendNextMessage(chatView: chatCollectionView)
+
+        }
+    }
+    
+    func userTypedAllCharacters() {
+        
+        if(dave.indexOfNextMessageToSend == 4){
+            
+            dave.sendNextMessage(chatView: chatCollectionView, concatenate: ", "+self.userName+"! :)")
+
+            
+        }
+        
+    }
+
+
+    @IBAction func sendButtonTouched(_ sender: UIButton) {
+        
+        if let text = textInputField.text{
+            
+            if(text.isEmpty){
+                
+                return
+                
+            }
+            
+            //closes keyboard
+            self.view.endEditing(true)
+            textInputView.isHidden = true
+            
+            self.userName = text
+            
+            //user manda mensagem dizendo seu nome
+            chatCollectionView.add(message: Message(text: self.userName, from: .User))
+
+        }
+        
+        
+        
+    }
+    
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+
+            textInputView.frame.origin.y -= keyboardSize.height-49
+            chatCollectionView.frame.size.height -= keyboardSize.height-(49+textInputView.frame.size.height)
+
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+        
+            textInputView.frame.origin.y += keyboardSize.height+49
+            chatCollectionView.frame.size.height += keyboardSize.height-(49+textInputView.frame.size.height)
+            
+
+        }
+    }
 
 }
