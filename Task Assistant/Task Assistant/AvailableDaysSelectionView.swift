@@ -126,4 +126,5 @@ enum Weekday : String {
 		
 		print(self.currentDay)
 	}
+    
 }

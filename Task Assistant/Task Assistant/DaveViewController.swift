@@ -8,13 +8,24 @@
 
 import UIKit
 
+enum DaveViewControllerStatus {
+    case registeringUser
+    case registeringProject
+    case registeringTask
+    case none
+}
+
 class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate {
 
+    //viewStatus controls in what proccess user currently is
+    private var viewStatus : DaveViewControllerStatus = .none
+    
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
     private var dave : Dave!
     private var user : User!
 
     private var userName: String!
+    private var userContexts: [Context]!
     
     private let messageViewWidth: CGFloat = 250.0
     
@@ -28,17 +39,31 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var addProjectButton: UIButton!
     @IBOutlet weak var addTaskButton: UIButton!
     
+    @IBOutlet weak var availableDaysSelectionContainerView: UIView!
+    @IBOutlet weak var availableDaysSelectionView: AvailableDaysSelectionView!
+    @IBOutlet weak var sendAvailableDays: UIButton!
+    
+    private var lastIndexPath: IndexPath?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
+        if user == nil {
+            
+            viewStatus = .registeringUser
+            
+        }
+        
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
         textInputView.isHidden = true
 
         addActivityButtonsView.isHidden = true
+        
+        availableDaysSelectionContainerView.isHidden = true
         
         dave = Dave(isUserDefined: false)
         
@@ -74,22 +99,23 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             let messageCell:DaveMessageCollectionViewCell = self.chatCollectionView.dequeueReusableCell(withReuseIdentifier: "daveMessageCell", for: indexPath) as! DaveMessageCollectionViewCell
                 
                 
+            
+            if(chatCollectionView.getMessages().count == indexPath.row+1)
+            {
                 
-                if(chatCollectionView.getMessages().count == indexPath.row+1)
-                {
-                    
-                    messageCell.write(message: message, typingEffect: true)
-                    messageCell.delegate = self
+                messageCell.write(message: message, typingEffect: true)
+                messageCell.delegate = self
+            
+            }else{
                 
-                }else{
-                    
-                    messageCell.write(message: message, typingEffect: false)
-                    messageCell.delegate = nil
-                }
-                
-                collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                messageCell.write(message: message, typingEffect: false)
+                messageCell.delegate = nil
+            }
+            
+            collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
 
-                return messageCell
+            lastIndexPath = indexPath
+            return messageCell
 
         }else{
     
@@ -111,7 +137,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
             collectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
 
-
+            lastIndexPath = indexPath
 
             return messageCell
 
@@ -138,33 +164,91 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func daveTypedAllCharacters() {
         
-        if(dave.indexOfNextMessageToSend == 4){ //asked user name
+        switch(viewStatus){
+        
+        case .registeringUser:
+        
+            if(dave.indexOfNextMessageToSend == 4){ //asked user name
+                
+                textInputView.isHidden = false
+                chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
+                
+                if let indexPath = lastIndexPath{
+                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                }
+           
+            }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
             
-            textInputView.isHidden = false
-            chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
-            
-        }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
-        
-            print("pediu horarios")
-        
-        }else{
-        
-            dave.sendNextMessage(chatView: chatCollectionView)
+                availableDaysSelectionContainerView.isHidden = false
+                chatCollectionView.frame.size.height -= availableDaysSelectionContainerView.frame.size.height
+                
+                if let indexPath = lastIndexPath{
+                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                }
+                
+            }else if(dave.indexOfNextMessageToSend == 7){ //user provided all information
+                
+                user = User(name: userName, contexts: userContexts)
+                addActivityButtonsView.isHidden = false
 
+                self.viewStatus = .none
+                
+                chatCollectionView.frame.size.height -= addActivityButtonsView.frame.size.height
+                
+                if let indexPath = lastIndexPath{
+                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                }
+            
+            }else{
+            
+                dave.sendNextMessage(chatView: chatCollectionView)
+
+            }
+            
+            break
+            
+        case .registeringProject:
+            break
+            
+        case .registeringTask:
+            break
+        
+        case .none:
+            break
+            
         }
     }
     
     func userTypedAllCharacters() {
         
-        if(dave.indexOfNextMessageToSend == 4){
-            
-            dave.sendNextMessage(chatView: chatCollectionView, concatenate: ", "+self.userName+"! :)")
-
-            
-        }
+        switch viewStatus {
         
+        case .registeringUser:
+            
+            if(dave.indexOfNextMessageToSend == 4){ //user sent his/her name
+                
+                dave.sendNextMessage(chatView: chatCollectionView, concatenate: ", "+self.userName+"! :)")
+                
+                
+            }else if(dave.indexOfNextMessageToSend == 6){ //user sent his/her daily working time
+                
+                dave.sendNextMessage(chatView: chatCollectionView)
+                
+            }
+            
+            break
+            
+        case .registeringProject:
+            break
+            
+        case .registeringTask:
+            break
+            
+        case .none:
+            break
+        
+        }
     }
-
 
     @IBAction func sendButtonTouched(_ sender: UIButton) {
         
@@ -194,6 +278,21 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
     
+    @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {
+        
+        //create context
+        userContexts = [Context(title: "Main", availableDays: availableDaysSelectionView.availableDays)]
+        
+        //hide available days selection view
+        availableDaysSelectionContainerView.isHidden = true
+        
+        //restore collectionView size
+        chatCollectionView.frame.size.height += availableDaysSelectionContainerView.frame.size.height
+        
+        //user sends message telling it has sent the working times
+        chatCollectionView.add(message: Message(text: "These are my working times", from: .User))
+        
+    }
     
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {

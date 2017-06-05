@@ -143,16 +143,45 @@
                                     <constraint firstAttribute="trailing" secondItem="vHB-HF-OX9" secondAttribute="trailing" id="xB7-5E-bkE"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfh-3A-u1u">
+                                <rect key="frame" x="0.0" y="397" width="375" height="221"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0B-fU-YOb">
+                                        <rect key="frame" x="331" y="0.0" width="36" height="30"/>
+                                        <state key="normal" title="Send"/>
+                                        <connections>
+                                            <action selector="sendAvailableDaysTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K7o-qc-Oyb"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6x-U8-IYQ" customClass="AvailableDaysSelectionView" customModule="Task_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="49" width="375" height="172"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="r6x-U8-IYQ" secondAttribute="trailing" id="5Tu-at-pXM"/>
+                                    <constraint firstItem="r6x-U8-IYQ" firstAttribute="leading" secondItem="mfh-3A-u1u" secondAttribute="leading" id="5ok-OV-lkm"/>
+                                    <constraint firstAttribute="trailing" secondItem="e0B-fU-YOb" secondAttribute="trailing" constant="8" id="QN7-8x-fHN"/>
+                                    <constraint firstAttribute="height" constant="221" id="WyQ-zt-Oim"/>
+                                    <constraint firstItem="e0B-fU-YOb" firstAttribute="top" secondItem="mfh-3A-u1u" secondAttribute="top" id="eOp-yh-805"/>
+                                    <constraint firstAttribute="bottom" secondItem="r6x-U8-IYQ" secondAttribute="bottom" id="hxS-Za-OSr"/>
+                                    <constraint firstItem="r6x-U8-IYQ" firstAttribute="top" secondItem="mfh-3A-u1u" secondAttribute="top" constant="49" id="vKI-Fb-eND"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="height" secondItem="kSv-70-Xxw" secondAttribute="height" id="DeD-8U-5OE"/>
+                            <constraint firstAttribute="trailing" secondItem="mfh-3A-u1u" secondAttribute="trailing" id="EXJ-4g-WJy"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gmc-yn-wBN"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="top" secondItem="bBk-MV-793" secondAttribute="bottom" constant="-55" id="Gmy-gd-3c0"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="top" secondItem="kSv-70-Xxw" secondAttribute="top" id="Rl5-KC-4ks"/>
                             <constraint firstAttribute="trailing" secondItem="bBk-MV-793" secondAttribute="trailing" id="W1X-fL-yvB"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mfh-3A-u1u" secondAttribute="bottom" id="Ykq-uX-5pz"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="leading" secondItem="kSv-70-Xxw" secondAttribute="leading" id="ZZg-Lu-IVS"/>
                             <constraint firstItem="bBk-MV-793" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bme-rP-3V9"/>
+                            <constraint firstItem="mfh-3A-u1u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="brt-kA-HOg"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gOZ-3I-1A3"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="width" secondItem="kSv-70-Xxw" secondAttribute="width" id="jnC-pe-xn1"/>
                             <constraint firstAttribute="trailing" secondItem="kSv-70-Xxw" secondAttribute="trailing" id="mYg-e3-10i"/>
@@ -164,7 +193,10 @@
                         <outlet property="addActivityButtonsView" destination="dys-tg-Uw4" id="CED-w4-Qrt"/>
                         <outlet property="addProjectButton" destination="bcI-CL-tJZ" id="5ah-H9-vBY"/>
                         <outlet property="addTaskButton" destination="E0a-G9-1ZZ" id="Fpi-I2-ovq"/>
+                        <outlet property="availableDaysSelectionContainerView" destination="mfh-3A-u1u" id="WVQ-LL-HC5"/>
+                        <outlet property="availableDaysSelectionView" destination="r6x-U8-IYQ" id="il0-O0-DsG"/>
                         <outlet property="chatCollectionView" destination="bBk-MV-793" id="TTR-t2-xTq"/>
+                        <outlet property="sendAvailableDays" destination="e0B-fU-YOb" id="nbg-3c-wGx"/>
                         <outlet property="sendButton" destination="x2h-SS-uf5" id="FX6-Rp-SAE"/>
                         <outlet property="textInputField" destination="1sP-Bk-Pqw" id="bhe-33-zGZ"/>
                         <outlet property="textInputView" destination="kSv-70-Xxw" id="RQk-tS-LZj"/>
