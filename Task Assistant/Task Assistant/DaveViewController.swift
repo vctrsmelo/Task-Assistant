@@ -136,6 +136,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         if(dave.indexOfNextMessageToSend == 4){ //asked user name
             
             textInputView.isHidden = false
+            chatCollectionView.frame.size.height -= 55
             isUserTurn = true
             
         }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
@@ -170,6 +171,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 return
                 
             }
+            
+            //restore original size of chatCollectionView
+            chatCollectionView.frame.size.height += 55
             
             //closes keyboard
             self.view.endEditing(true)
