@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E72036C11EE4D84500D5721E /* NHRangeSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72036C01EE4D84500D5721E /* NHRangeSlider.framework */; };
+		E72036C51EE4E32500D5721E /* RangeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72036C41EE4E32500D5721E /* RangeSliderView.swift */; };
+		E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */; };
+		E72036C91EE4F71600D5721E /* AvailableDaysSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */; };
 		E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECD1EE387730082F598 /* UserDAO.swift */; };
 		E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */; };
 		E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED21EE38DE50082F598 /* ContextDAO.swift */; };
@@ -33,6 +37,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E72036C01EE4D84500D5721E /* NHRangeSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NHRangeSlider.framework; path = Carthage/Build/iOS/NHRangeSlider.framework; sourceTree = "<group>"; };
+		E72036C41EE4E32500D5721E /* RangeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderView.swift; sourceTree = "<group>"; };
+		E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDaysSelectionView.swift; sourceTree = "<group>"; };
+		E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailableDaysSelectionView.xib; sourceTree = "<group>"; };
 		E72A7ECD1EE387730082F598 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
 		E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseConfig.swift; sourceTree = "<group>"; };
 		E72A7ED21EE38DE50082F598 /* ContextDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextDAO.swift; sourceTree = "<group>"; };
@@ -67,6 +75,7 @@
 			files = (
 				E7B0A2221EE384AE008D4037 /* Realm.framework in Frameworks */,
 				E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */,
+				E72036C11EE4D84500D5721E /* NHRangeSlider.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +113,7 @@
 		E7B0A21F1EE384AD008D4037 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E72036C01EE4D84500D5721E /* NHRangeSlider.framework */,
 				E7B0A2201EE384AE008D4037 /* Realm.framework */,
 				E7B0A2211EE384AE008D4037 /* RealmSwift.framework */,
 			);
@@ -115,6 +125,8 @@
 			children = (
 				EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */,
 				EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */,
+				E72036C41EE4E32500D5721E /* RangeSliderView.swift */,
+				E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -145,6 +157,7 @@
 				E73DEBD91EDE7D3200355D99 /* Core Classes */,
 				E72A7ED11EE38BD10082F598 /* Persistence */,
 				EE2CD8621EDC43E200477F6B /* Main.storyboard */,
+				E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */,
 				EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */,
 				EE2CD86A1EDC43E200477F6B /* Info.plist */,
 				EE2CD8651EDC43E200477F6B /* Assets.xcassets */,
@@ -215,6 +228,7 @@
 			files = (
 				EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */,
 				EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */,
+				E72036C91EE4F71600D5721E /* AvailableDaysSelectionView.xib in Resources */,
 				EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,6 +244,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NHRangeSlider.framework",
 			);
 			outputPaths = (
 			);
@@ -246,11 +261,13 @@
 			files = (
 				E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */,
 				E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */,
+				E72036C51EE4E32500D5721E /* RangeSliderView.swift in Sources */,
 				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
 				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
+				E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */,
 				E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */,
 				E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */,
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,

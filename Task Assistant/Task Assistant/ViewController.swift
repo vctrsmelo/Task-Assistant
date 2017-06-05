@@ -54,7 +54,7 @@ class ViewController: UIViewController {
 		
 		} else {
 			print("Will Create User")
-			let availableDay = AvailableDay(weekday: 4, startTime: Date(), endTime: Date().addingTimeInterval(5000))
+			let availableDay = AvailableDay(weekday: 4, startTime: 7, endTime: 15)
 			let nonAvailableDay = AvailableDay(weekday: 3)
 			let context = Context(title: "Work", availableDays: [nonAvailableDay, availableDay])
 			ViewController.user = User(name: "Luigi", contexts: [context])
