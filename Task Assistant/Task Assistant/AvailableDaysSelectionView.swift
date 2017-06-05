@@ -24,8 +24,14 @@ enum Weekday : String {
 	}
 }
 
-class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
-
+@IBDesignable class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
+	// MARK: Private Properties
+	private let nibName = "AvailableDaysSelectionView"
+	private var view : UIView!
+	
+	private let labelMainText = "I don't work on"
+	
+	// MARK: Public Properties
 	@IBOutlet weak var daySelector: UISegmentedControl!
 	@IBOutlet weak var availableDaySwitch: UISwitch!
 	@IBOutlet weak var switchLabel: UILabel!
@@ -42,17 +48,22 @@ class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 		}
 	}
 	
-	let labelMainText = "I don't work on"
-	
+	// MARK: Initializers
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		
+		self.initialSetup()
+	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		
-		let xibView = Bundle.main.loadNibNamed("AvailableDaysSelectionView", owner: self, options: nil)?.first as! UIView
-		xibView.frame = self.bounds
-		xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		
-		self.addSubview(xibView)
+		self.initialSetup()
+	}
+	
+	// MARK: Private Methods
+	private func initialSetup() {
+		self.xibSetup()
 		
 		self.rangeSliderView.delegate = self
 		
@@ -63,6 +74,25 @@ class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 		self.changedDay(self.daySelector)
 	}
 	
+	private func xibSetup() {
+		self.view = loadViewFromNib()
+		
+		self.view.frame = self.bounds
+		
+		self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		
+		self.addSubview(view)
+	}
+	
+	private func loadViewFromNib() -> UIView {
+		let bundle = Bundle(for: type(of: self))
+		let nib = UINib(nibName: self.nibName, bundle: bundle)
+		let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
+		
+		return view
+	}
+	
+	// MARK: Public Methods
 	@IBAction func switchValueChanged(_ sender: UISwitch) {
 		self.rangeSliderView.isHidden = sender.isOn
 
@@ -90,12 +120,6 @@ class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 	}
 	
 	func sliderValueChanged(slider: NHRangeSlider?) {
-		
-		//let lowerValueIsInt = slider!.lowerValue.truncatingRemainder(dividingBy: 1) == 0
-		//let upperValueIsInt = slider!.upperValue.truncatingRemainder(dividingBy: 1) == 0
-		
-//		if lowerValueIsInt && upperValueIsInt {
-//		}
 		
 		self.currentDay.startTime = Int(slider!.lowerValue)
 		self.currentDay.endTime = Int(slider!.upperValue)
