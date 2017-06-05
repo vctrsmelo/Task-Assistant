@@ -24,14 +24,16 @@
 		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
 		E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */; };
 		EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */; };
-		EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */; };
+		EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */; };
 		EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */; };
 		EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B751EE3B54F00EDC6D9 /* Message.swift */; };
+		EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B771EE431E000EDC6D9 /* Dave.swift */; };
 		EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */; };
 		EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD8601EDC43E200477F6B /* ViewController.swift */; };
 		EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8621EDC43E200477F6B /* Main.storyboard */; };
 		EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8651EDC43E200477F6B /* Assets.xcassets */; };
 		EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */; };
+		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,9 +54,10 @@
 		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleActivitiesDAO.swift; sourceTree = "<group>"; };
 		EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionView.swift; sourceTree = "<group>"; };
-		EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveViewController.swift; sourceTree = "<group>"; };
 		EE0B0B751EE3B54F00EDC6D9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EE0B0B771EE431E000EDC6D9 /* Dave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dave.swift; sourceTree = "<group>"; };
 		EE2CD85B1EDC43E200477F6B /* Task Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2CD8601EDC43E200477F6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +65,7 @@
 		EE2CD8651EDC43E200477F6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2CD8681EDC43E200477F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2CD86A1EDC43E200477F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +122,11 @@
 			isa = PBXGroup;
 			children = (
 				EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */,
-				EE0B0B711EE39BC500EDC6D9 /* MessageCollectionViewCell.swift */,
+				EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */,
+				EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */,
 				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
 				EE0B0B751EE3B54F00EDC6D9 /* Message.swift */,
+				EE0B0B771EE431E000EDC6D9 /* Dave.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -262,14 +268,16 @@
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
 				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
-				EE0B0B721EE39BC500EDC6D9 /* MessageCollectionViewCell.swift in Sources */,
+				EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */,
 				EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */,
 				EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */,
 				EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */,
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
+				EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */,
 				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
 				E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */,
+				EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,10 +12,12 @@ class ChatCollectionView: UICollectionView {
 
     private var messages: [Message] = []
     
-    
     public func add(message: Message){
         
         messages.append(message)
+        print("number of messages in ChatCollectionView: \(messages.count)")
+        print("current Message added: \(messages[messages.count-1].text) from: \(messages[messages.count-1].source)")
+        self.reloadData()
         
     }
     
@@ -24,6 +26,7 @@ class ChatCollectionView: UICollectionView {
         return messages
         
     }
+    
     
     /*
     // Only override draw() if you perform custom drawing.
