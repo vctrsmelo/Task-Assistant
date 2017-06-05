@@ -18,6 +18,7 @@ class RangeSliderView : NHRangeSliderView {
 		self.maximumValue = 23
 		self.upperValue = 23
 		self.gapBetweenThumbs = 1
+		self.stepValue = 1
 	}
 	
 }

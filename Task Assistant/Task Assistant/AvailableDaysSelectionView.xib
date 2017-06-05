@@ -44,8 +44,8 @@
                         <constraint firstAttribute="height" constant="80" id="5Bz-ee-C5y"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I don't work on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxi-I5-8Lu">
-                    <rect key="frame" x="56" y="51" width="113" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I don't work on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="204" translatesAutoresizingMaskIntoConstraints="NO" id="lxi-I5-8Lu">
+                    <rect key="frame" x="56" y="51" width="204" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -59,7 +59,7 @@
                     </connections>
                 </switch>
             </subviews>
-            <color key="backgroundColor" red="0.51692708333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="goZ-DH-ch8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9O5-aN-o7l"/>
                 <constraint firstAttribute="bottom" secondItem="goZ-DH-ch8" secondAttribute="bottom" id="Nv0-CW-cxk"/>

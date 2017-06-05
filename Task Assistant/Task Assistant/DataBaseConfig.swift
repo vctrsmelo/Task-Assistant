@@ -19,11 +19,40 @@ class DataBaseConfig {
 	private static func getRealm(_ location : DBType = .userDefault) -> Realm? {
 		var realm : Realm?
 		
-		switch location {
+		do {
+			
+			switch location {
 			case .userDefault:
-				realm =  try! Realm()
+				realm =  try Realm()
 			case .onlineServer:
 				realm = nil
+			}
+			
+		} catch let error as NSError {
+			print("Error opening Realm")
+			
+			if error.code == 10 {
+				// TODO: Make migration before releasing
+				print("Migration required, instead, deleting database to be restarted")
+				
+				let realmURL = Realm.Configuration.defaultConfiguration.fileURL!
+				let realmURLs = [
+					realmURL,
+					realmURL.appendingPathExtension("lock"),
+					realmURL.appendingPathExtension("note"),
+					realmURL.appendingPathExtension("management")
+				]
+				
+				for URL in realmURLs {
+					do {
+						try FileManager.default.removeItem(at: URL)
+					} catch {
+						print("Error deleting database, try doing manually")
+					}
+				}
+				
+			}
+			
 		}
 		
 		return realm

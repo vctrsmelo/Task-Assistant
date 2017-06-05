@@ -14,12 +14,12 @@ enum Weekday : String {
 	
 	private static var allDays = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
 	
-	static func getWeekday(day : Int) -> Weekday {
+	static func getWeekday(day : Int) -> Weekday? {
 		switch day {
 		case 1 ... 7:
-			return Weekday.allDays[day]
+			return Weekday.allDays[day - 1]
 		default:
-			return Weekday.sunday
+			return nil
 		}
 	}
 }
@@ -32,6 +32,15 @@ class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 	@IBOutlet weak var rangeSliderView: RangeSliderView!
 	
 	var availableDays = [AvailableDay]()
+	
+	var currentDay: AvailableDay {
+		get {
+			return self.availableDays[self.daySelector.selectedSegmentIndex]
+		}
+		set {
+			self.availableDays[self.daySelector.selectedSegmentIndex] = newValue
+		}
+	}
 	
 	let labelMainText = "I don't work on"
 	
@@ -50,44 +59,47 @@ class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 		for day in 1...7 {
 			self.availableDays.append(AvailableDay(weekday: day))
 		}
+		
+		self.changedDay(self.daySelector)
 	}
 	
 	@IBAction func switchValueChanged(_ sender: UISwitch) {
 		self.rangeSliderView.isHidden = sender.isOn
+
+		self.currentDay.available = !sender.isOn
 		
-		var day = self.getAvailableDay()
-		day.available = sender.isOn
+		if self.currentDay.available && self.currentDay.startTime == nil {
+			self.sliderValueChanged(slider: self.rangeSliderView.rangeSlider)
+		}
 	}
 	
 	@IBAction func changedDay(_ sender: UISegmentedControl) {
-		let day = self.getAvailableDay()
+		let day = self.currentDay
+		print(day)
 		
-		self.switchLabel.text = "\(self.labelMainText) \(Weekday.getWeekday(day: day.weekday).rawValue)"
+		self.switchLabel.text = "\(self.labelMainText) \(Weekday.getWeekday(day: day.weekday)!.rawValue)"
+		
 		self.availableDaySwitch.isOn = !day.available
+		self.switchValueChanged(self.availableDaySwitch)
 		
 		if day.available {
-			rangeSliderView.lowerValue = Double(day.startTime!)
-			rangeSliderView.lowerValue = Double(day.endTime!)
+			rangeSliderView.lowerValue = Double(day.startTime ?? 0)
+			rangeSliderView.upperValue = Double(day.endTime ?? 23)
 		}
 		
-	}
-
-	func getAvailableDay() -> AvailableDay {
-		let day = self.daySelector.selectedSegmentIndex
-		
-		for availableDay in self.availableDays {
-			if availableDay.weekday ==  day{
-				return availableDay
-			}
-		}
-		
-		return AvailableDay(weekday: day)
 	}
 	
 	func sliderValueChanged(slider: NHRangeSlider?) {
-		var day = self.getAvailableDay()
 		
-		day.startTime = Int(slider!.lowerValue)
-		day.endTime = Int(slider!.upperValue)
+		//let lowerValueIsInt = slider!.lowerValue.truncatingRemainder(dividingBy: 1) == 0
+		//let upperValueIsInt = slider!.upperValue.truncatingRemainder(dividingBy: 1) == 0
+		
+//		if lowerValueIsInt && upperValueIsInt {
+//		}
+		
+		self.currentDay.startTime = Int(slider!.lowerValue)
+		self.currentDay.endTime = Int(slider!.upperValue)
+		
+		print(self.currentDay)
 	}
 }
