@@ -33,6 +33,9 @@
                         <segment title="Fri"/>
                         <segment title="Sat"/>
                     </segments>
+                    <connections>
+                        <action selector="changedDay:" destination="-1" eventType="valueChanged" id="LHR-R9-F9n"/>
+                    </connections>
                 </segmentedControl>
                 <view clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" semanticContentAttribute="spatial" translatesAutoresizingMaskIntoConstraints="NO" id="goZ-DH-ch8" customClass="RangeSliderView" customModule="Task_Assistant" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="108" width="375" height="80"/>
@@ -51,6 +54,9 @@
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3os-Zl-0YJ">
                     <rect key="frame" x="268" y="46" width="51" height="31"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="switchValueChanged:" destination="-1" eventType="valueChanged" id="AEN-tc-s3z"/>
+                    </connections>
                 </switch>
             </subviews>
             <color key="backgroundColor" red="0.51692708333333337" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

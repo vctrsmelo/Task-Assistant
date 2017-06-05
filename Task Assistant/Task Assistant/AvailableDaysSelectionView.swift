@@ -7,16 +7,33 @@
 //
 
 import UIKit
+import NHRangeSlider
 
-class AvailableDaysSelectionView: UIView {
+enum Weekday : String {
+	case sunday, monday, tuesday, wednesday, thursday, friday, saturday
+	
+	private static var allDays = [sunday, monday, tuesday, wednesday, thursday, friday, saturday]
+	
+	static func getWeekday(day : Int) -> Weekday {
+		switch day {
+		case 1 ... 7:
+			return Weekday.allDays[day]
+		default:
+			return Weekday.sunday
+		}
+	}
+}
+
+class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
 
 	@IBOutlet weak var daySelector: UISegmentedControl!
 	@IBOutlet weak var availableDaySwitch: UISwitch!
 	@IBOutlet weak var switchLabel: UILabel!
 	@IBOutlet weak var rangeSliderView: RangeSliderView!
 	
-	var timesForDays = [AvailableDay]()
+	var availableDays = [AvailableDay]()
 	
+	let labelMainText = "I don't work on"
 	
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -28,9 +45,49 @@ class AvailableDaysSelectionView: UIView {
 		
 		self.addSubview(xibView)
 		
+		self.rangeSliderView.delegate = self
 		
+		for day in 1...7 {
+			self.availableDays.append(AvailableDay(weekday: day))
+		}
 	}
 	
+	@IBAction func switchValueChanged(_ sender: UISwitch) {
+		self.rangeSliderView.isHidden = sender.isOn
+		
+		var day = self.getAvailableDay()
+		day.available = sender.isOn
+	}
 	
+	@IBAction func changedDay(_ sender: UISegmentedControl) {
+		let day = self.getAvailableDay()
+		
+		self.switchLabel.text = "\(self.labelMainText) \(Weekday.getWeekday(day: day.weekday).rawValue)"
+		self.availableDaySwitch.isOn = !day.available
+		
+		if day.available {
+			rangeSliderView.lowerValue = Double(day.startTime!)
+			rangeSliderView.lowerValue = Double(day.endTime!)
+		}
+		
+	}
 
+	func getAvailableDay() -> AvailableDay {
+		let day = self.daySelector.selectedSegmentIndex
+		
+		for availableDay in self.availableDays {
+			if availableDay.weekday ==  day{
+				return availableDay
+			}
+		}
+		
+		return AvailableDay(weekday: day)
+	}
+	
+	func sliderValueChanged(slider: NHRangeSlider?) {
+		var day = self.getAvailableDay()
+		
+		day.startTime = Int(slider!.lowerValue)
+		day.endTime = Int(slider!.upperValue)
+	}
 }
