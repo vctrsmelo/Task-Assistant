@@ -12,6 +12,7 @@ class Dave: NSObject {
 
     private(set) var messages: [String] = []
     private(set) var indexOfNextMessageToSend = 0
+    private(set) var messagesSent = 0
     private var user: User?
     
     init(isUserDefined: Bool) {
@@ -101,6 +102,7 @@ class Dave: NSObject {
         }
         
         let msgStr = getNextMessage()
+        messagesSent += 1
         chat.add(message: Message(text: msgStr, from: .Dave))
 
     }

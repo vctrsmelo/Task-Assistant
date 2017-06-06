@@ -14,6 +14,7 @@ protocol UserMessageCollectionViewCellDelegate: class{
     func userTypedAllCharacters()
     
 }
+
 class UserMessageCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var textView: UITextView!

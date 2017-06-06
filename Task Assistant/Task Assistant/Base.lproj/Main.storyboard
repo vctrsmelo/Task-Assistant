@@ -21,8 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-MV-793" customClass="ChatCollectionView" customModule="Task_Assistant" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-MV-793" customClass="ChatCollectionView" customModule="Task_Assistant" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="281"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="554" id="2Ft-Qg-jaE"/>
@@ -121,14 +121,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcI-CL-tJZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="55"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="188" height="55"/>
                                                 <state key="normal" title="Add Project"/>
                                                 <connections>
                                                     <action selector="addProjectButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oA2-zZ-Cfu"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-G9-1ZZ">
-                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="55"/>
+                                                <rect key="frame" x="188" y="0.0" width="187" height="55"/>
                                                 <state key="normal" title="Add Task"/>
                                             </button>
                                         </subviews>
@@ -172,11 +172,43 @@
                                     <constraint firstItem="r6x-U8-IYQ" firstAttribute="top" secondItem="mfh-3A-u1u" secondAttribute="top" constant="49" id="vKI-Fb-eND"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2j-RQ-LbY" userLabel="DatePickerContainerView">
+                                <rect key="frame" x="0.0" y="397" width="375" height="221"/>
+                                <subviews>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="yEB-pl-mqd">
+                                        <rect key="frame" x="0.0" y="36" width="375" height="185"/>
+                                        <date key="date" timeIntervalSinceReferenceDate="518359039.67179698">
+                                            <!--2017-06-05 12:37:19 +0000-->
+                                        </date>
+                                        <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
+                                            <!--1970-01-01 11:00:00 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-Xh-KC2">
+                                        <rect key="frame" x="312" y="0.0" width="55" height="30"/>
+                                        <state key="normal" title="Confirm"/>
+                                        <connections>
+                                            <action selector="sendDateButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Os5-dr-wgm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yEB-pl-mqd" secondAttribute="bottom" id="2l4-FE-U0B"/>
+                                    <constraint firstItem="yEB-pl-mqd" firstAttribute="leading" secondItem="h2j-RQ-LbY" secondAttribute="leading" id="7zg-jL-9KF"/>
+                                    <constraint firstAttribute="trailing" secondItem="rN9-Xh-KC2" secondAttribute="trailing" constant="8" id="DS8-Rd-jvv"/>
+                                    <constraint firstAttribute="height" constant="221" id="EoZ-pU-Oni"/>
+                                    <constraint firstItem="rN9-Xh-KC2" firstAttribute="top" secondItem="h2j-RQ-LbY" secondAttribute="top" id="SgJ-ly-Bz5"/>
+                                    <constraint firstAttribute="trailing" secondItem="yEB-pl-mqd" secondAttribute="trailing" id="er2-Qe-J0j"/>
+                                    <constraint firstItem="yEB-pl-mqd" firstAttribute="top" secondItem="h2j-RQ-LbY" secondAttribute="top" constant="36" id="piG-z1-6Zk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="height" secondItem="kSv-70-Xxw" secondAttribute="height" id="DeD-8U-5OE"/>
                             <constraint firstAttribute="trailing" secondItem="mfh-3A-u1u" secondAttribute="trailing" id="EXJ-4g-WJy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="h2j-RQ-LbY" secondAttribute="bottom" id="Gif-fr-XnT"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Gmc-yn-wBN"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="top" secondItem="bBk-MV-793" secondAttribute="bottom" constant="-55" id="Gmy-gd-3c0"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="top" secondItem="kSv-70-Xxw" secondAttribute="top" id="Rl5-KC-4ks"/>
@@ -185,9 +217,11 @@
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="leading" secondItem="kSv-70-Xxw" secondAttribute="leading" id="ZZg-Lu-IVS"/>
                             <constraint firstItem="bBk-MV-793" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bme-rP-3V9"/>
                             <constraint firstItem="mfh-3A-u1u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="brt-kA-HOg"/>
+                            <constraint firstItem="h2j-RQ-LbY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gMp-Jw-pDe"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gOZ-3I-1A3"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="width" secondItem="kSv-70-Xxw" secondAttribute="width" id="jnC-pe-xn1"/>
                             <constraint firstAttribute="trailing" secondItem="kSv-70-Xxw" secondAttribute="trailing" id="mYg-e3-10i"/>
+                            <constraint firstAttribute="trailing" secondItem="h2j-RQ-LbY" secondAttribute="trailing" id="rZC-DG-Aem"/>
                             <constraint firstItem="bBk-MV-793" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="uiP-P8-1lS"/>
                         </constraints>
                     </view>
@@ -199,8 +233,11 @@
                         <outlet property="availableDaysSelectionContainerView" destination="mfh-3A-u1u" id="WVQ-LL-HC5"/>
                         <outlet property="availableDaysSelectionView" destination="r6x-U8-IYQ" id="il0-O0-DsG"/>
                         <outlet property="chatCollectionView" destination="bBk-MV-793" id="TTR-t2-xTq"/>
+                        <outlet property="datePicker" destination="yEB-pl-mqd" id="kEU-AK-mwo"/>
+                        <outlet property="datePickerContainerView" destination="h2j-RQ-LbY" id="Fv7-k9-xBw"/>
                         <outlet property="sendAvailableDays" destination="e0B-fU-YOb" id="nbg-3c-wGx"/>
                         <outlet property="sendButton" destination="x2h-SS-uf5" id="FX6-Rp-SAE"/>
+                        <outlet property="sendButtonDatePicker" destination="rN9-Xh-KC2" id="y3b-dv-RED"/>
                         <outlet property="textInputField" destination="1sP-Bk-Pqw" id="bhe-33-zGZ"/>
                         <outlet property="textInputView" destination="kSv-70-Xxw" id="RQk-tS-LZj"/>
                     </connections>

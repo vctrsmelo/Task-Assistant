@@ -78,9 +78,9 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
     var daveMessageXPosition: CGFloat!
     
     var timer:Timer?
-    let timeToTypeCharacter = 0.04
+    let timeToTypeCharacter = 0.0 //change to 0.04
     private var myCounter = 0
-    private(set) var allCharactersTyped = false
+    public var allCharactersTyped = false
     
     override init(frame: CGRect){
         super.init(frame: frame)
@@ -109,16 +109,16 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
         }
         
         self.message = message
-        myCounter = 0
         
         if(typingEffect){
-        
+            
+            myCounter = 0
+            self.textView.text = ""
             typeLetter()
 
         }else{
             
             self.textView.text = message.text
-            self.allCharactersTyped = true
             Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(self.typedCharacters), userInfo: nil, repeats: false)
         }
         
@@ -154,7 +154,6 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
     
     @objc private func typeLetterConcluded(){
         
-        self.allCharactersTyped = true
         delegate?.daveTypedAllCharacters()
         timer?.invalidate()
         

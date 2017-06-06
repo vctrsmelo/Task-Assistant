@@ -15,6 +15,7 @@ class ChatCollectionView: UICollectionView {
     public func add(message: Message){
         
         messages.append(message)
+        print("dentro de add \(messages[messages.count-1].text)")
         self.reloadData()
         
     }
