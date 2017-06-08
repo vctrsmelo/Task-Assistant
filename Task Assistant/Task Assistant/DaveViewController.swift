@@ -8,28 +8,16 @@
 
 import UIKit
 
-enum DaveViewControllerStatus {
-    case registeringUser
-    case registeringProject
-    case registeringTask
-    case none
-}
-
 class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate {
-
-    //viewStatus controls in what proccess user currently is
-    private var viewStatus : DaveViewControllerStatus = .none
     
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
+    private var chatOriginalFrame : CGRect!
     private var dave : Dave!
-    private var user : User!
     
     private var projectBeingCreated : Project?
     private var projectName: String!
     private var projectStartingDate: Date!
     
-    private var userName: String!
-    private var userContexts: [Context]!
     
     private let messageViewWidth: CGFloat = 250.0
     
@@ -62,21 +50,21 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
-        if user == nil {
-            
-            viewStatus = .registeringUser
-            
-        }
-        
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
+        
+        chatOriginalFrame = chatCollectionView.frame
 
         hideAllComponents()
         
-        dave = Dave(isUserDefined: false)
+        var user : User?
         
-        dave.sendNextMessage(chatView: chatCollectionView)
+        // TO DO:  try to get user from DB
 
+        dave = Dave(chatView: chatCollectionView)
+
+        (user == nil) ? dave.beginCreateUserAccountFlow() : dave.suggestNextTask()
+        
         self.view.setNeedsDisplay()
     
     }
@@ -177,212 +165,147 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     func daveTypedAllCharacters() {
-        print("veio daveTypedAllChars \(self.viewStatus)")
-        switch(viewStatus){
+
         
-        case .registeringUser:
-        
-            if(dave.indexOfNextMessageToSend == 4){ //asked user name
-                
-                textInputView.isHidden = false
-                chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
-                
-                if let indexPath = lastIndexPath{
-                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
-                }
-           
-            }else if(dave.indexOfNextMessageToSend == 6){ //asked working time
+        switch(dave.currentAction){
             
-                availableDaysSelectionContainerView.isHidden = false
-                chatCollectionView.frame.size.height -= availableDaysSelectionContainerView.frame.size.height
-                
-                if let indexPath = lastIndexPath{
-                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
-                }
-                
-            }else if(dave.indexOfNextMessageToSend == 7){ //user provided all information
-                
-                user = User(name: userName, contexts: userContexts)
-
-                self.viewStatus = .none
-                
-                chatCollectionView.frame.size.height -= addActivityButtonsView.frame.size.height
-                
-                if let indexPath = lastIndexPath{
-                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
-                }
-
-                addActivityButtonsView.isHidden = false
-
-            }else{
-            
-                dave.sendNextMessage(chatView: chatCollectionView)
-
-            }
-            
-            break
-            
-        case .registeringProject:
-
-            if(dave.indexOfNextMessageToSend == 1){ //Dave asked for projects name
-                
-                if(textInputView.isHidden){
-                    chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
-                }
-                
-                textInputView.isHidden = false
-                
-                if let indexPath = lastIndexPath{
-                    self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
-                }
-            }else if(dave.indexOfNextMessageToSend == 3){ //Dave asked for starting date
-                
-                datePickerContainerView.isHidden = false
-                chatCollectionView.frame.size.height -= datePickerContainerView.frame.size.height //adjust size to don`t stay behind textInputView
-                
-            }
-            
-            break
-            
-        case .registeringTask:
-            break
-        
         case .none:
+
+            hideAllComponents()
+            chatCollectionView.frame = chatOriginalFrame
+            
+            if(dave.currentFlow == .none){ self.addActivityButtonsView.isHidden = false }
+    
             break
             
+        case .askedUserName:
+            textInputView.isHidden = false
+            chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
+            
+            if let indexPath = lastIndexPath{ self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true) }
+
+            break
+            
+        case .askedWorkingDays:
+            availableDaysSelectionContainerView.isHidden = false
+            chatCollectionView.frame.size.height -= availableDaysSelectionContainerView.frame.size.height
+            
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+            }
+            
+            break
+            
+        case .askedProjectName:
+            if(textInputView.isHidden){
+                chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
+            }
+            
+            textInputField.placeholder = "Project Name"
+            textInputView.isHidden = false
+            
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+            }
+
+            break
+            
+        case .askedProjectStartingDate:
+        
+            break
+        
+        case .askedProjectEndingDate:
+            
+            break
+            
+        default:
+            break
+
         }
+
+        if let lastMessage = self.chatCollectionView.getMessages().last{ self.chatCollectionView.chatDelegate?.messageTyped(lastMessage) }
     }
     
     func userTypedAllCharacters() {
-        
-        switch viewStatus {
-        
-        case .registeringUser:
-            
-            if(dave.indexOfNextMessageToSend == 4){ //user sent his/her name
-                
-                dave.sendNextMessage(chatView: chatCollectionView, concatenate: ", "+self.userName+"! :)")
-                
-                
-            }else if(dave.indexOfNextMessageToSend == 6){ //user sent his/her daily working time
-                
-                dave.sendNextMessage(chatView: chatCollectionView)
-                
-            }
-            
-            break
-            
-        case .registeringProject:
 
-            if(dave.indexOfNextMessageToSend == 1){ //user sent the project name
-                dave.sendNextMessage(chatView: chatCollectionView)
-                chatCollectionView.frame.size.height += textInputView.frame.size.height
-                
-            }else if(dave.indexOfNextMessageToSend == 3){ //user sent the starting date
-                dave.sendNextMessage(chatView: chatCollectionView)
-
-                
-            }
-            break
-            
-        case .registeringTask:
-            break
-            
-        case .none:
-            break
+        if let lastMessage = self.chatCollectionView.getMessages().last{ self.chatCollectionView.chatDelegate?.messageTyped(lastMessage) }
         
-        }
     }
 
     @IBAction func sendButtonTouched(_ sender: UIButton) {
         
+        self.view.endEditing(true)
+
         if let text = textInputField.text{
-            
-            if(text.isEmpty){
-                
-                return
-                
-            }
-            
-            //restore original size of chatCollectionView
-            chatCollectionView.frame.size.height += textInputView.frame.size.height
-            
-            //closes keyboard
-            self.view.endEditing(true)
-            textInputView.isHidden = true
-
-            switch(viewStatus){
-                
-            case .registeringUser:
-                    self.userName = text
-                    break
-                
-            case .registeringProject:
-                    self.projectName = text
-                    break
-                
-            default:
-                break
-
-            }
-        
-            //user manda mensagem dizendo seu nome
+//            
+//            if(text.isEmpty){
+//                
+//                return
+//                
+//            }
+//            
+//            //restore original size of chatCollectionView
+//            chatCollectionView.frame.size.height += textInputView.frame.size.height
+//            
+//            //closes keyboard
+//            self.view.endEditing(true)
+//            textInputView.isHidden = true
+//
+//            switch(viewStatus){
+//                
+//            case .registeringUser:
+//                    self.userName = text
+//                    break
+//                
+//            case .registeringProject:
+//                    self.projectName = text
+//                    break
+//                
+//            default:
+//                break
+//
+//            }
+//        
+//            //user manda mensagem dizendo seu nome
+//
             chatCollectionView.add(message: Message(text: text, from: .User))
-         
+            
         }
-        
-        
         
     }
     
     @IBAction func addProjectButtonTouched(_ sender: Any) {
 
-        self.viewStatus = .registeringProject
-        adjustComponentsTo(status: viewStatus)
         
-        dave.beginAddProjectFlow()
-        addActivityButtonsView.isHidden = true
-        dave.sendNextMessage(chatView: chatCollectionView)
+        
+//        self.viewStatus = .registeringProject
+//        adjustComponentsTo(status: viewStatus)
+        
+        dave.beginCreateProjectFlow()
+//        addActivityButtonsView.isHidden = true
+//        dave.sendNextMessage(chatView: chatCollectionView)
 
     
     }
     
     
     @IBAction func sendDateButtonTouched(_ sender: Any) {
-        projectStartingDate = datePicker.date
-        datePickerContainerView.isHidden = true
+        
+//        projectStartingDate = datePicker.date
+        dave.received(date: datePicker.date)
+        
+    }
 
-    }
-    
-    private func adjustComponentsTo(status: DaveViewControllerStatus){
-        
-        switch(status){
-            
-        case .registeringProject:
-            textInputField.placeholder = "Project's name"
-            textInputField.text = ""
-            
-            break
-        
-        default:
-            break
-        }
-        
-    }
-    
     @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {
         
-        //create context
-        userContexts = [Context(title: "Main", availableDays: availableDaysSelectionView.availableDays)]
+        dave.received(availableDays: availableDaysSelectionView.availableDays, contextTitle: "Main")
         
-        //hide available days selection view
+        //hide available days selection view and restore chat size
         availableDaysSelectionContainerView.isHidden = true
-        
-        //restore collectionView size
-        chatCollectionView.frame.size.height += availableDaysSelectionContainerView.frame.size.height
+        chatCollectionView.frame = chatOriginalFrame
         
         //user sends message telling it has sent the working times
-        chatCollectionView.add(message: Message(text: "These are my working times", from: .User))
+        chatCollectionView.add(message: Message(text: "These are my working hours", from: .User))
         
     }
     
@@ -399,7 +322,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
         
             textInputView.frame.origin.y += keyboardSize.height+49
-            chatCollectionView.frame.size.height += keyboardSize.height-(49+textInputView.frame.size.height)
+            chatCollectionView.frame = chatOriginalFrame
             
 
         }

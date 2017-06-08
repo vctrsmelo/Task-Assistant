@@ -8,14 +8,21 @@
 
 import UIKit
 
+protocol ChatCollectionViewDelegate: class{
+    
+    func messageTyped(_ message: Message)
+    
+}
+
 class ChatCollectionView: UICollectionView {
 
     private var messages: [Message] = []
     
+    public weak var chatDelegate : ChatCollectionViewDelegate?
+    
     public func add(message: Message){
         
         messages.append(message)
-        print("dentro de add \(messages[messages.count-1].text)")
         self.reloadData()
         
     }

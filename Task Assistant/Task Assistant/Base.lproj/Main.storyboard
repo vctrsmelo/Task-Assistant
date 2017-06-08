@@ -89,14 +89,14 @@
                                 <rect key="frame" x="0.0" y="563" width="375" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2h-SS-uf5">
-                                        <rect key="frame" x="331" y="13" width="36" height="30"/>
+                                        <rect key="frame" x="331" y="12.5" width="36" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
                                             <action selector="sendButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z8n-Ht-A9g"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1sP-Bk-Pqw">
-                                        <rect key="frame" x="8" y="13" width="240" height="30"/>
+                                        <rect key="frame" x="8" y="12.5" width="240" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="eeU-4M-nle"/>
                                             <constraint firstAttribute="height" constant="30" id="n1I-gT-G3h"/>
@@ -121,14 +121,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcI-CL-tJZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="188" height="55"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="55"/>
                                                 <state key="normal" title="Add Project"/>
                                                 <connections>
                                                     <action selector="addProjectButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oA2-zZ-Cfu"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-G9-1ZZ">
-                                                <rect key="frame" x="188" y="0.0" width="187" height="55"/>
+                                                <rect key="frame" x="187.5" y="0.0" width="187.5" height="55"/>
                                                 <state key="normal" title="Add Task"/>
                                             </button>
                                         </subviews>

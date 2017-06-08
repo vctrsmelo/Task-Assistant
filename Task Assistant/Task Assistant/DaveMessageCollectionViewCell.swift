@@ -100,12 +100,11 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
 
     }
     
-    public func write(message: Message, typingEffect: Bool){
+    func write(message: Message, typingEffect: Bool){
         
         if(allCharactersTyped){
             self.textView.text = message.text
             return
-            
         }
         
         self.message = message
