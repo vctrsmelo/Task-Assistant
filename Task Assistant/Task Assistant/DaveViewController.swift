@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate {
+class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
     private var chatOriginalFrame : CGRect!
@@ -41,6 +41,11 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var sendButtonDatePicker: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     
+    @IBOutlet weak var estimatedHoursContainerView: UIView!
+    @IBOutlet weak var estimatedHoursPickerView: UIPickerView!
+    @IBOutlet weak var sendButtonEstimatedHours: UIButton!
+    private var estimatedHours: Int = 0
+    private var estimatedMinutes: Int = 0
     
     private var lastIndexPath: IndexPath?
     
@@ -52,6 +57,10 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
         chatCollectionView.delegate = self
         chatCollectionView.dataSource = self
+        
+        estimatedHoursPickerView.dataSource = self
+        estimatedHoursPickerView.delegate = self
+        
         
         chatOriginalFrame = chatCollectionView.frame
 
@@ -74,6 +83,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         addActivityButtonsView.isHidden = true
         availableDaysSelectionContainerView.isHidden = true
         datePickerContainerView.isHidden = true
+        estimatedHoursContainerView.isHidden = true
         
     }
     
@@ -169,10 +179,13 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         switch(dave.currentAction){
             
         case .none:
-
-            hideAllComponents()
             
-            if(dave.currentFlow == .none){ self.addActivityButtonsView.isHidden = false }
+            if(dave.currentFlow == .none){
+                self.addActivityButtonsView.isHidden = false
+                chatCollectionView.frame.size.height -= addActivityButtonsView.frame.size.height //adjust size to don`t stay behind addActivityButtonsView
+            }
+            
+            if let indexPath = lastIndexPath{ self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true) }
             
             break
             
@@ -180,7 +193,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             textInputView.isHidden = false
             chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
             
-            if let indexPath = lastIndexPath{ self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true) }
+            if let indexPath = lastIndexPath{ self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true) }
 
             break
             
@@ -189,32 +202,84 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             chatCollectionView.frame.size.height -= availableDaysSelectionContainerView.frame.size.height
             
             if let indexPath = lastIndexPath{
-                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
             }
             
             break
             
         case .askedProjectName:
+            
             if(textInputView.isHidden){
                 chatCollectionView.frame.size.height -= textInputView.frame.size.height //adjust size to don`t stay behind textInputView
             }
             
+            textInputField.text = ""
             textInputField.placeholder = "Project Name"
             textInputView.isHidden = false
             
             if let indexPath = lastIndexPath{
-                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.top, animated: true)
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
             }
 
             break
             
         case .askedProjectStartingDate:
-        
+            chatCollectionView.frame.size.height -= datePickerContainerView.frame.size.height //adjust size to don`t stay behind datePickerContainerView
+            datePickerContainerView.isHidden = false
+            
+            //adjust dates
+            var dateComponents = DateComponents()
+            dateComponents.year = 2017
+            dateComponents.month = 6
+            dateComponents.day = 13
+            dateComponents.timeZone = TimeZone(abbreviation: "UTC") // Japan Standard Time
+            dateComponents.hour = 9
+            dateComponents.minute = 8
+            // Create date from components
+            let userCalendar = Calendar.current // user calendar
+            
+            datePicker.minimumDate = userCalendar.date(from: dateComponents)
+            
+            dateComponents.year = 2222
+            dateComponents.month = 2
+            dateComponents.day = 22
+            
+            datePicker.maximumDate = userCalendar.date(from: dateComponents)
+
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
+            }
+            
             break
         
         case .askedProjectEndingDate:
+            chatCollectionView.frame.size.height -= datePickerContainerView.frame.size.height //adjust size to don`t stay behind datePickerContainerView
+            datePickerContainerView.isHidden = false
+            
+            //adjust dates            dateComponents.minute = 8
+            // Create date from components
+            //let userCalendar = Calendar.current // user calendar
+            
+            datePicker.minimumDate = Date()
+            
+            var dateComponents = DateComponents()
+            dateComponents.year = 2323
+            dateComponents.month = 2
+            dateComponents.day = 23
+            let userCalendar = Calendar.current // user calendar
+            datePicker.maximumDate = userCalendar.date(from: dateComponents)
+
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
+            }
             
             break
+            
+        case .askedEstimatedHours:
+            
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
+            }
             
         default:
             break
@@ -242,33 +307,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 
             }
             
-//
-//            //restore original size of chatCollectionView
-//            chatCollectionView.frame.size.height += textInputView.frame.size.height
-//            
-//            //closes keyboard
-//            self.view.endEditing(true)
-//            textInputView.isHidden = true
-//
-//            switch(viewStatus){
-//                
-//            case .registeringUser:
-//                    self.userName = text
-//                    break
-//                
-//            case .registeringProject:
-//                    self.projectName = text
-//                    break
-//                
-//            default:
-//                break
-//
-//            }
-//        
-//            //user manda mensagem dizendo seu nome
-//
-//            self.textInputView.isHidden = true
-//            self.chatCollectionView.frame = chatOriginalFrame
+            textInputView.isHidden = true
 
             chatCollectionView.add(message: Message(text: text, from: .User))
             dave.received(text: text)
@@ -281,29 +320,30 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     @IBAction func addProjectButtonTouched(_ sender: Any) {
 
-        
-        
-//        self.viewStatus = .registeringProject
-//        adjustComponentsTo(status: viewStatus)
-        
         dave.beginCreateProjectFlow()
-
-//        addActivityButtonsView.isHidden = true
-//        dave.sendNextMessage(chatView: chatCollectionView)
-
+        addActivityButtonsView.isHidden = true
+        chatCollectionView.frame = chatOriginalFrame
+        
     }
     
     
     @IBAction func sendDateButtonTouched(_ sender: Any) {
         
-//        projectStartingDate = datePicker.date
+        datePickerContainerView.isHidden = true
         dave.received(date: datePicker.date)
+        chatCollectionView.frame = chatOriginalFrame
         
+    }
+    
+    @IBAction func sendEstimatedHoursTouched(_ sender: UIButton) {
+    
+        
+    
     }
 
     @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {
 
-//    self.availableDaysSelectionContainerView.isHidden = true
+        self.availableDaysSelectionContainerView.isHidden = true
         
         //user sends message telling it has sent the working times
         chatCollectionView.add(message: Message(text: "These are my working hours", from: .User))
@@ -332,5 +372,57 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
         }
     }
+    
+    
+    //Estimated time data source
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        
+        if(component == 0){
+           
+            return 1000
+            
+        }
+        
+        return 60
+        
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+
+        return estimatedHoursContainerView.frame.size.width/3.3
+        
+    }
+
+//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+//        return 50.0
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textAlignment = .left
+        let titleData = String(row)
+        
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: ".SFUIText-Medium", size: 20.0)!,NSForegroundColorAttributeName:UIColor.black])
+        pickerLabel.attributedText = myTitle
+        
+        return pickerLabel
+
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0{
+            estimatedHours = row
+        
+        }else{
+            estimatedMinutes = row
+            
+        }
+        
+        
+    }
+    
 
 }

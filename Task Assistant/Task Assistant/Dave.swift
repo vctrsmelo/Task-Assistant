@@ -17,6 +17,7 @@ enum DaveAction {
     case askedProjectEndingDate
     case askedWorkingDays
     case presentedHome
+    case askedEstimatedHours
     
 }
 
@@ -156,6 +157,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             
         }
         
+        sendNextMessage()
+        
     }
     
     func received(availableDays: [AvailableDay], contextTitle: String){
@@ -180,14 +183,15 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                             
                             context.availableDays = availableDays
                             
+                            
                         }
                         
                     }
 
                 }
                 
-                print("veio aqui")
                 sendNextMessage()
+                self.currentFlow = .none
                 
             }else if(self.currentFlow == .creatingProject){
                 
@@ -231,6 +235,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     
     func received(newContext: Context){
         
+        print("Dave recebeu contexto")
         
         
     }
@@ -303,6 +308,20 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         switch (self.currentFlow){
          
         case .creatingProject:
+            if self.indexOfNextMessageToSend == 1 && self.currentAction != .askedProjectName{ //asked project name
+                self.currentAction = .askedProjectName
+           
+            }else if self.indexOfNextMessageToSend == 2 && self.currentAction != .askedProjectStartingDate { //asked project starting date
+                self.currentAction = .askedProjectStartingDate
+                
+            }else if self.indexOfNextMessageToSend == 3 && self.currentAction != .askedProjectEndingDate { //asked project ending date
+                self.currentAction = .askedProjectEndingDate
+                
+            }else if self.indexOfNextMessageToSend == 4 && self.currentAction != .askedEstimatedHours { //asked estimated hours
+                self.currentAction = .askedEstimatedHours
+            
+            }
+            
             break
             
         case .creatingUserAccount:
@@ -315,7 +334,6 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 
             }else{
                 self.currentAction = .none
-                print("vvvvvv")
                 
             }
         
