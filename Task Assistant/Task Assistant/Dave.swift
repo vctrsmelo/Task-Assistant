@@ -36,6 +36,7 @@ protocol DaveDelegate: class{
 }
 
 struct ProjectData {
+    var name: String?
     var startingDate : Date?
     var endingDate : Date?
     
@@ -138,8 +139,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     }
     
     func messageTyped(_ message: Message) {
-        
-        if(message.source == .Dave && self.currentAction != .none){
+        if(message.source == .Dave && self.currentFlow != .none && self.currentAction == .none){
             sendNextMessage()
         }
     }
@@ -171,19 +171,23 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 if(self.userBeingCreated!.contexts.isEmpty){
                     
                     userBeingCreated?.contexts.append(Context(title: contextTitle, availableDays: availableDays))
-                    return
                     
+                }else{
+                
+                    for context in self.userBeingCreated!.contexts{
+
+                        if (context.title == contextTitle){
+                            
+                            context.availableDays = availableDays
+                            
+                        }
+                        
+                    }
+
                 }
                 
-                for context in self.userBeingCreated!.contexts{
-
-                    if (context.title == contextTitle){
-                        
-                        context.availableDays = availableDays
-                        return
-                    }
-                    
-                }
+                print("veio aqui")
+                sendNextMessage()
                 
             }else if(self.currentFlow == .creatingProject){
                 
@@ -193,6 +197,35 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             }
             
         }
+        
+    }
+    
+    func received(text: String){
+        
+        switch currentAction {
+        case .askedUserName:
+            self.userBeingCreated?.name = text
+            break
+            
+        case .askedProjectName:
+            self.projectBeingCreated?.name = text
+            break
+            
+        default:
+            break
+        }
+    
+        
+        if(currentAction == .askedUserName && currentFlow != .none){
+            
+            sendNextMessage(concatenate: " "+text+"!")
+            return
+            
+        }
+
+        
+        sendNextMessage()
+        
         
     }
     
@@ -238,6 +271,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
         let msgStr = getNextMessage()
         messagesSent += 1
+        updateCurrentAction()
         chatView.add(message: Message(text: msgStr, from: .Dave))
 
     }
@@ -251,13 +285,47 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         }
         
         let msgStr = getNextMessage()+concatenatedString
+        messagesSent += 1
+        updateCurrentAction()
         chatView.add(message: Message(text: msgStr, from: .Dave))
+
         
     }
     
     public func addMessageToQueue(messageString text: String){
         
         messages.append(text)
+        
+    }
+    
+    private func updateCurrentAction(){
+        
+        switch (self.currentFlow){
+         
+        case .creatingProject:
+            break
+            
+        case .creatingUserAccount:
+            
+            if(self.indexOfNextMessageToSend == 4 && self.currentAction != .askedUserName){ //asked user name
+                self.currentAction = .askedUserName
+                
+            }else if(self.indexOfNextMessageToSend == 6 && self.currentAction != .askedWorkingDays){ //asked working days and hours
+                self.currentAction = .askedWorkingDays
+                
+            }else{
+                self.currentAction = .none
+                print("vvvvvv")
+                
+            }
+        
+            break
+        
+        default:
+            self.currentAction = .none
+            break
+            
+        }
         
     }
     

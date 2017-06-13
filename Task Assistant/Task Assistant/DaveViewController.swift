@@ -166,16 +166,14 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func daveTypedAllCharacters() {
 
-        
         switch(dave.currentAction){
             
         case .none:
 
             hideAllComponents()
-            chatCollectionView.frame = chatOriginalFrame
             
             if(dave.currentFlow == .none){ self.addActivityButtonsView.isHidden = false }
-    
+            
             break
             
         case .askedUserName:
@@ -238,12 +236,13 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
         if let text = textInputField.text{
 //            
-//            if(text.isEmpty){
-//                
-//                return
-//                
-//            }
-//            
+            if(text.isEmpty){
+                
+                return
+                
+            }
+            
+//
 //            //restore original size of chatCollectionView
 //            chatCollectionView.frame.size.height += textInputView.frame.size.height
 //            
@@ -268,7 +267,13 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 //        
 //            //user manda mensagem dizendo seu nome
 //
+//            self.textInputView.isHidden = true
+//            self.chatCollectionView.frame = chatOriginalFrame
+
             chatCollectionView.add(message: Message(text: text, from: .User))
+            dave.received(text: text)
+            chatCollectionView.frame = chatOriginalFrame
+
             
         }
         
@@ -282,10 +287,10 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 //        adjustComponentsTo(status: viewStatus)
         
         dave.beginCreateProjectFlow()
+
 //        addActivityButtonsView.isHidden = true
 //        dave.sendNextMessage(chatView: chatCollectionView)
 
-    
     }
     
     
@@ -297,15 +302,15 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
 
     @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {
-        
-        dave.received(availableDays: availableDaysSelectionView.availableDays, contextTitle: "Main")
-        
-        //hide available days selection view and restore chat size
-        availableDaysSelectionContainerView.isHidden = true
-        chatCollectionView.frame = chatOriginalFrame
+
+//    self.availableDaysSelectionContainerView.isHidden = true
         
         //user sends message telling it has sent the working times
         chatCollectionView.add(message: Message(text: "These are my working hours", from: .User))
+        dave.received(availableDays: availableDaysSelectionView.availableDays, contextTitle: "Main")
+        chatCollectionView.frame = chatOriginalFrame
+
+//        self.chatCollectionView.frame = chatOriginalFrame
         
     }
     

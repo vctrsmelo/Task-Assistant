@@ -24,7 +24,7 @@ class ChatCollectionView: UICollectionView {
         
         messages.append(message)
         self.reloadData()
-        
+        self.setNeedsLayout()
     }
     
     public func getMessages() -> [Message]{
