@@ -18,6 +18,7 @@ enum DaveAction {
     case askedWorkingDays
     case presentedHome
     case askedEstimatedHours
+    case askedProjectImportance
     
 }
 
@@ -40,6 +41,8 @@ struct ProjectData {
     var name: String?
     var startingDate : Date?
     var endingDate : Date?
+    var estimatedSeconds: Int?
+    var priority: Priority?
     
     init() {
         
@@ -124,7 +127,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
         messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the final date of the project?",
                                      "And how much hours working on this project do you estimate you need to complete it?",
-                                     "A last information, how important is to complete this project until"
+                                     "A last information, how important is to complete this project until",
+                                     "Thanks. I've added your new project to the list of activities."
             ])
 
         sendNextMessage()
@@ -226,11 +230,77 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             return
             
         }
-
         
         sendNextMessage()
         
+    }
+    
+    func received(seconds: Int){
         
+        switch currentAction{
+            
+        case .askedEstimatedHours:
+            self.projectBeingCreated?.estimatedSeconds = seconds
+            break
+        default:
+            break
+        }
+        
+        
+        if let deadlineDate = self.projectBeingCreated?.endingDate {
+            let formatter = DateFormatter()
+            // initially set the format based on your datepicker date
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let myString = formatter.string(from: deadlineDate)
+            // convert your string to date
+            let yourDate = formatter.date(from: myString)
+            //then again set the date format whhich type of output you need
+            formatter.dateFormat = "MMMM dd yyyy"
+            // again convert your date to string
+            let dateString = formatter.string(from: yourDate!)
+
+            sendNextMessage(concatenate: " "+dateString+"?")
+            
+        }else{
+            
+            sendNextMessage()
+        
+        }
+    }
+    
+    func received(priority: Priority){
+     
+        switch currentAction{
+            
+        case .askedProjectImportance:
+            self.projectBeingCreated?.priority = priority
+            break
+            
+        default:
+            break
+        }
+        
+        if let usr = user {
+            
+            if(usr.contexts.count == 1){
+                
+                if let context = usr.contexts.first{
+                    
+                    if let proj = projectBeingCreated {
+                        
+                        context.activities.append(Project(title: proj.name!, estimatedTime: TimeInterval(proj.estimatedSeconds!), priority: proj.priority!, startDate: proj.startingDate!, endDate: proj.endingDate!))
+                    
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        self.currentFlow = .none
+        sendNextMessage()
+
     }
     
     func received(newContext: Context){
@@ -320,6 +390,12 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             }else if self.indexOfNextMessageToSend == 4 && self.currentAction != .askedEstimatedHours { //asked estimated hours
                 self.currentAction = .askedEstimatedHours
             
+            }else if self.indexOfNextMessageToSend == 5 && self.currentAction != .askedProjectImportance { //asked importance to complete project until deadline
+                self.currentAction = .askedProjectImportance
+
+            }else{
+                self.currentAction = .none
+                
             }
             
             break

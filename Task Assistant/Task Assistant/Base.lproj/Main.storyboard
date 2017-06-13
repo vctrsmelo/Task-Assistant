@@ -49,10 +49,10 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="ffJ-oh-92h" firstAttribute="top" secondItem="EI0-6W-6P7" secondAttribute="top" id="Qsi-DT-41Y"/>
-                                            <constraint firstItem="ffJ-oh-92h" firstAttribute="leading" secondItem="EI0-6W-6P7" secondAttribute="leading" id="UKh-L7-LeN"/>
-                                            <constraint firstAttribute="bottom" secondItem="ffJ-oh-92h" secondAttribute="bottom" id="Zgu-XS-2Dz"/>
-                                            <constraint firstAttribute="trailing" secondItem="ffJ-oh-92h" secondAttribute="trailing" id="bkt-eW-VTa"/>
+                                            <constraint firstItem="ffJ-oh-92h" firstAttribute="leading" secondItem="EI0-6W-6P7" secondAttribute="leading" id="Dl9-oW-cIq"/>
+                                            <constraint firstAttribute="bottom" secondItem="ffJ-oh-92h" secondAttribute="bottom" id="biJ-1A-moQ"/>
+                                            <constraint firstItem="ffJ-oh-92h" firstAttribute="top" secondItem="EI0-6W-6P7" secondAttribute="top" id="gNj-zq-vcf"/>
+                                            <constraint firstAttribute="trailing" secondItem="ffJ-oh-92h" secondAttribute="trailing" id="mqz-aE-9YO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="textView" destination="ffJ-oh-92h" id="GEc-eS-eUz"/>
@@ -74,10 +74,10 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Pgd-WU-pDe" secondAttribute="trailing" id="CWY-kE-ZW4"/>
-                                            <constraint firstAttribute="bottom" secondItem="Pgd-WU-pDe" secondAttribute="bottom" id="OBr-s5-YzF"/>
-                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="top" secondItem="haK-H8-Ztr" secondAttribute="top" id="c9M-fL-RaD"/>
-                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="leading" secondItem="haK-H8-Ztr" secondAttribute="leading" id="o9V-Dh-FbS"/>
+                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="leading" secondItem="haK-H8-Ztr" secondAttribute="leading" id="PBx-QC-mYF"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pgd-WU-pDe" secondAttribute="trailing" id="fM2-Hd-CUx"/>
+                                            <constraint firstAttribute="bottom" secondItem="Pgd-WU-pDe" secondAttribute="bottom" id="fuS-g7-szZ"/>
+                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="top" secondItem="haK-H8-Ztr" secondAttribute="top" id="mNe-gP-1ge"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="textView" destination="Pgd-WU-pDe" id="gxj-V3-Gws"/>
@@ -248,9 +248,59 @@
                                     <constraint firstItem="Kcq-DM-DiY" firstAttribute="top" secondItem="TLn-1b-VfD" secondAttribute="top" id="vFA-o7-pvn"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5w-CR-tMK">
+                                <rect key="frame" x="0.0" y="451" width="375" height="167"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6B4-32-tUH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="167"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOh-d5-b0f">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
+                                                <state key="normal" title="It can be rescheduled, if needed"/>
+                                                <connections>
+                                                    <action selector="lowImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s0C-ml-wMp"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LON-sO-1ea">
+                                                <rect key="frame" x="0.0" y="55.5" width="375" height="56"/>
+                                                <state key="normal" title="It should not be rescheduled"/>
+                                                <connections>
+                                                    <action selector="mediumImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fvs-Im-Oct"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nf-8z-Opp">
+                                                <rect key="frame" x="0.0" y="111.5" width="375" height="55.5"/>
+                                                <state key="normal" title="It can not be rescheduled"/>
+                                                <connections>
+                                                    <action selector="highImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eMx-Tc-V3y"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="LON-sO-1ea" firstAttribute="height" secondItem="vOh-d5-b0f" secondAttribute="height" id="3tS-sB-PwC"/>
+                                            <constraint firstAttribute="bottom" secondItem="2Nf-8z-Opp" secondAttribute="bottom" id="4sg-pp-RAb"/>
+                                            <constraint firstItem="2Nf-8z-Opp" firstAttribute="height" secondItem="vOh-d5-b0f" secondAttribute="height" id="Kbt-1k-fcl"/>
+                                            <constraint firstItem="LON-sO-1ea" firstAttribute="width" secondItem="vOh-d5-b0f" secondAttribute="width" id="Lmv-lF-wkN"/>
+                                            <constraint firstItem="vOh-d5-b0f" firstAttribute="top" secondItem="6B4-32-tUH" secondAttribute="top" id="X8D-PY-rOt"/>
+                                            <constraint firstItem="2Nf-8z-Opp" firstAttribute="width" secondItem="vOh-d5-b0f" secondAttribute="width" id="XXz-P9-DiJ"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="6B4-32-tUH" firstAttribute="leading" secondItem="E5w-CR-tMK" secondAttribute="leading" id="7My-C5-DhX"/>
+                                    <constraint firstAttribute="trailing" secondItem="6B4-32-tUH" secondAttribute="trailing" id="9xW-JL-a4F"/>
+                                    <constraint firstItem="6B4-32-tUH" firstAttribute="top" secondItem="E5w-CR-tMK" secondAttribute="top" id="NpY-NN-Jsm"/>
+                                    <constraint firstItem="6B4-32-tUH" firstAttribute="top" secondItem="E5w-CR-tMK" secondAttribute="top" id="QNa-y9-yeD"/>
+                                    <constraint firstAttribute="bottom" secondItem="6B4-32-tUH" secondAttribute="bottom" id="cQS-gs-ljX"/>
+                                    <constraint firstAttribute="trailing" secondItem="6B4-32-tUH" secondAttribute="trailing" id="heH-yK-te1"/>
+                                    <constraint firstItem="6B4-32-tUH" firstAttribute="leading" secondItem="E5w-CR-tMK" secondAttribute="leading" id="w5F-dL-x6u"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="E5w-CR-tMK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="1Dv-St-n07"/>
                             <constraint firstItem="TLn-1b-VfD" firstAttribute="height" secondItem="h2j-RQ-LbY" secondAttribute="height" id="3BA-s8-Enu"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="height" secondItem="kSv-70-Xxw" secondAttribute="height" id="DeD-8U-5OE"/>
                             <constraint firstAttribute="trailing" secondItem="mfh-3A-u1u" secondAttribute="trailing" id="EXJ-4g-WJy"/>
@@ -261,12 +311,15 @@
                             <constraint firstAttribute="trailing" secondItem="TLn-1b-VfD" secondAttribute="trailing" id="JqL-Ju-YMK"/>
                             <constraint firstItem="IJz-NM-g4n" firstAttribute="height" secondItem="yEB-pl-mqd" secondAttribute="height" id="Pa2-ej-Xda"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="top" secondItem="kSv-70-Xxw" secondAttribute="top" id="Rl5-KC-4ks"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="E5w-CR-tMK" secondAttribute="bottom" id="VMl-6h-hgh"/>
                             <constraint firstAttribute="trailing" secondItem="bBk-MV-793" secondAttribute="trailing" id="W1X-fL-yvB"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="mfh-3A-u1u" secondAttribute="bottom" id="Ykq-uX-5pz"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="leading" secondItem="kSv-70-Xxw" secondAttribute="leading" id="ZZg-Lu-IVS"/>
                             <constraint firstItem="bBk-MV-793" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bme-rP-3V9"/>
                             <constraint firstItem="mfh-3A-u1u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="brt-kA-HOg"/>
+                            <constraint firstItem="E5w-CR-tMK" firstAttribute="height" secondItem="h2j-RQ-LbY" secondAttribute="height" constant="-54" id="cLE-EK-fNG"/>
                             <constraint firstItem="TLn-1b-VfD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="elk-v8-IK4"/>
+                            <constraint firstAttribute="trailing" secondItem="E5w-CR-tMK" secondAttribute="trailing" id="ezB-Sj-bBa"/>
                             <constraint firstItem="h2j-RQ-LbY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gMp-Jw-pDe"/>
                             <constraint firstItem="kSv-70-Xxw" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gOZ-3I-1A3"/>
                             <constraint firstItem="dys-tg-Uw4" firstAttribute="width" secondItem="kSv-70-Xxw" secondAttribute="width" id="jnC-pe-xn1"/>
@@ -288,6 +341,10 @@
                         <outlet property="datePickerContainerView" destination="h2j-RQ-LbY" id="Fv7-k9-xBw"/>
                         <outlet property="estimatedHoursContainerView" destination="TLn-1b-VfD" id="SNE-VF-l6m"/>
                         <outlet property="estimatedHoursPickerView" destination="IJz-NM-g4n" id="r5E-JH-gZw"/>
+                        <outlet property="highImportanceButton" destination="2Nf-8z-Opp" id="2Mn-l3-rph"/>
+                        <outlet property="importanceContainerView" destination="E5w-CR-tMK" id="nQV-4F-zBD"/>
+                        <outlet property="lowImportanceButton" destination="vOh-d5-b0f" id="y5G-Ch-Lfd"/>
+                        <outlet property="mediumImportanceButton" destination="LON-sO-1ea" id="OEG-2e-Vgr"/>
                         <outlet property="sendAvailableDays" destination="e0B-fU-YOb" id="nbg-3c-wGx"/>
                         <outlet property="sendButton" destination="x2h-SS-uf5" id="FX6-Rp-SAE"/>
                         <outlet property="sendButtonDatePicker" destination="rN9-Xh-KC2" id="y3b-dv-RED"/>

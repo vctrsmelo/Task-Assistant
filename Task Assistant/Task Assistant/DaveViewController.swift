@@ -47,6 +47,12 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     private var estimatedHours: Int = 0
     private var estimatedMinutes: Int = 0
     
+    
+    @IBOutlet weak var importanceContainerView: UIView!
+    @IBOutlet weak var lowImportanceButton: UIButton!
+    @IBOutlet weak var mediumImportanceButton: UIButton!
+    @IBOutlet weak var highImportanceButton: UIButton!
+    
     private var lastIndexPath: IndexPath?
     
     override func viewDidLoad() {
@@ -84,6 +90,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         availableDaysSelectionContainerView.isHidden = true
         datePickerContainerView.isHidden = true
         estimatedHoursContainerView.isHidden = true
+        importanceContainerView.isHidden = true
         
     }
     
@@ -260,7 +267,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             // Create date from components
             //let userCalendar = Calendar.current // user calendar
             
-            datePicker.minimumDate = Date()
+            datePicker.minimumDate = datePicker.date
             
             var dateComponents = DateComponents()
             dateComponents.year = 2323
@@ -276,11 +283,24 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             break
             
         case .askedEstimatedHours:
+            chatCollectionView.frame.size.height -= estimatedHoursContainerView.frame.size.height //adjust size to don`t stay behind estimatedHoursContainerView
+            estimatedHoursContainerView.isHidden = false
             
             if let indexPath = lastIndexPath{
                 self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
             }
             
+            break
+            
+        case .askedProjectImportance:
+            chatCollectionView.frame.size.height -= importanceContainerView.frame.size.height //adjust size to don`t stay behind importanceContainerView
+            importanceContainerView.isHidden = false
+            
+            if let indexPath = lastIndexPath{
+                self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
+            }
+            
+            break
         default:
             break
 
@@ -336,9 +356,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     @IBAction func sendEstimatedHoursTouched(_ sender: UIButton) {
-    
-        
-    
+        estimatedHoursContainerView.isHidden = true
+        dave.received(seconds: (estimatedHours*3600+estimatedMinutes*60))
+        chatCollectionView.frame = chatOriginalFrame
     }
 
     @IBAction func sendAvailableDaysTouched(_ sender: UIButton) {
@@ -353,6 +373,29 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 //        self.chatCollectionView.frame = chatOriginalFrame
         
     }
+    
+    @IBAction func lowImportanceButtonTouched(_ sender: UIButton) {
+        importanceContainerView.isHidden = true
+        dave.received(priority: .canBeRescheduled)
+        chatCollectionView.frame = chatOriginalFrame
+        
+    }
+    
+    @IBAction func mediumImportanceButtonTouched(_ sender: UIButton) {
+        importanceContainerView.isHidden = true
+        dave.received(priority: .shouldNotBeRescheduled)
+        chatCollectionView.frame = chatOriginalFrame
+        
+    }
+    
+    @IBAction func highImportanceButtonTouched(_ sender: UIButton) {
+        importanceContainerView.isHidden = true
+        dave.received(priority: .cannotBeRescheduled)
+        chatCollectionView.frame = chatOriginalFrame
+    
+    }
+    
+    
     
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
@@ -397,10 +440,6 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
 
-//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-//        return 50.0
-//    }
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let pickerLabel = UILabel()
         pickerLabel.textAlignment = .left
