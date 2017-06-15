@@ -42,8 +42,8 @@ class ViewController: UIViewController {
 				
 				let task = Task(title: "Task Alone", estimatedTime: 5000, priority: Priority.cannotBeRescheduled, dueDate: Date().addingTimeInterval(10340))
 				
-				ViewController.user.contexts.first!.activities.append(project)
-				ViewController.user.contexts.first!.activities.append(task)
+				ViewController.user.contexts.first!.projects.append(project)
+				ViewController.user.contexts.first!.tasks.append(task)
 				
 				if UserDAO.save(ViewController.user, appleID: ViewController.myAppleId, on: DBType.userDefault, update: true) {
 					print("Saved Project")

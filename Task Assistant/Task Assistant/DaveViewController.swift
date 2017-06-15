@@ -190,6 +190,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             if(dave.currentFlow == .none){
                 self.addActivityButtonsView.isHidden = false
                 chatCollectionView.frame.size.height -= addActivityButtonsView.frame.size.height //adjust size to don`t stay behind addActivityButtonsView
+                
+                dave.sendNextActivityMessage()
+                
             }
             
             if let indexPath = lastIndexPath{ self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true) }

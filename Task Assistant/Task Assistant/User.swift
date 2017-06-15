@@ -42,4 +42,19 @@ class User {
 		self._name = name
 		self._contexts = contexts
 	}
+    
+    func getNextTask(contextName: String) -> Task? {
+        
+        for context in contexts{
+            if context.title == contextName{
+                
+                return context.getNextTask()
+                
+            }
+        }
+       return nil
+    }
+    
+    
+
 }

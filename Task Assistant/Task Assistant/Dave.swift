@@ -187,7 +187,6 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                             
                             context.availableDays = availableDays
                             
-                            
                         }
                         
                     }
@@ -288,7 +287,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                     
                     if let proj = projectBeingCreated {
                         
-                        context.activities.append(Project(title: proj.name!, estimatedTime: TimeInterval(proj.estimatedSeconds!), priority: proj.priority!, startDate: proj.startingDate!, endDate: proj.endingDate!))
+                        context.add(project: Project(title: proj.name!, estimatedTime: TimeInterval(proj.estimatedSeconds!), priority: proj.priority!, startDate: proj.startingDate!, endDate: proj.endingDate!))
                     
                     }
                     
@@ -310,24 +309,20 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    private func orderTasks(user: User){
+    private func orderUserTasks(){
         
-        self.user = user
+        if let user = self.user{
         
-        for context in user.contexts{
-            
-            var orderedActivities : [Activity]
-            
-            for activity in context.activities{
+            for context in user.contexts{
+                
+                var orderedTasks : [Task]
+                
                 
                 
                 
             }
-            
-            
-            
         }
-
+        
     }
 
     public func suggestNextTask(){
@@ -349,6 +344,25 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         updateCurrentAction()
         chatView.add(message: Message(text: msgStr, from: .Dave))
 
+    }
+    
+    public func sendNextActivityMessage(){
+        
+            self.orderUserTasks()
+        
+        if let user = self.user{
+        
+            if let context = user.contexts.first{
+                
+                if let task = user.getNextTask(contextName: "Main"){
+            
+                    chatView.add(message: Message(text: "Your next task is: \(task.title), and you need to achieve it until [NEED TO ADD]", from: .Dave))
+                
+                }
+            }
+        
+        }
+        
     }
     
     public func sendNextMessage(concatenate concatenatedString: String){

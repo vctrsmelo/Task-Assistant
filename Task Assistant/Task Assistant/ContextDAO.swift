@@ -29,9 +29,14 @@ class ContextDAO : Object {
 			self.availableDayDAOs.append(AvailableDayDAO(availableDay))
 		}
 		
-		for activity in context.activities {
-			self.activityDAOs.append(PossibleActivitiesDAO(activity))
+		for project in context.projects {
+			self.activityDAOs.append(PossibleActivitiesDAO(project))
 		}
+        
+        for task in context.tasks{
+            self.activityDAOs.append(PossibleActivitiesDAO(task))
+
+        }
 	}
 	
 	func intoContext() -> Context {
@@ -45,8 +50,26 @@ class ContextDAO : Object {
 		for activityDAO in self.activityDAOs {
 			activities.append(activityDAO.intoActivity())
 		}
+        
+        var tasks: [Task] = []
+        var projects: [Project] = []
+        
+        for activity in activities{
+            
+            if let _ = activity as? Project{
+                
+                projects.append(activity as! Project)
+                
+            }else{
+                
+                tasks.append(activity as! Task)
+                
+            }
+            
+        }
 		
-		return Context(title: self.title, availableDays: availableDays, activities: activities, uniqueID: self.uniqueID)
-	}
+        return Context(title: self.title, availableDays: availableDays, tasks: tasks, projects: projects, uniqueID: self.uniqueID)
+
+    }
 	
 }

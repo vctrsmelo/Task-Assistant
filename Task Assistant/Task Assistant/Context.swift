@@ -13,7 +13,8 @@ class Context {
 	private var _uniqueID : String
 	private var _title : String
 	private var _availableDays : [AvailableDay]
-	private var _activities : [Activity]
+    private var _projects: [Project]
+	private var _tasks : [Task]
     
     public var isActivitiesOrdered = false
 	
@@ -38,20 +39,54 @@ class Context {
 			_availableDays = newValue
 		}
 	}
-	var activities : [Activity] {
+    
+	var projects : [Project] {
 		get {
-			return _activities
+			return _projects
 		}
 		set {
-			_activities = newValue
+			_projects = newValue
 		}
 	}
+    
+    var tasks : [Task] {
+        get {
+            return _tasks
+        }
+        set {
+            _tasks = newValue
+        }
+    }
+    
+    
 	
 	// MARK: Initializer
-	init(title: String, availableDays: [AvailableDay], activities: [Activity] = [Activity](), uniqueID: String = UUID().uuidString) {
-		self._uniqueID = uniqueID
-		self._title = title
-		self._availableDays = availableDays
-		self._activities = activities
-	}
+    init(title: String, availableDays: [AvailableDay], tasks: [Task] = [Task](), projects: [Project] = [Project](), uniqueID: String = UUID().uuidString) {
+        
+        self._uniqueID = uniqueID
+        self._title = title
+        self._availableDays = availableDays
+        self._tasks = tasks
+        self._projects = projects
+        
+    }
+    
+    func getNextTask() -> Task?{
+        
+        return tasks.first
+        
+    }
+    
+    func add(project: Project){
+        
+        projects.append(project)
+        
+    }
+    
+    func add(task: Task){
+        
+        tasks.append(task)
+        
+    }
+    
 }
