@@ -311,17 +311,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     
     private func orderUserTasks(){
         
-        if let user = self.user{
         
-            for context in user.contexts{
-                
-                var orderedTasks : [Task]
-                
-                
-                
-                
-            }
-        }
         
     }
 
