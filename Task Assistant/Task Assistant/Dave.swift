@@ -311,7 +311,25 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     
     private func orderUserTasks(){
         
+        var timeBlocks : [TimeBlock] = getTimeBlocks()
         
+    }
+    
+    private func getTimeBlocks() -> [TimeBlock]{
+        
+        var timeBlocks: [TimeBlock] = []
+        
+        if let context = user?.contexts.first{
+        
+            for project in context.projects{
+                
+                timeBlocks.append(TimeBlock(startingDate: project.startDate, endingDate: project.endDate))
+                
+            }
+            
+            
+        
+        }
         
     }
 
