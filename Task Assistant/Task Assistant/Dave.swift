@@ -66,7 +66,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     private(set) var messages: [String] = []
     private(set) var indexOfNextMessageToSend = 0
     private(set) var messagesSent = 0
-    private var user: User?
+    var user: User?
     private(set) var currentAction: DaveAction
     private(set) var currentFlow: DaveFlow
     private let chatView : ChatCollectionView
@@ -315,7 +315,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    private func getTimeBlocks() -> [TimeBlock]{
+    func getTimeBlocks() -> [TimeBlock]{
         
         var timeBlocks: [TimeBlock] = []
         
@@ -323,13 +323,57 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
             for project in context.projects{
                 
-                timeBlocks.append(TimeBlock(startingDate: project.startDate, endingDate: project.endDate))
+                if let user = self.user {
                 
+                    var newTimeBlock = TimeBlock(startingDate: project.startDate, endingDate: project.endDate, userAvailableDays: user.contexts[0].availableDays)
+                    newTimeBlock.add(project: project)
+                    timeBlocks.append(newTimeBlock)
+                    
+                }else{
+                    print("[Error] Dave: getTimeBlocks() - user not defined")
+                    
+                }
+              
             }
             
+            //split nos timeBlocks
+            var changed = false
+            repeat{
+                
+                changed = false
+                
+                for i in 0 ..< timeBlocks.count{
+                    
+                    for j in i+1 ..< timeBlocks.count{ // tb1 intersecting tb2 == tb2 intersecting tb1
+                        
+                        if(timeBlocks[i].isIntersecting(timeBlock: timeBlocks[j])){
+                            
+                            var newTimeBlocks = timeBlocks[i].getTimeBlocksResultingFromSplitWith(timeBlock: timeBlocks[j])
+
+                            timeBlocks.remove(at: j)
+                            timeBlocks.remove(at: i)
+                            
+                            newTimeBlocks.append(contentsOf: timeBlocks)
+                            timeBlocks = newTimeBlocks
+                            changed = true
+                            break
+                            
+                        }
+                        
+                    }
+                    
+                    if changed {
+                        break
+                    }
+                    
+                }
+                
+                
+            }while(changed)
             
-        
         }
+        
+        return timeBlocks
         
     }
 

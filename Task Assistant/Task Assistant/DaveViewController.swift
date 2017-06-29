@@ -54,10 +54,97 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var highImportanceButton: UIButton!
     
     private var lastIndexPath: IndexPath?
+
+    func algorithmTest() {
+        
+        var userTest: User!
+        var daveTest: Dave!
+        var userProjectsTest: [Project] = []
+        
+        var availableDaysTest: [AvailableDay] = []
+        
+        availableDaysTest.append(AvailableDay(weekday: 0, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 1, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 2, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 3, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 4, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 5, startTime: 8, endTime: 13, available: true))
+        availableDaysTest.append(AvailableDay(weekday: 6, startTime: 8, endTime: 13, available: true))
+        
+        
+        daveTest = Dave(chatView: self.chatCollectionView)
+        userTest = User(name: "Victor", contexts: [Context.init(title: "Main", availableDays: availableDaysTest)])
+        
+        daveTest.user = userTest
+        
+        var dateComponents = DateComponents()
+        dateComponents.year = 2017
+        dateComponents.month = 7
+        dateComponents.day = 1
+        dateComponents.timeZone = TimeZone(abbreviation: "UTC")
+        dateComponents.hour = 10
+        dateComponents.minute = 34
+        
+        // Create date from components
+        let userCalendar = Calendar.current // user calendar
+        let someDateTime = userCalendar.date(from: dateComponents)
+        
+        let proj1 = Project(title: "1", estimatedTime: 36000, priority: Priority.canBeRescheduled, startDate: Date(), endDate: userCalendar.date(from: dateComponents)!)
+        
+        dateComponents.month = 6
+        dateComponents.day = 30
+        let date1 = userCalendar.date(from: dateComponents)!
+        
+        dateComponents.month = 7
+        dateComponents.day = 2
+        let date2 = userCalendar.date(from: dateComponents)!
+        
+        let proj2 = Project(title: "2", estimatedTime: 36000, priority: Priority.canBeRescheduled, startDate: date1, endDate: date2)
+        
+        userProjectsTest.append(proj2)
+        userProjectsTest.append(proj1)
+        
+        userTest.contexts[0].add(project: userProjectsTest[0])
+        userTest.contexts[0].add(project: userProjectsTest[1])
+        
+        for project in userProjectsTest{
+            
+            print(project.title)
+            print("begins at: \(project.startDate)")
+            print("ends at: \(project.endDate)")
+            print("------------------------")
+        }
+        
+        let timeBlocks = daveTest.getTimeBlocks()
+        
+        print("veio aqui")
+        print(" ")
+        print(" ")
+
+        var i = 1
+        for timeBlock in timeBlocks{
+            
+            print("timeBlock \(i)")
+            print("begins at: \(timeBlock.getStartingDate())")
+            print("ends at: \(timeBlock.getEndingDate())")
+            print("available hours: \(timeBlock.getAvailableTimeInHours())")
+            print("projects:")
+            for project in timeBlock.getProjects(){
+                
+                print("       \(project.title) - parent: \(project.containerProject?.title) - estimatedTime: \(project.estimatedTime)")
+                
+            }
+            print("========================")
+            i += 1
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.algorithmTest()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 

@@ -35,7 +35,7 @@ class Task : Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority, dueDate: Date, finished: Bool = false,  project : Project?, uniqueID: String = UUID().uuidString) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, dueDate: Date, finished: Bool = false,  project : Project? = nil, uniqueID: String = UUID().uuidString) {
 		self._dueDate = dueDate
         self._project = project
 		

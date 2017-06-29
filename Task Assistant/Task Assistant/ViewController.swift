@@ -12,6 +12,9 @@ class ViewController: UIViewController {
 	static let myAppleId = "ItsaMeMario"
 	static var user : User!
 	
+
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

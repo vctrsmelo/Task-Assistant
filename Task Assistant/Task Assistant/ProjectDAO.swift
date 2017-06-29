@@ -30,6 +30,6 @@ class ProjectDAO : ActivityDAO {
 	func intoProject() -> Project {
 		let priority = Priority(rawValue: self.priority)!
 		
-		return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished, uniqueID: self.uniqueID)
+        return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished, containerProject: nil, uniqueID: self.uniqueID)
 	}
 }
