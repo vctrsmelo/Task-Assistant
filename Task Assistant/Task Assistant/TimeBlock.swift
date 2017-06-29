@@ -140,7 +140,7 @@ class TimeBlock {
         var iDate = startingDate
         while(iDate.compareDay(endingDate) != .orderedDescending){ //while iDate.day <= endingDate.day
             
-            let iDateWeekDay = iDate.getWeekday()
+            let iDateWeekDay = iDate.getWeekday()-1 // -1 because getWeekday returns value between 1 and 7, while AvailableDay is a value between 0 and 6
             
             var availableDay: AvailableDay?
             
