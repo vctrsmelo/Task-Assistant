@@ -315,7 +315,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    func getTimeBlocks() -> [TimeBlock]{
+    private func getTimeBlocks() -> [TimeBlock]{
         
         var timeBlocks: [TimeBlock] = []
         
