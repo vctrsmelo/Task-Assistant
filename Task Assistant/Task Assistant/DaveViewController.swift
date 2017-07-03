@@ -412,6 +412,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
                     
+                    //cancel adding the project
+                    self.dave.addProjectCancelled()
+                    
                 })
                 
                 selectProjectAlertController.addAction(cancelAction)

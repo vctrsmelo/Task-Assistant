@@ -19,6 +19,7 @@ enum DaveAction {
     case presentedHome
     case askedEstimatedHours
     case askedProjectImportance
+    case addedNewProject
     case needToTypeNextActivity
     case askedToSelectAProject
     
@@ -131,9 +132,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
         messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the final date of the project?",
                                      "And how much hours working on this project do you estimate you need to complete it?",
-                                     "A last information, how important is to complete this project until",
-                                     "Thanks. I've added your new project to the list of activities."
-            ])
+                                     "A last information, how important is to complete this project until"])
 
         sendNextMessage()
         
@@ -292,16 +291,39 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         default:
             break
         }
+       
+        self.tryToAddProject()
         
-        if let usr = user {
+    }
+    
+    func tryToAddProject(){
+        
+        if let user = self.user {
             
-            if(usr.contexts.count == 1){
+            if user.contexts.count == 1 {
                 
-                if let context = usr.contexts.first{
+                if let context = user.contexts.first{
                     
                     if let proj = projectBeingCreated {
+                            
+                        let newProj = Project(title: proj.name!, estimatedTime: TimeInterval(proj.estimatedSeconds!), priority: proj.priority!, startDate: proj.startingDate!, endDate: proj.endingDate!)
                         
-                        context.add(project: Project(title: proj.name!, estimatedTime: TimeInterval(proj.estimatedSeconds!), priority: proj.priority!, startDate: proj.startingDate!, endDate: proj.endingDate!))
+                        var projs = context.projects
+                        projs.append(newProj)
+                        
+                        self.userTimeBlocks = getTimeBlocks(projects: projs)
+                        
+                        if !userHasAvailableTime(){
+                            
+                            self.beginNotAvailableTimeFlow()
+                            return
+                            
+                        }
+                        
+                        context.projects.append(newProj)
+                        self.currentFlow = .none
+                        self.currentAction = .needToTypeNextActivity
+                        sendNextMessage()
                     
                     }
                     
@@ -325,78 +347,85 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     
     func orderUserActivities(){
         
-        self.userTimeBlocks = getTimeBlocks()
+        if let user = self.user{
         
-        self.userTimeBlocks?.sort(by: { (tb1, tb2) -> Bool in
-            
-            if tb1.getStartingDate().isAfter(dateToCompare: tb2.getStartingDate()){
+            if user.contexts.first == nil{
                 
-                return false
+                print("[Error] Dave - orderUserActivities(): user.contexts.first is nil")
                 
             }
             
-            return true
-        })
+            self.userTimeBlocks = getTimeBlocks(projects: user.contexts.first!.projects)
+            
+            self.userTimeBlocks?.sort(by: { (tb1, tb2) -> Bool in
+                
+                if tb1.getStartingDate().isAfter(dateToCompare: tb2.getStartingDate()){
+                    
+                    return false
+                    
+                }
+                
+                return true
+            })
+        }
         
     }
     
-    private func getTimeBlocks() -> [TimeBlock]{
+    private func getTimeBlocks(projects: [Project]) -> [TimeBlock]{
         
         var timeBlocks: [TimeBlock] = []
         
-        if let context = user?.contexts.first{
         
-            for project in context.projects{
+        for project in projects{
+            
+            if let user = self.user {
+            
+                let newTimeBlock = TimeBlock(startingDate: project.startDate, endingDate: project.endDate, userAvailableDays: user.contexts[0].availableDays)
+                newTimeBlock.add(project: project)
+                timeBlocks.append(newTimeBlock)
                 
-                if let user = self.user {
+            }else{
+                print("[Error] Dave: getTimeBlocks() - user not defined")
                 
-                    let newTimeBlock = TimeBlock(startingDate: project.startDate, endingDate: project.endDate, userAvailableDays: user.contexts[0].availableDays)
-                    newTimeBlock.add(project: project)
-                    timeBlocks.append(newTimeBlock)
+            }
+          
+        }
+        
+        //split nos timeBlocks
+        var changed = false
+        repeat{
+            
+            changed = false
+            
+            for i in 0 ..< timeBlocks.count{
+                
+                for j in i+1 ..< timeBlocks.count{ // tb1 intersecting tb2 == tb2 intersecting tb1
                     
-                }else{
-                    print("[Error] Dave: getTimeBlocks() - user not defined")
+                    if(timeBlocks[i].isIntersecting(timeBlock: timeBlocks[j])){
+                        
+                        var newTimeBlocks = timeBlocks[i].getTimeBlocksResultingFromSplitWith(timeBlock: timeBlocks[j])
+
+                        timeBlocks.remove(at: j)
+                        timeBlocks.remove(at: i)
+                        
+                        newTimeBlocks.append(contentsOf: timeBlocks)
+                        timeBlocks = newTimeBlocks
+                        changed = true
+                        break
+                        
+                    }
                     
                 }
-              
+                
+                if changed {
+                    break
+                }
+                
             }
             
-            //split nos timeBlocks
-            var changed = false
-            repeat{
-                
-                changed = false
-                
-                for i in 0 ..< timeBlocks.count{
-                    
-                    for j in i+1 ..< timeBlocks.count{ // tb1 intersecting tb2 == tb2 intersecting tb1
-                        
-                        if(timeBlocks[i].isIntersecting(timeBlock: timeBlocks[j])){
-                            
-                            var newTimeBlocks = timeBlocks[i].getTimeBlocksResultingFromSplitWith(timeBlock: timeBlocks[j])
-
-                            timeBlocks.remove(at: j)
-                            timeBlocks.remove(at: i)
-                            
-                            newTimeBlocks.append(contentsOf: timeBlocks)
-                            timeBlocks = newTimeBlocks
-                            changed = true
-                            break
-                            
-                        }
-                        
-                    }
-                    
-                    if changed {
-                        break
-                    }
-                    
-                }
-                
-                
-            }while(changed)
             
-        }
+        }while(changed)
+
         
         return timeBlocks
         
@@ -456,6 +485,23 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         return true
         
     }
+
+    private func userHasAvailableTime(timeBlocks: [TimeBlock]) -> Bool{
+        
+        for tb in timeBlocks{
+            
+            if tb.getAvailableTimeInHours() < 0 {
+                
+                return false
+                
+            }
+            
+        }
+        
+        return true
+        
+    }
+
     
     public func getConflictingProjects() -> [Project]{
         
@@ -513,14 +559,14 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
         self.orderUserActivities()
         
-        if !self.userHasAvailableTime(){
-            
-            //not available time
-            self.updateCurrentAction()
-            self.beginNotAvailableTimeFlow()
-         
-            return nil
-        }
+//        if !self.userHasAvailableTime(){
+//            
+//            //not available time
+//            self.updateCurrentAction()
+//            self.beginNotAvailableTimeFlow()
+//         
+//            return nil
+//        }
         
         if self.user != nil{
             
@@ -602,6 +648,17 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
+    public func addProjectCancelled(){
+        
+        self.projectBeingCreated = nil
+
+        self.currentFlow = .none
+        self.currentAction = .needToTypeNextActivity
+        self.addMessageToQueue(messageString: "You have cancelled the project creation.")
+        self.sendNextMessage()
+        
+    }
+    
     private func updateCurrentAction(){
         
         switch (self.currentFlow){
@@ -623,6 +680,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 self.currentAction = .askedProjectImportance
 
             }else{
+                
                 self.currentAction = .none
                 
             }
