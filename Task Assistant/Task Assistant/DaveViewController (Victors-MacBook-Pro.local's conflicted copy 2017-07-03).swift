@@ -326,7 +326,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             
         case .askedProjectStartingDate:
             //chatCollectionView.frame.size.height -= datePickerContainerView.frame.size.height //adjust size to don`t stay behind datePickerContainerView
-            chatCollectionView.frame.origin.y -= datePickerContainerView.frame.size.height
+            chatCollectionView.frame.orogin.y -= datePickerContainerView.frame.size.height
             
             datePickerContainerView.isHidden = false
             
@@ -391,8 +391,8 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             break
             
         case .askedProjectImportance:
-            //chatCollectionView.frame.size.height -= importanceContainerView.frame.size.height //adjust size to don`t stay behind importanceContainerView
-            chatCollectionView.frame.origin.y -= importanceContainerView.frame.size.height
+            chatCollectionView.frame.size.height -= importanceContainerView.frame.size.height //adjust size to don`t stay behind importanceContainerView
+            
             importanceContainerView.isHidden = false
             
             if let indexPath = lastIndexPath{
@@ -408,30 +408,24 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 
                 let confProjs = dave.getConflictingProjects()
                 
-                let selectProjectAlertController = UIAlertController(title: "Not enough available time", message: "Choose a project below to modify it or cancel the creation of the new project", preferredStyle: .actionSheet)
+                let selectProjectAlert = UIAlertController(title: "Conflicting Projects", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { action in
                     
-                    //cancel adding the project
-                    self.dave.addProjectCancelled()
-                    
                 })
                 
-                selectProjectAlertController.addAction(cancelAction)
+                selectProjectAlert.addAction(cancelAction)
                 
                 for proj in confProjs{
                     
-                    selectProjectAlertController.addAction(UIAlertAction(title: proj.title, style: .default, handler: { action in
-
+                    selectProjectAlert.addAction(UIAlertAction(title: proj.title, style: .default, handler: { action in
                         print("\(proj.title) selected to be modified")
-                        //need to send user to the next page (to edit project)
                         
                     }))
                     
                 }
                 
-                self.navigationController?.present(selectProjectAlertController, animated: true, completion: { 
-                    
+                self.present(selectProjectAlert, animated: true, completion: {
                 })
                 
             }
