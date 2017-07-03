@@ -12,7 +12,7 @@ extension Date{
     
     func isAfter(dateToCompare: Date) -> Bool {
         
-        if self.compare(dateToCompare) == ComparisonResult.orderedDescending{
+        if self.compareDay(dateToCompare) == ComparisonResult.orderedDescending{
             
             return true
             
@@ -24,7 +24,7 @@ extension Date{
     
     func isBefore(dateToCompare: Date) -> Bool {
         
-        if self.compare(dateToCompare) == ComparisonResult.orderedAscending{
+        if self.compareDay(dateToCompare) == ComparisonResult.orderedAscending{
             
             return true
             
@@ -36,7 +36,7 @@ extension Date{
     
     func isEqual(dateToCompare: Date) -> Bool {
         
-        if self.compare(dateToCompare) == ComparisonResult.orderedSame{
+        if self.compareDay(dateToCompare) == ComparisonResult.orderedSame{
             
             return true
             
@@ -140,7 +140,7 @@ class TimeBlock {
         var iDate = startingDate
         while(iDate.compareDay(endingDate) != .orderedDescending){ //while iDate.day <= endingDate.day
             
-            let iDateWeekDay = iDate.getWeekday()-1 // -1 because getWeekday returns value between 1 and 7, while AvailableDay is a value between 0 and 6
+            let iDateWeekDay = iDate.getWeekday()
             
             var availableDay: AvailableDay?
             
@@ -216,8 +216,8 @@ class TimeBlock {
     
     func isIntersecting(timeBlock: TimeBlock) -> Bool{
         
-        let timeBlockParameterStartsInsideSelf : Bool = timeBlock.getStartingDate().isAfter(dateToCompare: self.startingDate) && timeBlock.getStartingDate().isBefore(dateToCompare: self.endingDate)
-        let selfStartsInsideTimeBlockParameter : Bool = self.getStartingDate().isAfter(dateToCompare: timeBlock.getStartingDate()) && self.getStartingDate().isBefore(dateToCompare: timeBlock.getEndingDate())
+        let timeBlockParameterStartsInsideSelf : Bool = (timeBlock.getStartingDate().isAfter(dateToCompare: self.startingDate) && timeBlock.getStartingDate().isBefore(dateToCompare: self.endingDate)) || timeBlock.getStartingDate().isEqual(dateToCompare: self.getStartingDate())
+        let selfStartsInsideTimeBlockParameter : Bool = (self.getStartingDate().isAfter(dateToCompare: timeBlock.getStartingDate()) && self.getStartingDate().isBefore(dateToCompare: timeBlock.getEndingDate())) || self.getStartingDate().isEqual(dateToCompare: timeBlock.getStartingDate())
         
         if(timeBlockParameterStartsInsideSelf || selfStartsInsideTimeBlockParameter){
             
@@ -249,33 +249,48 @@ class TimeBlock {
         
         dates = dates.sorted()
         
-        while(!(dates.count == 1)){
+        for i in 0 ..< dates.count-1{
+            
+            if i+1 >= dates.count{
+                break
+            }
+            
+            if dates[i].isEqual(dateToCompare: dates[i+1]){
+                
+                dates.remove(at: i)
+                
+            }
+            
+        }
+        
+        while(!(dates.count == 0)){
             
             
             let strtDate = dates.removeFirst()
-            let strtDateTb2 = dates.first
-            let fnshDateTb1 = Calendar.current.date(byAdding: .day, value: -1, to: strtDateTb2!)
+            let fnshDateTb1 = dates.isEmpty ? strtDate : dates.removeFirst()
             
-            if fnshDateTb1 == nil{
-                
-                print("[Error] TimeBlock - getTimeBlocksResultingFromSplitWith: fnshDate is nil")
-            }
+//            if fnshDateTb1 == nil{
+//                
+//                print("[Error] TimeBlock - getTimeBlocksResultingFromSplitWith: fnshDate is nil")
+//            }
             
-            if dates.count == 1{ //last timeBlock
+            if dates.count == 0{ //last timeBlock
                 
-                let timeBlock = TimeBlock(startingDate: strtDate, endingDate: strtDateTb2!, userAvailableDays: self.userAvailableDays)
+                let timeBlock = TimeBlock(startingDate: strtDate, endingDate: fnshDateTb1, userAvailableDays: self.userAvailableDays)
 
                 timeBlock.projects.append(contentsOf: projectsAux)
                 
                 timeBlocks.append(timeBlock)
                 
             }else{
-            
+
+                let strtDateTb2 = dates[0]// Calendar.current.date(byAdding: .day, value: -1, to: strtDateTb2!)
+
                 if let lastDate = dates.last {
 
-                    let timeBlock = TimeBlock(startingDate: strtDate, endingDate: fnshDateTb1!, userAvailableDays: self.userAvailableDays)
+                    let timeBlock = TimeBlock(startingDate: strtDate, endingDate: fnshDateTb1, userAvailableDays: self.userAvailableDays)
                     
-                    let auxSelf = TimeBlock(startingDate: strtDateTb2!, endingDate: lastDate, userAvailableDays: self.userAvailableDays)
+                    let auxSelf = TimeBlock(startingDate: strtDateTb2, endingDate: lastDate, userAvailableDays: self.userAvailableDays)
                     
                     TimeBlock.splitProjectsBetween(timeBlock1: timeBlock,timeBlock2: auxSelf, projects: projectsAux)
                     

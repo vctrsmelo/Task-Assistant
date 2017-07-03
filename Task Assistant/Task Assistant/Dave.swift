@@ -19,6 +19,8 @@ enum DaveAction {
     case presentedHome
     case askedEstimatedHours
     case askedProjectImportance
+    case needToTypeNextActivity
+    case askedToSelectAProject
     
 }
 
@@ -27,6 +29,7 @@ enum DaveFlow{
     case none
     case creatingUserAccount
     case creatingProject
+    case notAvailableTime
     
 }
 
@@ -81,7 +84,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     private var projectBeingCreated : ProjectData?
     private var userBeingCreated : UserData?
     
-    //addUser variables
+    //user infos
+    var userTimeBlocks: [TimeBlock]?
     
     init(chatView : ChatCollectionView) {
         
@@ -144,9 +148,17 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     }
     
     func messageTyped(_ message: Message) {
+        
         if(message.source == .Dave && self.currentFlow != .none && self.currentAction == .none){
             sendNextMessage()
         }
+        
+        if message.source == .Dave && self.currentFlow == .none && self.currentAction == .needToTypeNextActivity {
+            
+            sendNextMessage()
+            
+        }
+        
     }
     
     func received(date: Date){
@@ -178,6 +190,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 if(self.userBeingCreated!.contexts.isEmpty){
                     
                     userBeingCreated?.contexts.append(Context(title: contextTitle, availableDays: availableDays))
+                    user = User(name: userBeingCreated!.name!, contexts: userBeingCreated!.contexts)
+                    userBeingCreated = nil
                     
                 }else{
                 
@@ -309,9 +323,20 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    private func orderUserTasks(){
+    func orderUserActivities(){
         
-        var timeBlocks : [TimeBlock] = getTimeBlocks()
+        self.userTimeBlocks = getTimeBlocks()
+        
+        self.userTimeBlocks?.sort(by: { (tb1, tb2) -> Bool in
+            
+            if tb1.getStartingDate().isAfter(dateToCompare: tb2.getStartingDate()){
+                
+                return false
+                
+            }
+            
+            return true
+        })
         
     }
     
@@ -325,7 +350,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 
                 if let user = self.user {
                 
-                    var newTimeBlock = TimeBlock(startingDate: project.startDate, endingDate: project.endDate, userAvailableDays: user.contexts[0].availableDays)
+                    let newTimeBlock = TimeBlock(startingDate: project.startDate, endingDate: project.endDate, userAvailableDays: user.contexts[0].availableDays)
                     newTimeBlock.add(project: project)
                     timeBlocks.append(newTimeBlock)
                     
@@ -385,6 +410,16 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
     public func sendNextMessage(){
         
+        if self.currentAction == .needToTypeNextActivity{
+            
+            if let message = getNextActivityMessage(){
+                
+                self.addMessageToQueue(messageString: message)
+                
+            }
+            
+        }
+        
         if indexOfNextMessageToSend >= messages.count {
             
             return
@@ -398,25 +433,153 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
     }
     
-    public func sendNextActivityMessage(){
+    private func beginNotAvailableTimeFlow(){
         
-            self.orderUserTasks()
-        
-        if let user = self.user{
-        
-            if let context = user.contexts.first{
-                
-                if let task = user.getNextTask(contextName: "Main"){
-            
-                    chatView.add(message: Message(text: "Your next task is: \(task.title), and you need to achieve it until [NEED TO ADD]", from: .Dave))
-                
-                }
-            }
-        
-        }
+        self.currentFlow = .notAvailableTime
+        messages.append("You tried to add a project, but you have no time available to complete it. Select one of the projects below to delete it or to change its deadline.")
+        sendNextMessage()
         
     }
     
+    private func userHasAvailableTime() -> Bool{
+        
+        for tb in self.userTimeBlocks!{
+            
+            if tb.getAvailableTimeInHours() < 0 {
+                
+                return false
+                
+            }
+            
+        }
+        
+        return true
+        
+    }
+    
+    public func getConflictingProjects() -> [Project]{
+        
+        var projects: [Project] = []
+        
+        for tb in self.userTimeBlocks!{
+            
+            if tb.getAvailableTimeInHours() < 0 {
+                
+                for subProject in tb.getProjects(){
+                    
+                    if let project = subProject.containerProject{
+                        
+                        projects.append(project)
+                        
+                    }else{
+                        
+                        projects.append(subProject)
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }
+        
+        for i in 0 ..< projects.count{
+            
+            if i > projects.count{
+                
+                break
+                
+            }
+            
+            for j in i+1 ..< projects.count{
+                
+                if projects[i].title == projects[j].title {
+                    
+                    projects.remove(at: i)
+                    break
+                    
+                }
+                
+            }
+            
+        }
+        
+        return projects
+        
+    }
+
+    
+    private func getNextActivityMessage() -> String?{
+
+        self.orderUserActivities()
+        
+        if !self.userHasAvailableTime(){
+            
+            //not available time
+            self.updateCurrentAction()
+            self.beginNotAvailableTimeFlow()
+         
+            return nil
+        }
+        
+        if self.user != nil{
+            
+            if let nextActivity = self.userTimeBlocks?.first?.getProjects().first{
+                
+                if let userAvailableDays = self.user?.contexts.first?.availableDays{
+                    
+                    var today: AvailableDay?
+                    
+                    for availableDay in userAvailableDays{
+                        
+                        if availableDay.weekday == Date().getWeekday(){
+                            
+                            today = availableDay
+                            break
+                            
+                        }
+                        
+                    }
+                    
+                    if today == nil{
+                        print("[Error] Dave - getNextActivityMessage(): current availableDay is nil")
+                        
+                    }
+                    
+                    if !today!.available{
+                        
+                        return "Today you have no activity, according to your available time :)"
+                        
+                    }
+                    
+                    if let todayEndTime = today!.endTime, let todayStartTime = today!.startTime{
+                        
+                        let todayAvailableTime = todayEndTime - todayStartTime
+                        let hours = (Int(nextActivity.estimatedTime/3600) > todayAvailableTime) ? todayAvailableTime : Int(nextActivity.estimatedTime/3600)
+                        
+//                        let formatter = DateFormatter()
+//                        formatter.dateFormat = "MM/dd/yyyy"
+//                        let finalDateString = formatter.string(from: nextActivity.endDate)
+
+                        return "Today, you need to dedicate \(hours) working on project \"\(nextActivity.title)\""
+                        
+                    }else{
+                        
+                        print("[Error] Dave - getNextActivityMessage(): today endTime or today startTime is undefined")
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            
+        }
+     
+        return nil
+        
+    }
+
     public func sendNextMessage(concatenate concatenatedString: String){
         
         if indexOfNextMessageToSend >= messages.count {
@@ -480,9 +643,26 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             }
         
             break
-        
+            
+        case .notAvailableTime:
+            
+            if self.currentAction != .askedToSelectAProject{
+            
+                self.currentAction = .askedToSelectAProject
+            
+            }else{
+                self.currentAction = .none
+            }
+            
         default:
-            self.currentAction = .none
+            
+            if self.currentAction == .askedProjectImportance{
+                self.currentAction = .needToTypeNextActivity
+                
+            }else{
+                self.currentAction = .none
+            
+            }
             break
             
         }
