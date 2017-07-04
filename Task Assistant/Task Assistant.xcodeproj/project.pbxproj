@@ -42,6 +42,7 @@
 		EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8651EDC43E200477F6B /* Assets.xcassets */; };
 		EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */; };
 		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
+		FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		EE2CD8681EDC43E200477F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2CD86A1EDC43E200477F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
 				EE0B0B751EE3B54F00EDC6D9 /* Message.swift */,
 				EE0B0B771EE431E000EDC6D9 /* Dave.swift */,
+				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
+				FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
 				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
 				E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */,
