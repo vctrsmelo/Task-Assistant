@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -424,37 +425,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiJ-hE-oRU">
-                                <rect key="frame" x="16" y="80" width="33.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <rect key="frame" x="16" y="80" width="49.5" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="CEb-8Y-5aq" userLabel="Dates Stack">
-                                <rect key="frame" x="16" y="116.5" width="343" height="21.5"/>
+                                <rect key="frame" x="16" y="126" width="343" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initial Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOI-I9-HgY">
-                                        <rect key="frame" x="0.0" y="0.5" width="80.5" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nEN-04-rfw" customClass="DayMonthView" customModule="Task_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="Pnr-gd-MxL"/>
+                                            <constraint firstAttribute="width" secondItem="nEN-04-rfw" secondAttribute="height" multiplier="1:1" id="q0n-1O-u4u"/>
+                                        </constraints>
+                                    </view>
                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="m9O-2h-bWs">
-                                        <rect key="frame" x="99" y="10" width="150" height="2.5"/>
+                                        <rect key="frame" x="96.5" y="29.5" width="150" height="2.5"/>
                                         <color key="progressTintColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
                                     </progressView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGj-Ju-uIL">
-                                        <rect key="frame" x="267" y="0.5" width="76" height="20.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcJ-e5-b3C" customClass="DayMonthView" customModule="Task_Assistant" customModuleProvider="target">
+                                        <rect key="frame" x="283" y="0.0" width="60" height="60"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="YcJ-e5-b3C" secondAttribute="height" multiplier="1:1" id="YZV-d2-Puw"/>
+                                            <constraint firstAttribute="width" constant="60" id="xSD-ss-Jiv"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="U0v-cs-vlj"/>
+                                    <constraint firstItem="YcJ-e5-b3C" firstAttribute="width" secondItem="YcJ-e5-b3C" secondAttribute="height" multiplier="1:1" id="eFP-0k-iHe"/>
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Importance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oOU-nO-1A9">
-                                <rect key="frame" x="16" y="191.5" width="88" height="20.5"/>
+                                <rect key="frame" x="16" y="239.5" width="88" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -466,7 +471,7 @@
                                 </state>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-fY-TV9" userLabel="Time Stack">
-                                <rect key="frame" x="16" y="154" width="343" height="21.5"/>
+                                <rect key="frame" x="16" y="202" width="343" height="21.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Worked" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30g-GT-zQ2">
                                         <rect key="frame" x="0.0" y="0.5" width="101.5" height="20.5"/>

@@ -24,44 +24,45 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-O4-8En" userLabel="Month Background">
                     <rect key="frame" x="0.0" y="0.0" width="120" height="42"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-Mq-rzy">
-                            <rect key="frame" x="13" y="9" width="93" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.25" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-Mq-rzy">
+                            <rect key="frame" x="9.5" y="8" width="101" height="26"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="QRG-Mq-rzy" firstAttribute="width" secondItem="Vbf-O4-8En" secondAttribute="width" multiplier="0.84" id="26O-nw-BJo"/>
                         <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerX" secondItem="Vbf-O4-8En" secondAttribute="centerX" id="CqP-5B-MzJ"/>
                         <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerY" secondItem="Vbf-O4-8En" secondAttribute="centerY" id="u7B-Lz-J0G"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-wL-jAn" userLabel="Day Background">
-                    <rect key="frame" x="0.0" y="42" width="120" height="78"/>
+                    <rect key="frame" x="1" y="42" width="118" height="77"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bal-u7-mEg">
-                            <rect key="frame" x="39" y="15" width="42.5" height="48"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.25" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bal-u7-mEg">
+                            <rect key="frame" x="39" y="15" width="41" height="48"/>
+                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerY" secondItem="RCF-wL-jAn" secondAttribute="centerY" id="iqC-r7-lFU"/>
-                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerX" secondItem="RCF-wL-jAn" secondAttribute="centerX" id="pFk-3k-CfX"/>
+                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerY" secondItem="RCF-wL-jAn" secondAttribute="centerY" id="ayg-nZ-5FE"/>
+                        <constraint firstItem="bal-u7-mEg" firstAttribute="width" secondItem="RCF-wL-jAn" secondAttribute="width" multiplier="0.35" id="euS-3n-hf8"/>
+                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerX" secondItem="RCF-wL-jAn" secondAttribute="centerX" id="yfN-en-WzI"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Vbf-O4-8En" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="1Mv-FZ-IlO"/>
-                <constraint firstAttribute="bottom" secondItem="RCF-wL-jAn" secondAttribute="bottom" id="6vg-bl-ukT"/>
+                <constraint firstAttribute="bottom" secondItem="RCF-wL-jAn" secondAttribute="bottom" constant="1" id="6vg-bl-ukT"/>
                 <constraint firstItem="Vbf-O4-8En" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NDu-E1-Rpp"/>
-                <constraint firstItem="RCF-wL-jAn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TCW-qc-T1J"/>
+                <constraint firstItem="RCF-wL-jAn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="1" id="TCW-qc-T1J"/>
                 <constraint firstItem="Vbf-O4-8En" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UgG-C8-4hf"/>
-                <constraint firstAttribute="trailing" secondItem="RCF-wL-jAn" secondAttribute="trailing" id="WTh-UZ-xjJ"/>
+                <constraint firstAttribute="trailing" secondItem="RCF-wL-jAn" secondAttribute="trailing" constant="1" id="WTh-UZ-xjJ"/>
                 <constraint firstAttribute="trailing" secondItem="Vbf-O4-8En" secondAttribute="trailing" id="XHR-rW-NWR"/>
                 <constraint firstItem="RCF-wL-jAn" firstAttribute="top" secondItem="Vbf-O4-8En" secondAttribute="bottom" id="elI-vt-r4Z"/>
             </constraints>
@@ -69,7 +70,7 @@
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-91.5" y="-218.5"/>
+            <point key="canvasLocation" x="-92" y="-219"/>
         </view>
     </objects>
 </document>
