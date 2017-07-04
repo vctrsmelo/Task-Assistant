@@ -43,6 +43,9 @@
 		EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */; };
 		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
 		FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */; };
+		FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1AA7421F0C346400221701 /* DayMonthView.xib */; };
+		FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7451F0C3B2400221701 /* DayMonthView.swift */; };
+		FC1AA7491F0C3DFB00221701 /* XibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7481F0C3DFB00221701 /* XibLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +98,9 @@
 		EE2CD86A1EDC43E200477F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewController.swift; sourceTree = "<group>"; };
+		FC1AA7421F0C346400221701 /* DayMonthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayMonthView.xib; sourceTree = "<group>"; };
+		FC1AA7451F0C3B2400221701 /* DayMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayMonthView.swift; path = ../DayMonthView.swift; sourceTree = "<group>"; };
+		FC1AA7481F0C3DFB00221701 /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,13 +168,13 @@
 			children = (
 				EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */,
 				E72036C41EE4E32500D5721E /* RangeSliderView.swift */,
+				FC1AA7451F0C3B2400221701 /* DayMonthView.swift */,
 				E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */,
+				FC1AA7481F0C3DFB00221701 /* XibLoader.swift */,
 				EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */,
 				EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */,
-				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
 				EE0B0B751EE3B54F00EDC6D9 /* Message.swift */,
 				EE0B0B771EE431E000EDC6D9 /* Dave.swift */,
-				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -206,17 +212,28 @@
 			isa = PBXGroup;
 			children = (
 				EE0B0B6A1EE39A2500EDC6D9 /* View */,
+				FC1AA7471F0C3B4D00221701 /* View Controller */,
 				EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */,
-				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				E73DEBD91EDE7D3200355D99 /* Core Classes */,
 				E72A7ED11EE38BD10082F598 /* Persistence */,
 				EE2CD8621EDC43E200477F6B /* Main.storyboard */,
+				FC1AA7421F0C346400221701 /* DayMonthView.xib */,
 				E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */,
 				EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */,
 				EE2CD86A1EDC43E200477F6B /* Info.plist */,
 				EE2CD8651EDC43E200477F6B /* Assets.xcassets */,
 			);
 			path = "Task Assistant";
+			sourceTree = "<group>";
+		};
+		FC1AA7471F0C3B4D00221701 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
+				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
+				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
+			);
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +332,7 @@
 				EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */,
 				EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */,
 				E72036C91EE4F71600D5721E /* AvailableDaysSelectionView.xib in Resources */,
+				FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */,
 				EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,6 +375,7 @@
 				E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */,
 				E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */,
 				E72036C51EE4E32500D5721E /* RangeSliderView.swift in Sources */,
+				FC1AA7491F0C3DFB00221701 /* XibLoader.swift in Sources */,
 				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
@@ -378,6 +397,7 @@
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
 				EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */,
+				FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */,
 				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
 				E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */,
 				EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */,

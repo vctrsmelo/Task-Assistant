@@ -24,10 +24,10 @@ enum Weekday : String {
 	}
 }
 
-@IBDesignable class AvailableDaysSelectionView: UIView, NHRangeSliderViewDelegate {
+@IBDesignable class AvailableDaysSelectionView: UIView, XibLoader, NHRangeSliderViewDelegate {
 	// MARK: Private Properties
-	private let nibName = "AvailableDaysSelectionView"
-	private var view : UIView!
+	let nibName = "AvailableDaysSelectionView"
+	var view : UIView!
 	
 	private let labelMainText = "I don't work on"
 	
@@ -62,7 +62,7 @@ enum Weekday : String {
 	}
 	
 	// MARK: Private Methods
-	private func initialSetup() {
+	func initialSetup() {
 		self.xibSetup()
 		
 		self.rangeSliderView.delegate = self
@@ -72,24 +72,6 @@ enum Weekday : String {
 		}
 		
 		self.changedDay(self.daySelector)
-	}
-	
-	private func xibSetup() {
-		self.view = loadViewFromNib()
-		
-		self.view.frame = self.bounds
-		
-		self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		
-		self.addSubview(view)
-	}
-	
-	private func loadViewFromNib() -> UIView {
-		let bundle = Bundle(for: type(of: self))
-		let nib = UINib(nibName: self.nibName, bundle: bundle)
-		let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-		
-		return view
 	}
 	
 	// MARK: Public Methods
