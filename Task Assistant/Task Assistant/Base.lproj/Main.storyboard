@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-MV-793" customClass="ChatCollectionView" customModule="Task_Assistant" customModuleProvider="target">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-MV-793" customClass="ChatCollectionView" customModule="Task_Assistant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -43,8 +43,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-oh-92h">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-oh-92h">
+                                                    <rect key="frame" x="0.0" y="0.0" width="315" height="100"/>
+                                                    <color key="backgroundColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
@@ -54,7 +56,7 @@
                                             <constraint firstItem="ffJ-oh-92h" firstAttribute="leading" secondItem="EI0-6W-6P7" secondAttribute="leading" id="Dl9-oW-cIq"/>
                                             <constraint firstAttribute="bottom" secondItem="ffJ-oh-92h" secondAttribute="bottom" id="biJ-1A-moQ"/>
                                             <constraint firstItem="ffJ-oh-92h" firstAttribute="top" secondItem="EI0-6W-6P7" secondAttribute="top" id="gNj-zq-vcf"/>
-                                            <constraint firstAttribute="trailing" secondItem="ffJ-oh-92h" secondAttribute="trailing" id="mqz-aE-9YO"/>
+                                            <constraint firstAttribute="trailing" secondItem="ffJ-oh-92h" secondAttribute="trailing" constant="60" id="mqz-aE-9YO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="textView" destination="ffJ-oh-92h" id="GEc-eS-eUz"/>
@@ -67,16 +69,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Pgd-WU-pDe">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="Pgd-WU-pDe">
+                                                    <rect key="frame" x="60" y="0.0" width="315" height="100"/>
+                                                    <color key="backgroundColor" red="0.25900000000000001" green="0.55561666666666665" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="leading" secondItem="haK-H8-Ztr" secondAttribute="leading" id="PBx-QC-mYF"/>
+                                            <constraint firstItem="Pgd-WU-pDe" firstAttribute="leading" secondItem="haK-H8-Ztr" secondAttribute="leading" constant="60" id="PBx-QC-mYF"/>
                                             <constraint firstAttribute="trailing" secondItem="Pgd-WU-pDe" secondAttribute="trailing" id="fM2-Hd-CUx"/>
                                             <constraint firstAttribute="bottom" secondItem="Pgd-WU-pDe" secondAttribute="bottom" id="fuS-g7-szZ"/>
                                             <constraint firstItem="Pgd-WU-pDe" firstAttribute="top" secondItem="haK-H8-Ztr" secondAttribute="top" id="mNe-gP-1ge"/>
@@ -92,23 +95,25 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2h-SS-uf5">
                                         <rect key="frame" x="331" y="12.5" width="36" height="30"/>
-                                        <state key="normal" title="Send"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="z8n-Ht-A9g"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1sP-Bk-Pqw">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1sP-Bk-Pqw">
                                         <rect key="frame" x="8" y="12.5" width="240" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="240" id="eeU-4M-nle"/>
                                             <constraint firstAttribute="height" constant="30" id="n1I-gT-G3h"/>
                                         </constraints>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="send" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.87843137250000003" green="0.52941176469999995" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="1sP-Bk-Pqw" firstAttribute="leading" secondItem="kSv-70-Xxw" secondAttribute="leading" constant="8" id="8E9-hs-MdM"/>
                                     <constraint firstAttribute="trailing" secondItem="x2h-SS-uf5" secondAttribute="trailing" constant="8" id="BjD-Pc-U1q"/>
@@ -124,14 +129,18 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcI-CL-tJZ">
                                                 <rect key="frame" x="0.0" y="0.0" width="187.5" height="55"/>
-                                                <state key="normal" title="Add Project"/>
+                                                <state key="normal" title="Add Project">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="addProjectButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oA2-zZ-Cfu"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0a-G9-1ZZ">
                                                 <rect key="frame" x="187.5" y="0.0" width="187.5" height="55"/>
-                                                <state key="normal" title="Add Task"/>
+                                                <state key="normal" title="Add Task">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -139,7 +148,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.041910807289999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="vHB-HF-OX9" secondAttribute="bottom" id="D3B-DW-goM"/>
                                     <constraint firstItem="vHB-HF-OX9" firstAttribute="leading" secondItem="dys-tg-Uw4" secondAttribute="leading" id="Qlv-2v-P40"/>
@@ -153,12 +162,15 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0B-fU-YOb">
                                         <rect key="frame" x="331" y="0.0" width="36" height="30"/>
-                                        <state key="normal" title="Send"/>
+                                        <color key="tintColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendAvailableDaysTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K7o-qc-Oyb"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6x-U8-IYQ" customClass="AvailableDaysSelectionView" customModule="Task_Assistant" customModuleProvider="target">
+                                    <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6x-U8-IYQ" customClass="AvailableDaysSelectionView" customModule="Task_Assistant" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="49" width="375" height="172"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -192,7 +204,9 @@
                                             <constraint firstAttribute="height" constant="30" id="7hr-Bn-tsY"/>
                                             <constraint firstAttribute="width" constant="55" id="UzG-Sj-TkY"/>
                                         </constraints>
-                                        <state key="normal" title="Confirm"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendDateButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Os5-dr-wgm"/>
                                         </connections>
@@ -221,7 +235,9 @@
                                             <constraint firstAttribute="height" constant="30" id="MiN-76-W7B"/>
                                             <constraint firstAttribute="width" constant="55" id="YYL-MR-Tck"/>
                                         </constraints>
-                                        <state key="normal" title="Confirm"/>
+                                        <state key="normal" title="Confirm">
+                                            <color key="titleColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="sendEstimatedHoursTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBf-T8-lYA"/>
                                         </connections>
@@ -258,21 +274,27 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOh-d5-b0f">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
-                                                <state key="normal" title="It can be rescheduled, if needed"/>
+                                                <state key="normal" title="It can be rescheduled, if needed">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="lowImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s0C-ml-wMp"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LON-sO-1ea">
                                                 <rect key="frame" x="0.0" y="55.5" width="375" height="56"/>
-                                                <state key="normal" title="It should not be rescheduled"/>
+                                                <state key="normal" title="It should not be rescheduled">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="mediumImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fvs-Im-Oct"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Nf-8z-Opp">
                                                 <rect key="frame" x="0.0" y="111.5" width="375" height="55.5"/>
-                                                <state key="normal" title="It can not be rescheduled"/>
+                                                <state key="normal" title="It can not be rescheduled">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="highImportanceButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eMx-Tc-V3y"/>
                                                 </connections>
@@ -288,7 +310,7 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.25900000000000001" green="0.55561666669999998" blue="0.73999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="6B4-32-tUH" firstAttribute="leading" secondItem="E5w-CR-tMK" secondAttribute="leading" id="7My-C5-DhX"/>
                                     <constraint firstAttribute="trailing" secondItem="6B4-32-tUH" secondAttribute="trailing" id="9xW-JL-a4F"/>

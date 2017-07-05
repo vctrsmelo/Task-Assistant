@@ -32,13 +32,19 @@ class UserMessageCollectionViewCell: UICollectionViewCell {
         
         super.draw(rect)
         
-        self.layer.addBorder(edge: .right, color: .red, thickness: 5.0)
-        self.textView.textAlignment = NSTextAlignment.right
+		//self.layer.addBorder(edge: .right, color: .red, thickness: 5.0)
+		//self.textView.textAlignment = NSTextAlignment.right
         
-        self.textView.isEditable = false
+		//self.textView.isEditable = false
         
-        self.textView.frame = rect
-        
+		//self.textView.frame = rect
+		
+		let path = UIBezierPath(roundedRect:self.textView.bounds,
+		                        byRoundingCorners:[.topLeft, .bottomLeft],
+		                        cornerRadii: CGSize(width: 20, height:  20))
+		let maskLayer = CAShapeLayer()
+		maskLayer.path = path.cgPath
+		self.textView.layer.mask = maskLayer
     }
     
     public func write(message: Message, typingEffect: Bool){

@@ -29,6 +29,7 @@ import NHRangeSlider
 		self.upperValue = self.maximumValue
 		self.gapBetweenThumbs = 1
 		self.stepValue = 1
+		self.trackHighlightTintColor = #colorLiteral(red: 0.3164377213, green: 0.6260752082, blue: 0.7874695659, alpha: 1)
 	}
 	
 }
