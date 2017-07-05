@@ -112,12 +112,13 @@ class ActivityViewController: UIViewController {
                 editViewControllerDestination.activity = self.task
                 
             }
+            
+            editViewControllerDestination.origin = .activityViewController
         
         }
         
         
         
     }
-	
 
 }
