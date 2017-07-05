@@ -21,6 +21,7 @@ class ActivityViewController: UIViewController {
 	@IBOutlet weak var workedHoursLabel: UILabel!
 	@IBOutlet weak var needHoursLabel: UILabel!
 	@IBOutlet weak var importanceLabel: UILabel!
+    @IBOutlet weak var editButton: UIBarButtonItem!
 	
 	@IBOutlet weak var completeButton: UIButton!
 	
@@ -95,6 +96,28 @@ class ActivityViewController: UIViewController {
 		self.project = nil
 		self.task = nil
 	}
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "editActivity"{
+            
+            let editViewControllerDestination = segue.destination as! EditActivityViewController
+            
+            if self.project != nil{
+            
+                editViewControllerDestination.activity = self.project
+            
+            }else{
+                
+                editViewControllerDestination.activity = self.task
+                
+            }
+        
+        }
+        
+        
+        
+    }
 	
 
 }

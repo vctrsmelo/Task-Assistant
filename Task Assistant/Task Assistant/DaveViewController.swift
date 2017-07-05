@@ -13,6 +13,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
     private var chatOriginalFrame : CGRect!
     private var dave : Dave!
+    private let userId = UIDevice.current.identifierForVendor!.uuidString
     
     private var projectBeingCreated : Project?
     private var projectName: String!
@@ -161,15 +162,37 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         chatOriginalFrame = chatCollectionView.frame
 
         hideAllComponents()
-        
-        var user : User?
-        
+
         // TO DO:  try to get user from DB
 
         dave = Dave(chatView: chatCollectionView)
-
-        (user == nil) ? dave.beginCreateUserAccountFlow() : dave.suggestNextTask()
         
+        if let user = UserDAO.load(userId) {
+            dave.user = user
+            print("Loaded User")
+            print("\(user.name)")
+          
+            dave.sendNextActivityMessage()
+            
+        } else {
+
+            dave.beginCreateUserAccountFlow()
+//            print("Will Create User")
+//            let availableDay = AvailableDay(weekday: 4, startTime: 7, endTime: 15)
+//            let nonAvailableDay = AvailableDay(weekday: 3)
+//            let context = Context(title: "Work", availableDays: [nonAvailableDay, availableDay])
+//            ViewController.user = User(name: "Luigi", contexts: [context])
+//            
+//            print("User Created")
+//            print("Will save User")
+//            
+//            if UserDAO.save(ViewController.user) {
+//                print("Saved User")
+//            } else {
+//                print("Failed to save User")
+//            }
+        }
+
         self.view.setNeedsDisplay()
     
     }

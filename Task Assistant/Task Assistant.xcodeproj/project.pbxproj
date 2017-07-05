@@ -42,6 +42,13 @@
 		EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8621EDC43E200477F6B /* Main.storyboard */; };
 		EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8651EDC43E200477F6B /* Assets.xcassets */; };
 		EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */; };
+		EEA536241F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */; };
+		EECB78CB1F0D109400DF4A43 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */; };
+		EECB78CE1F0D112500DF4A43 /* EditDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */; };
+		EECB78D01F0D114A00DF4A43 /* EditTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */; };
+		EECB78D21F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */; };
+		EECB78D41F0D17F100DF4A43 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */; };
+		EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */; };
 		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
 		FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */; };
 		FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1AA7421F0C346400221701 /* DayMonthView.xib */; };
@@ -98,6 +105,13 @@
 		EE2CD8651EDC43E200477F6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2CD8681EDC43E200477F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2CD86A1EDC43E200477F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEstimatedTimeTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
+		EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDateTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellView.swift; sourceTree = "<group>"; };
 		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		FC1AA7421F0C346400221701 /* DayMonthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayMonthView.xib; sourceTree = "<group>"; };
@@ -228,13 +242,28 @@
 			path = "Task Assistant";
 			sourceTree = "<group>";
 		};
+		EECB78CC1F0D10F000DF4A43 /* EditCells */ = {
+			isa = PBXGroup;
+			children = (
+				EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */,
+				EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */,
+				EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */,
+				EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */,
+				EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */,
+				EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */,
+			);
+			name = EditCells;
+			sourceTree = "<group>";
+		};
 		FC1AA7471F0C3B4D00221701 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EECB78CC1F0D10F000DF4A43 /* EditCells */,
 				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
 				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
 				E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */,
+				EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -296,6 +325,7 @@
 					};
 					EE2CD85A1EDC43E200477F6B = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -385,26 +415,33 @@
 				FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
 				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
+				EECB78D01F0D114A00DF4A43 /* EditTextTableViewCell.swift in Sources */,
 				E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */,
 				EE0F16BB1EFFFF3600E5F358 /* UnitTests.swift in Sources */,
 				E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */,
 				E74B878F1F0CB4C4007A9F98 /* ActivityViewController.swift in Sources */,
 				E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */,
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
+				EECB78CB1F0D109400DF4A43 /* EditActivityViewController.swift in Sources */,
 				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
 				EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */,
+				EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */,
 				EE015F521EF868A500027662 /* TimeBlock.swift in Sources */,
 				EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */,
 				EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */,
 				EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */,
+				EECB78D21F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift in Sources */,
 				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
 				EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */,
 				FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */,
 				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
+				EECB78CE1F0D112500DF4A43 /* EditDateTableViewCell.swift in Sources */,
 				E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */,
 				EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */,
+				EEA536241F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift in Sources */,
+				EECB78D41F0D17F100DF4A43 /* EditTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -563,7 +600,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -580,7 +617,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = Y93HUJS49V;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
