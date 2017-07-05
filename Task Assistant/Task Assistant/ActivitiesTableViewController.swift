@@ -82,14 +82,19 @@ class ActivitiesTableViewController: UITableViewController {
     }
     */
 
-    /*
+	
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
+		if segue.identifier == "activitiesToActivity" {
+			let destination = segue.destination as! ActivityViewController
+			// TODO: Pick Correct project
+			destination.project = Project(title: "Teste", estimatedTime: 30*60*60, priority: .shouldNotBeRescheduled, startDate: Date(), endDate: Date().addingTimeInterval(2*24*60*60))
+		}
+		// Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }

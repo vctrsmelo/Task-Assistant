@@ -18,53 +18,62 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+            <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-O4-8En" userLabel="Month Background">
-                    <rect key="frame" x="0.0" y="0.0" width="120" height="42"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zz3-er-sYW" userLabel="Main">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.25" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-Mq-rzy">
-                            <rect key="frame" x="9.5" y="8" width="101" height="26"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vbf-O4-8En" userLabel="Month Background">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="21"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="November" textAlignment="center" lineBreakMode="tailTruncation" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QRG-Mq-rzy">
+                                    <rect key="frame" x="4" y="4" width="53.5" height="13.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerX" secondItem="Vbf-O4-8En" secondAttribute="centerX" id="CqP-5B-MzJ"/>
+                                <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerY" secondItem="Vbf-O4-8En" secondAttribute="centerY" id="u7B-Lz-J0G"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-wL-jAn" userLabel="Day Background">
+                            <rect key="frame" x="1" y="21" width="58" height="38"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bal-u7-mEg">
+                                    <rect key="frame" x="15" y="3" width="28" height="32.5"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="27"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="bal-u7-mEg" firstAttribute="centerY" secondItem="RCF-wL-jAn" secondAttribute="centerY" id="ayg-nZ-5FE"/>
+                                <constraint firstItem="bal-u7-mEg" firstAttribute="centerX" secondItem="RCF-wL-jAn" secondAttribute="centerX" id="yfN-en-WzI"/>
+                            </constraints>
+                        </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="QRG-Mq-rzy" firstAttribute="width" secondItem="Vbf-O4-8En" secondAttribute="width" multiplier="0.84" id="26O-nw-BJo"/>
-                        <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerX" secondItem="Vbf-O4-8En" secondAttribute="centerX" id="CqP-5B-MzJ"/>
-                        <constraint firstItem="QRG-Mq-rzy" firstAttribute="centerY" secondItem="Vbf-O4-8En" secondAttribute="centerY" id="u7B-Lz-J0G"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RCF-wL-jAn" userLabel="Day Background">
-                    <rect key="frame" x="1" y="42" width="118" height="77"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.25" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bal-u7-mEg">
-                            <rect key="frame" x="39" y="15" width="41" height="48"/>
-                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerY" secondItem="RCF-wL-jAn" secondAttribute="centerY" id="ayg-nZ-5FE"/>
-                        <constraint firstItem="bal-u7-mEg" firstAttribute="width" secondItem="RCF-wL-jAn" secondAttribute="width" multiplier="0.35" id="euS-3n-hf8"/>
-                        <constraint firstItem="bal-u7-mEg" firstAttribute="centerX" secondItem="RCF-wL-jAn" secondAttribute="centerX" id="yfN-en-WzI"/>
+                        <constraint firstAttribute="trailing" secondItem="RCF-wL-jAn" secondAttribute="trailing" constant="1" id="87z-vT-IG1"/>
+                        <constraint firstItem="RCF-wL-jAn" firstAttribute="leading" secondItem="zz3-er-sYW" secondAttribute="leading" constant="1" id="DES-LY-WfL"/>
+                        <constraint firstItem="Vbf-O4-8En" firstAttribute="height" secondItem="zz3-er-sYW" secondAttribute="height" multiplier="0.35" id="M8l-tI-Z7g"/>
+                        <constraint firstItem="Vbf-O4-8En" firstAttribute="leading" secondItem="zz3-er-sYW" secondAttribute="leading" id="NUW-aY-mPs"/>
+                        <constraint firstItem="Vbf-O4-8En" firstAttribute="top" secondItem="zz3-er-sYW" secondAttribute="top" id="gKf-JM-3C1"/>
+                        <constraint firstAttribute="trailing" secondItem="Vbf-O4-8En" secondAttribute="trailing" id="hM1-hB-xWD"/>
+                        <constraint firstAttribute="bottom" secondItem="RCF-wL-jAn" secondAttribute="bottom" constant="1" id="teQ-f3-wFd"/>
+                        <constraint firstItem="RCF-wL-jAn" firstAttribute="top" secondItem="Vbf-O4-8En" secondAttribute="bottom" id="vQN-ZX-bFE"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="Vbf-O4-8En" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.35" id="1Mv-FZ-IlO"/>
-                <constraint firstAttribute="bottom" secondItem="RCF-wL-jAn" secondAttribute="bottom" constant="1" id="6vg-bl-ukT"/>
-                <constraint firstItem="Vbf-O4-8En" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="NDu-E1-Rpp"/>
-                <constraint firstItem="RCF-wL-jAn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="1" id="TCW-qc-T1J"/>
-                <constraint firstItem="Vbf-O4-8En" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UgG-C8-4hf"/>
-                <constraint firstAttribute="trailing" secondItem="RCF-wL-jAn" secondAttribute="trailing" constant="1" id="WTh-UZ-xjJ"/>
-                <constraint firstAttribute="trailing" secondItem="Vbf-O4-8En" secondAttribute="trailing" id="XHR-rW-NWR"/>
-                <constraint firstItem="RCF-wL-jAn" firstAttribute="top" secondItem="Vbf-O4-8En" secondAttribute="bottom" id="elI-vt-r4Z"/>
+                <constraint firstAttribute="bottom" secondItem="zz3-er-sYW" secondAttribute="bottom" id="0rf-er-f4A"/>
+                <constraint firstItem="zz3-er-sYW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="3Qw-eg-pAH"/>
+                <constraint firstItem="zz3-er-sYW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lnd-YJ-C0c"/>
+                <constraint firstAttribute="trailing" secondItem="zz3-er-sYW" secondAttribute="trailing" id="vaq-QR-wl9"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

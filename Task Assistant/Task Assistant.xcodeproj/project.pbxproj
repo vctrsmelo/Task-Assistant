@@ -24,6 +24,7 @@
 		E73DEBD41EDE726700355D99 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD31EDE726700355D99 /* User.swift */; };
 		E73DEBD61EDE731D00355D99 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD51EDE731D00355D99 /* Task.swift */; };
 		E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD71EDE78BE00355D99 /* Project.swift */; };
+		E74B878F1F0CB4C4007A9F98 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */; };
 		E7B0A2221EE384AE008D4037 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2201EE384AE008D4037 /* Realm.framework */; };
 		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
 		E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */; };
@@ -76,6 +77,7 @@
 		E73DEBD31EDE726700355D99 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E73DEBD51EDE731D00355D99 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E73DEBD71EDE78BE00355D99 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		E7B0A2201EE384AE008D4037 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleActivitiesDAO.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
 				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
+				E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -264,7 +267,7 @@
 				EE2CD8571EDC43E200477F6B /* Sources */,
 				EE2CD8581EDC43E200477F6B /* Frameworks */,
 				EE2CD8591EDC43E200477F6B /* Resources */,
-				E7B0A2241EE3851A008D4037 /* ShellScript */,
+				E7B0A2241EE3851A008D4037 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -340,7 +343,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E7B0A2241EE3851A008D4037 /* ShellScript */ = {
+		E7B0A2241EE3851A008D4037 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -350,6 +353,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/NHRangeSlider.framework",
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +389,7 @@
 				E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */,
 				EE0F16BB1EFFFF3600E5F358 /* UnitTests.swift in Sources */,
 				E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */,
+				E74B878F1F0CB4C4007A9F98 /* ActivityViewController.swift in Sources */,
 				E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */,
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
 				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
