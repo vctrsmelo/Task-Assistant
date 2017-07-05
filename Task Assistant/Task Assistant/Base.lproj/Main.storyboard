@@ -428,7 +428,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiJ-hE-oRU">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiJ-hE-oRU">
                                 <rect key="frame" x="16" y="80" width="343" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -471,10 +471,15 @@
                                     <constraint firstAttribute="height" constant="2" id="hbr-w7-lio"/>
                                 </constraints>
                             </view>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nle-Zr-dcZ">
+                            <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nle-Zr-dcZ">
                                 <rect key="frame" x="16" y="250" width="343" height="2.5"/>
                                 <color key="progressTintColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </progressView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-fY-TV9" userLabel="Time Stack">
                                 <rect key="frame" x="16" y="266" width="343" height="21.5"/>
@@ -507,6 +512,9 @@
                                 <state key="normal" title="Complete">
                                     <color key="titleColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.58768333333333345" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="completeActivity" destination="7El-sw-Fo6" eventType="touchUpInside" id="DNm-Kf-DaP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -531,10 +539,8 @@
                             <constraint firstItem="oOU-nO-1A9" firstAttribute="leading" secondItem="bhf-up-kHY" secondAttribute="leadingMargin" id="xHq-uT-e7P"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Project" id="H7H-e0-ARS">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="JJO-jJ-tyR"/>
-                    </navigationItem>
                     <connections>
+                        <outlet property="completeButton" destination="JZs-Gf-of5" id="e3i-f9-3Dn"/>
                         <outlet property="endDayMonthView" destination="YcJ-e5-b3C" id="a1e-sj-M7X"/>
                         <outlet property="hiddenPickerView" destination="4It-K5-0OU" id="ck4-Jb-vmL"/>
                         <outlet property="importanceLabel" destination="oOU-nO-1A9" id="9Ui-Tz-Cel"/>
@@ -673,6 +679,6 @@
         <image name="List Tab Icon" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="DdF-u7-PDk"/>
+        <segue reference="JY3-Nq-nJf"/>
     </inferredMetricsTieBreakers>
 </document>

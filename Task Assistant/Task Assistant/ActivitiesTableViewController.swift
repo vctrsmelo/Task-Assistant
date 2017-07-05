@@ -92,9 +92,10 @@ class ActivitiesTableViewController: UITableViewController {
 			// TODO: Pick Correct project
 			destination.project = Project(title: "Teste", estimatedTime: 30*60*60, priority: .shouldNotBeRescheduled, startDate: Date(), endDate: Date().addingTimeInterval(2*24*60*60))
 		}
-		// Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    
+	
+//	@IBAction func prepare(for unwind : UIStoryboardSegue) {
+//		self.tableView.reloadData()
+//	}
 
 }

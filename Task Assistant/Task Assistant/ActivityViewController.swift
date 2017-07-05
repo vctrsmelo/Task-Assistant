@@ -22,36 +22,79 @@ class ActivityViewController: UIViewController {
 	@IBOutlet weak var needHoursLabel: UILabel!
 	@IBOutlet weak var importanceLabel: UILabel!
 	
+	@IBOutlet weak var completeButton: UIButton!
+	
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.progressBar.transform = self.progressBar.transform.scaledBy(x: 1, y: 3)
+		
+		//self.navigationItem.rightBarButtonItem = self.editButtonItem // TODO: Not editable at the moment, so not showing button
+		
 		if let currentProject = self.project {
+			
 			self.titleLabel.text = currentProject.title
 			self.startDayMonthView.date = currentProject.startDate
 			self.endDayMonthView.date = currentProject.endDate
 			self.progressBar.setProgress(0, animated: true) // TODO: Get the current completion value
 			self.workedHoursLabel.text = "\(0) hours" // TODO: Use correct value here too
-			self.needHoursLabel.text = "\(currentProject.estimatedTime/60/60) hours"
+			self.needHoursLabel.text = "\(Int(currentProject.estimatedTime/60/60)) hours"
 			self.importanceLabel.text = currentProject.priority.toString()
+			
+		} else if let currentTask = self.task {
+			
+			self.titleLabel.text = currentTask.title // TODO: Finish
+			
 		}
 		
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+//	override func setEditing(_ editing: Bool, animated: Bool) {
+//		super.setEditing(editing, animated: animated)
+//	
+//	}
 
-    /*
+	@IBAction func completeActivity() {
+		if let currentProject = self.project {
+			var difference = currentProject.estimatedTime // TODO: - worked time
+			
+			difference = difference / 60 / 60
+			
+			let messageTime = difference <= 0 ? "" : " There are still \(Int(difference)) estimated hours to go"
+			
+			let alert = UIAlertController(title: "Complete Project", message: "Are you sure you want to complete this project?\(messageTime)", preferredStyle: .alert)
+			
+			let cancel = UIAlertAction(title: "No", style: .cancel, handler: nil)
+			let confirm = UIAlertAction(title: "Yes", style: .destructive, handler: { (alertAction) in
+				currentProject.finished = true
+				self.save()
+				self.completeButton.isEnabled = false // TODO: Go back instead?
+			})
+			
+			alert.addAction(cancel)
+			alert.addAction(confirm)
+			
+			self.present(alert, animated: true, completion: nil)
+			
+		}
+	}
+	
+	func save(){
+		// TODO: Save
+		print("Somebody save me")
+	}
+	
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+		self.project = nil
+		self.task = nil
+	}
+	
 
 }
