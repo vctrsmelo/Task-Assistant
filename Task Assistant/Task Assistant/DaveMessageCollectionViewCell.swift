@@ -94,9 +94,16 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
 
         super.draw(rect)
         
-        self.layer.addBorder(edge: .left, color: .blue, thickness: 5.0)
-        self.textView.isEditable = false
-        self.textView.frame = rect
+		//self.layer.addBorder(edge: .left, color: .blue, thickness: 5.0)
+		//self.textView.isEditable = false
+		//self.textView.frame = rect
+		
+		let path = UIBezierPath(roundedRect:self.textView.bounds,
+		                        byRoundingCorners:[.topRight, .bottomRight],
+		                        cornerRadii: CGSize(width: 20, height:  20))
+		let maskLayer = CAShapeLayer()
+		maskLayer.path = path.cgPath
+		self.textView.layer.mask = maskLayer
 
     }
     

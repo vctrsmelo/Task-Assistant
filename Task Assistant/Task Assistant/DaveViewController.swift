@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserMessageCollectionViewCellDelegate,DaveMessageCollectionViewCellDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var chatCollectionView: ChatCollectionView!
     private var chatOriginalFrame : CGRect!
@@ -155,7 +155,8 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
         estimatedHoursPickerView.dataSource = self
         estimatedHoursPickerView.delegate = self
-        
+		
+		textInputField.delegate = self
         
         chatOriginalFrame = chatCollectionView.frame
 
@@ -259,7 +260,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
         let cellWidth = self.view.frame.width
         
-        let tempTextView = UITextView.init(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 500))
+        let tempTextView = UITextView.init(frame: CGRect(x: 0, y: 0, width: cellWidth, height: 500))
         
         tempTextView.text = chatCollectionView.getMessages()[indexPath.row].text
         
@@ -269,7 +270,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         return CGSize(width: cellWidth, height: (cellHeight+30))
         
     }
-    
+	
     func daveTypedAllCharacters() {
 
         switch(dave.currentAction){
@@ -450,6 +451,13 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         if let lastMessage = self.chatCollectionView.getMessages().last{ self.chatCollectionView.chatDelegate?.messageTyped(lastMessage) }
         
     }
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		
+		self.sendButtonTouched(self.sendButton)
+		
+		return false
+	}
 
     @IBAction func sendButtonTouched(_ sender: UIButton) {
         

@@ -183,7 +183,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             if(self.currentFlow == .creatingUserAccount){
                 
                 if(self.userBeingCreated == nil){
-                    print("[Error] in Dave.swift - received(availableDays, contextTitle): userBeingCreated is nil (it should has been setted in beginCreateUserFlow() method)")
+                    print("[Error] in Dave.swift - received(availableDays, contextTitle): userBeingCreated is nil (it should have been setted in beginCreateUserFlow() method)")
                 }
                 
                 if(self.userBeingCreated!.contexts.isEmpty){

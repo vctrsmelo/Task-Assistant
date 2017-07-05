@@ -10,6 +10,17 @@ import Foundation
 
 enum Priority : Int {
 	case canBeRescheduled = 1, shouldNotBeRescheduled = 2, cannotBeRescheduled = 3
+	
+	func toString() -> String {
+		switch self {
+		case .canBeRescheduled:
+			return "Can be Rescheduled"
+		case .shouldNotBeRescheduled:
+			return "Should not be Rescheduled"
+		case .cannotBeRescheduled:
+			return "Cannot be Rescheduled"
+		}
+	}
 }
 
 class Activity {
