@@ -11,7 +11,6 @@ import RealmSwift
 
 class UserDAO : Object {
 	dynamic var uniqueID = ""
-	dynamic var appleID = ""
 	dynamic var name = ""
 	let contextDAOs = List<ContextDAO>()
 	
@@ -19,10 +18,9 @@ class UserDAO : Object {
 		return "uniqueID"
 	}
 	
-	convenience init(_ user : User, appleID : String) {
+	convenience init(_ user : User) {
 		self.init()
 		
-		self.appleID = appleID
 		self.uniqueID = user.uniqueID
 		self.name = user.name
 		
@@ -41,8 +39,8 @@ class UserDAO : Object {
 		return User(name: self.name, contexts: contexts, uniqueID: self.uniqueID)
 	}
 	
-	static func save(_ user : User, appleID : String, on location : DBType = .userDefault, update : Bool = false) -> Bool {
-		let userDAO = UserDAO(user, appleID: appleID)
+	static func save(_ user : User, on location : DBType = .userDefault, update : Bool = false) -> Bool {
+		let userDAO = UserDAO(user)
 		
 		return DataBaseConfig.save(userDAO, to: location, update: update)
 	}

@@ -131,7 +131,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         indexOfNextMessageToSend = 0
 
         messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the final date of the project?",
-                                     "And how much hours working on this project do you estimate you need to complete it?",
+                                     "And how much hours working hours on this project do you estimate you need to complete it?",
                                      "A last information, how important is to complete this project until"])
 
         sendNextMessage()
@@ -191,6 +191,12 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                     userBeingCreated?.contexts.append(Context(title: contextTitle, availableDays: availableDays))
                     user = User(name: userBeingCreated!.name!, contexts: userBeingCreated!.contexts)
                     userBeingCreated = nil
+                    
+                    if UserDAO.save(user!) {
+                        print("Saved User")
+                    } else {
+                        print("Failed to save User")
+                    }
                     
                 }else{
                 
@@ -321,6 +327,15 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                         }
                         
                         context.projects.append(newProj)
+
+                        if UserDAO.save(user, on: .userDefault, update: true) {
+
+                            print("Updated User")
+
+                        } else {
+                            print("Failed to save User")
+                        }
+
                         self.currentFlow = .none
                         self.currentAction = .needToTypeNextActivity
                         sendNextMessage()
@@ -431,13 +446,15 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
 
-    public func suggestNextTask(){
+    func sendNextActivityMessage(){
         
-        self.currentAction = .presentedHome
+        self.currentFlow = .none
+        self.currentAction = .needToTypeNextActivity
+        sendNextMessage()
         
     }
 
-    public func sendNextMessage(){
+    func sendNextMessage(){
         
         if self.currentAction == .needToTypeNextActivity{
             
@@ -445,6 +462,10 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                 
                 self.addMessageToQueue(messageString: message)
                 
+            }else{
+            
+            self.addMessageToQueue(messageString: "Today you have no activity, \(user!.name). Add a new project or enjoy your day to relax:)")
+
             }
             
         }
@@ -607,7 +628,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 //                        formatter.dateFormat = "MM/dd/yyyy"
 //                        let finalDateString = formatter.string(from: nextActivity.endDate)
 
-                        return "Today, you need to dedicate \(hours) working on project \"\(nextActivity.title)\""
+                        return "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\""
                         
                     }else{
                         
@@ -653,8 +674,10 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         self.projectBeingCreated = nil
 
         self.currentFlow = .none
-        self.currentAction = .needToTypeNextActivity
         self.addMessageToQueue(messageString: "You have cancelled the project creation.")
+        self.sendNextMessage()
+        
+        self.currentAction = .needToTypeNextActivity
         self.sendNextMessage()
         
     }

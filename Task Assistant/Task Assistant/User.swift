@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class User {
 	// MARK: Private Properties
@@ -37,8 +38,8 @@ class User {
 	}
 	
 	// MARK: Initializer
-	init(name: String, contexts: [Context], uniqueID: String = UUID().uuidString) {
-		self._uniqueID = uniqueID
+	init(name: String, contexts: [Context], uniqueID: String =  UIDevice.current.identifierForVendor!.uuidString) {
+        self._uniqueID = uniqueID
 		self._name = name
 		self._contexts = contexts
 	}
