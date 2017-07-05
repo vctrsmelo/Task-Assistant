@@ -471,6 +471,11 @@
                                     <constraint firstAttribute="height" constant="2" id="hbr-w7-lio"/>
                                 </constraints>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nle-Zr-dcZ">
+                                <rect key="frame" x="16" y="250" width="343" height="2.5"/>
+                                <color key="progressTintColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </progressView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Eoz-fY-TV9" userLabel="Time Stack">
                                 <rect key="frame" x="16" y="266" width="343" height="21.5"/>
                                 <subviews>
@@ -480,8 +485,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time Need" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVP-dK-uMT">
-                                        <rect key="frame" x="259.5" y="0.5" width="83.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100 hours" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVP-dK-uMT">
+                                        <rect key="frame" x="267" y="0.5" width="76" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -503,10 +508,6 @@
                                     <color key="titleColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.58768333333333345" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nle-Zr-dcZ">
-                                <rect key="frame" x="16" y="250" width="343" height="2.5"/>
-                                <color key="progressTintColor" red="0.25900000000000001" green="0.73999999999999999" blue="0.5876833333" alpha="1" colorSpace="calibratedRGB"/>
-                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -533,6 +534,16 @@
                     <navigationItem key="navigationItem" title="Project" id="H7H-e0-ARS">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="JJO-jJ-tyR"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="endDayMonthView" destination="YcJ-e5-b3C" id="a1e-sj-M7X"/>
+                        <outlet property="hiddenPickerView" destination="4It-K5-0OU" id="ck4-Jb-vmL"/>
+                        <outlet property="importanceLabel" destination="oOU-nO-1A9" id="9Ui-Tz-Cel"/>
+                        <outlet property="needHoursLabel" destination="pVP-dK-uMT" id="Pex-Vc-bZF"/>
+                        <outlet property="progressBar" destination="nle-Zr-dcZ" id="Aic-8D-gWJ"/>
+                        <outlet property="startDayMonthView" destination="nEN-04-rfw" id="feK-sx-xmY"/>
+                        <outlet property="titleLabel" destination="oiJ-hE-oRU" id="O8b-f2-ai2"/>
+                        <outlet property="workedHoursLabel" destination="30g-GT-zQ2" id="YZU-tj-oGG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IkE-Ud-dEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
