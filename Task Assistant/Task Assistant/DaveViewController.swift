@@ -143,6 +143,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -626,6 +627,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         return pickerLabel
 
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0{
             estimatedHours = row
@@ -634,6 +636,12 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             estimatedMinutes = row
             
         }
+        
+        
+    }
+    
+    @IBAction func unwindToDaveViewController(segue: UIStoryboardSegue){
+        
         
         
     }

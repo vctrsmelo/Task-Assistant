@@ -9,7 +9,7 @@
 import Foundation
 
 enum Priority : Int {
-	case canBeRescheduled = 1, shouldNotBeRescheduled = 2, cannotBeRescheduled = 3
+	case canBeRescheduled = 1, shouldNotBeRescheduled, cannotBeRescheduled
 	
 	func toString() -> String {
 		switch self {
