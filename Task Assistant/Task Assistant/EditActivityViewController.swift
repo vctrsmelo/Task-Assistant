@@ -74,8 +74,18 @@ class EditActivityViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.delegate = self
         self.tableView.tableFooterView = UIView()
         
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
     }
-
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.tableView.reloadData()
         
@@ -303,6 +313,16 @@ class EditActivityViewController: UIViewController, UITableViewDelegate, UITable
         
         //delete project from database
         //perform unwind to DaveViewController
+        
+        if let project = activity as? Project{
+            
+            let deleted = ProjectDAO.delete(project)
+            
+            print("Project was deleted? \(deleted)")
+            
+        }
+        
+        performSegue(withIdentifier: "unwindSegueToDaveViewController", sender: self)
         
     }
     

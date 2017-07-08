@@ -67,6 +67,8 @@ struct UserData {
 
 class Dave: NSObject, ChatCollectionViewDelegate {
 
+    private static var dave: Dave?
+    
     private(set) var messages: [String] = []
     private(set) var indexOfNextMessageToSend = 0
     private(set) var messagesSent = 0
@@ -88,7 +90,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     //user infos
     var userTimeBlocks: [TimeBlock]?
     
-    init(chatView : ChatCollectionView) {
+    private init(chatView : ChatCollectionView) {
         
         self.chatView = chatView
         
@@ -99,6 +101,18 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
         self.chatView.chatDelegate = self
             
+    }
+    
+    static public func setDave(chatView: ChatCollectionView){
+        
+        dave = Dave(chatView: chatView)
+        
+    }
+    
+    static public func getDave() -> Dave?{
+        
+        return dave
+        
     }
     
     public func beginCreateUserAccountFlow(){
@@ -386,7 +400,19 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    private func getTimeBlocks(projects: [Project]) -> [TimeBlock]{
+    private func clearMessagesStack(){
+        
+        self.messages = []
+        self.indexOfNextMessageToSend = 0
+    }
+    
+    func cancelFlow(){
+        self.clearMessagesStack()
+        self.sendNextActivityMessage()
+        
+    }
+    
+    func getTimeBlocks(projects: [Project]) -> [TimeBlock]{
         
         var timeBlocks: [TimeBlock] = []
         
@@ -577,17 +603,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
     
     private func getNextActivityMessage() -> String?{
-
-        self.orderUserActivities()
         
-//        if !self.userHasAvailableTime(){
-//            
-//            //not available time
-//            self.updateCurrentAction()
-//            self.beginNotAvailableTimeFlow()
-//         
-//            return nil
-//        }
+        self.orderUserActivities()
         
         if self.user != nil{
             

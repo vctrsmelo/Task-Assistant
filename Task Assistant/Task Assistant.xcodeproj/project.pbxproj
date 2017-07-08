@@ -29,6 +29,7 @@
 		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
 		E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */; };
 		EE015F521EF868A500027662 /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F511EF868A400027662 /* TimeBlock.swift */; };
+		EE0176041F0FD0AE007B6C0A /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */; };
 		EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */; };
 		EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */; };
 		EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */; };
@@ -50,7 +51,6 @@
 		EECB78D41F0D17F100DF4A43 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */; };
 		EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */; };
 		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
-		FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */; };
 		FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1AA7421F0C346400221701 /* DayMonthView.xib */; };
 		FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7451F0C3B2400221701 /* DayMonthView.swift */; };
 		FC1AA7491F0C3DFB00221701 /* XibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7481F0C3DFB00221701 /* XibLoader.swift */; };
@@ -89,6 +89,7 @@
 		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleActivitiesDAO.swift; sourceTree = "<group>"; };
 		EE015F511EF868A400027662 /* TimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
+		EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
 		EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionView.swift; sourceTree = "<group>"; };
 		EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +114,6 @@
 		EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
 		EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellView.swift; sourceTree = "<group>"; };
 		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
-		FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewController.swift; sourceTree = "<group>"; };
 		FC1AA7421F0C346400221701 /* DayMonthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayMonthView.xib; sourceTree = "<group>"; };
 		FC1AA7451F0C3B2400221701 /* DayMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayMonthView.swift; path = ../DayMonthView.swift; sourceTree = "<group>"; };
 		FC1AA7481F0C3DFB00221701 /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
@@ -261,9 +261,9 @@
 				EECB78CC1F0D10F000DF4A43 /* EditCells */,
 				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
-				FC1AA73F1F0BDFC900221701 /* ActivitiesTableViewController.swift */,
 				E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */,
 				EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */,
+				EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -412,7 +412,6 @@
 				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
-				FC1AA7401F0BDFC900221701 /* ActivitiesTableViewController.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
 				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
 				EECB78D01F0D114A00DF4A43 /* EditTextTableViewCell.swift in Sources */,
@@ -426,6 +425,7 @@
 				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
 				EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */,
+				EE0176041F0FD0AE007B6C0A /* ActivitiesViewController.swift in Sources */,
 				EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */,
 				EE015F521EF868A500027662 /* TimeBlock.swift in Sources */,
 				EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */,

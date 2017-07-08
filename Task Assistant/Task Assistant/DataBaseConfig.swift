@@ -89,4 +89,35 @@ class DataBaseConfig {
 		
 		return result
 	}
+    
+    static func delete(_ objectType : Object.Type, uniqueID: String, from location: DBType = .userDefault) -> Bool{
+        var result = false
+        
+        if let realm = getRealm(location){
+            try! realm.write {
+                let objectsToBeDeleted = realm.objects(objectType).filter(NSPredicate(format: "uniqueID = '\(uniqueID)'"))
+
+                if !objectsToBeDeleted.isEmpty{
+                    
+                    result = true
+                    realm.delete(objectsToBeDeleted)
+                    
+                }
+            }
+        }
+
+        return result
+        
+    }
+    
+    static func deleteAll( from location: DBType = .userDefault){
+        
+        if let realm = getRealm(location){
+            try! realm.write {
+                realm.deleteAll()
+            
+            }
+        }
+        
+    }
 }

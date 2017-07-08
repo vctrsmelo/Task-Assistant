@@ -49,4 +49,34 @@ class ProjectDAO : ActivityDAO {
         
     }
     
+    static func loadAll(from location : DBType = .userDefault) -> [Project]? {
+        
+        let results =  DataBaseConfig.load(ProjectDAO.self)
+        
+        var projects: [Project] = []
+        
+        if results == nil{
+            return nil
+            
+        }
+        
+        for object in results!{
+            
+            if let projectDAO = object as? ProjectDAO{
+                projects.append(projectDAO.intoProject())
+                
+            }
+            
+        }
+        
+        return projects
+        
+    }
+
+
+    static func delete(_ project: Project, from location : DBType = .userDefault) -> Bool {
+        return DataBaseConfig.delete(ProjectDAO.self, uniqueID: project.uniqueID)
+
+    }
+
 }

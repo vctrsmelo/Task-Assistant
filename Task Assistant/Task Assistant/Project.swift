@@ -14,6 +14,7 @@ class Project : Activity {
 	private var _endDate : Date
 	private var _tasks = [Task]()
     private var _containerProject: Project?
+    private var _subProjects: [Project] = []
 	
 	// MARK: Public Properties
 	var startDate : Date {
@@ -47,6 +48,21 @@ class Project : Activity {
         }
         set {
             _containerProject = newValue
+        }
+        
+    }
+    
+    
+    var subProjects: [Project]{
+        get {
+            
+            return _subProjects
+
+        }
+        set {
+            
+            _subProjects = newValue
+
         }
         
     }
@@ -112,7 +128,19 @@ class Project : Activity {
         //the second project is for tb2
         let proj2 = Project(title: self.title, estimatedTime: self.estimatedTime - Double(timeTb1), priority: self.priority, startDate: tb2.getStartingDate(), endDate: self.endDate, containerProject: self)
         
+        self.subProjects.append(contentsOf: [proj1,proj2])
+        
         return (proj1,proj2)
+        
+    }
+    
+    func isSame(_ project: Project) -> Bool {
+        
+        if self.uniqueID == project.uniqueID {
+            return true
+        }
+        
+        return false
         
     }
     

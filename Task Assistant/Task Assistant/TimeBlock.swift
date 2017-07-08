@@ -216,8 +216,8 @@ class TimeBlock {
     
     func isIntersecting(timeBlock: TimeBlock) -> Bool{
         
-        let timeBlockParameterStartsInsideSelf : Bool = (timeBlock.getStartingDate().isAfter(dateToCompare: self.startingDate) && timeBlock.getStartingDate().isBefore(dateToCompare: self.endingDate)) || timeBlock.getStartingDate().isEqual(dateToCompare: self.getStartingDate())
-        let selfStartsInsideTimeBlockParameter : Bool = (self.getStartingDate().isAfter(dateToCompare: timeBlock.getStartingDate()) && self.getStartingDate().isBefore(dateToCompare: timeBlock.getEndingDate())) || self.getStartingDate().isEqual(dateToCompare: timeBlock.getStartingDate())
+        let timeBlockParameterStartsInsideSelf : Bool = (timeBlock.getStartingDate().isDayAfter(dateToCompare: self.startingDate) && timeBlock.getStartingDate().isDayBefore(dateToCompare: self.endingDate)) || timeBlock.getStartingDate().isDaySame(dateToCompare: self.getStartingDate()) || timeBlock.getStartingDate().isDaySame(dateToCompare: self.getEndingDate())
+        let selfStartsInsideTimeBlockParameter : Bool = (self.getStartingDate().isDayAfter(dateToCompare: timeBlock.getStartingDate()) && self.getStartingDate().isDayBefore(dateToCompare: timeBlock.getEndingDate())) || self.getStartingDate().isDaySame(dateToCompare: timeBlock.getStartingDate())
         
         if(timeBlockParameterStartsInsideSelf || selfStartsInsideTimeBlockParameter){
             

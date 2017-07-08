@@ -115,8 +115,12 @@ class ActivityViewController: UIViewController {
 	
 	func save(){
 		// TODO: Save
-		print("Somebody save me")
-
+        if project != nil{
+        
+            ProjectDAO.save(project!)
+        
+        }
+        
 	}
 	
 //    // MARK: - Navigation
