@@ -78,7 +78,7 @@ class DaveMessageCollectionViewCell: UICollectionViewCell {
     var daveMessageXPosition: CGFloat!
     
     var timer:Timer?
-    let timeToTypeCharacter = 0.0 //change to 0.04
+    let timeToTypeCharacter = 0.04
     private var myCounter = 0
     public var allCharactersTyped = false
     

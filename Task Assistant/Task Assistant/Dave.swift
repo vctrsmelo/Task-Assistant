@@ -144,8 +144,8 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         messages = []
         indexOfNextMessageToSend = 0
 
-        messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the final date of the project?",
-                                     "And how much hours working hours on this project do you estimate you need to complete it?",
+        messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
+                                     "And how much time working on this project do you estimate you need to complete it?",
                                      "A last information, how important is to complete this project until"])
 
         sendNextMessage()
