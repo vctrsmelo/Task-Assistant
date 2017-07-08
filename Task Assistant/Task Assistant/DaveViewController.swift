@@ -54,6 +54,10 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var mediumImportanceButton: UIButton!
     @IBOutlet weak var highImportanceButton: UIButton!
     
+    @IBOutlet var cancelButton: UIBarButtonItem!
+    
+    var activityToBeModified: Activity!
+    
     private var lastIndexPath: IndexPath?
 
     func algorithmTest() {
@@ -72,8 +76,8 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         availableDaysTest.append(AvailableDay(weekday: 6, startTime: 0, endTime: 10, available: true))
         availableDaysTest.append(AvailableDay(weekday: 7, startTime: 0, endTime: 10, available: true))
         
-        
-        daveTest = Dave(chatView: self.chatCollectionView)
+        Dave.setDave(chatView: self.chatCollectionView)
+        daveTest = Dave.getDave()
         userTest = User(name: "Victor", contexts: [Context.init(title: "Main", availableDays: availableDaysTest)])
         
         daveTest.user = userTest
@@ -143,9 +147,19 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+
+        if let projects =  ProjectDAO.loadAll(){
+            self.dave.user?.contexts.first?.projects = projects
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.cancelButton = self.navigationItem.leftBarButtonItem
+        self.navigationItem.leftBarButtonItem = nil
+        //DataBaseConfig.deleteAll()
         //self.algorithmTest()
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -165,7 +179,9 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
         // TO DO:  try to get user from DB
 
-        dave = Dave(chatView: chatCollectionView)
+        Dave.setDave(chatView: self.chatCollectionView)
+        dave = Dave.getDave()
+
         
         if let user = UserDAO.load(userId) {
             dave.user = user
@@ -423,6 +439,8 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 self.chatCollectionView.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.bottom, animated: true)
             }
             
+            self.navigationItem.leftBarButtonItem = nil
+            
             break
             
             
@@ -448,7 +466,11 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
                     selectProjectAlertController.addAction(UIAlertAction(title: proj.title, style: .default, handler: { action in
 
                         print("\(proj.title) selected to be modified")
+                        
+                        self.activityToBeModified = proj
+                        
                         //need to send user to the next page (to edit project)
+                        self.performSegue(withIdentifier: "editActivity2", sender: self)
                         
                     }))
                     
@@ -507,6 +529,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     @IBAction func addProjectButtonTouched(_ sender: Any) {
 
+        self.navigationItem.leftBarButtonItem = cancelButton
         dave.beginCreateProjectFlow()
         addActivityButtonsView.isHidden = true
         chatCollectionView.frame = chatOriginalFrame
@@ -626,6 +649,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         return pickerLabel
 
     }
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0{
             estimatedHours = row
@@ -638,5 +662,44 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
     }
     
-
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+    
+        self.hideAllComponents()
+        dave.cancelFlow()
+        self.addActivityButtonsView.isHidden = false
+        self.chatCollectionView.frame = chatOriginalFrame
+        self.chatCollectionView.frame.origin.y -= addActivityButtonsView.frame.size.height
+        self.navigationItem.leftBarButtonItem = nil
+    
+    }
+    
+    
+    @IBAction func unwindToDaveViewController(segue: UIStoryboardSegue){
+        
+        
+        
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "editActivity2"{
+            
+            let editViewControllerDestination = segue.destination as! EditActivityViewController
+            
+            if self.activityToBeModified != nil{
+                
+                editViewControllerDestination.activity = self.activityToBeModified
+            
+            }
+            
+            editViewControllerDestination.origin = .daveViewController
+            
+            
+        }
+        
+        
+        
+    }
+    
 }

@@ -32,7 +32,7 @@ class ActivityViewController: UIViewController {
 		self.progressBar.transform = self.progressBar.transform.scaledBy(x: 1, y: 3)
 		
 		//self.navigationItem.rightBarButtonItem = self.editButtonItem // TODO: Not editable at the moment, so not showing button
-		
+        
 		if let currentProject = self.project {
 			
 			self.titleLabel.text = currentProject.title
@@ -50,6 +50,33 @@ class ActivityViewController: UIViewController {
 		}
 		
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        if self.project != nil{
+            
+            if let currentProject = ProjectDAO.load(self.project!.uniqueID){
+                
+                self.project = currentProject
+                
+                self.titleLabel.text = currentProject.title
+                self.startDayMonthView.date = currentProject.startDate
+                self.endDayMonthView.date = currentProject.endDate
+                self.progressBar.setProgress(0, animated: true) // TODO: Get the current completion value
+                self.workedHoursLabel.text = "\(0) hours" // TODO: Use correct value here too
+                self.needHoursLabel.text = "\(Int(currentProject.estimatedTime/60/60)) hours"
+                self.importanceLabel.text = currentProject.priority.toString()
+                
+            }
+                
+        } else if let currentTask = self.task {
+            
+            self.titleLabel.text = currentTask.title // TODO: Finish
+            
+        }
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -88,14 +115,23 @@ class ActivityViewController: UIViewController {
 	
 	func save(){
 		// TODO: Save
-		print("Somebody save me")
+        if project != nil{
+        
+            ProjectDAO.save(project!)
+        
+        }
+        
 	}
 	
-    // MARK: - Navigation
-	override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-		self.project = nil
-		self.task = nil
-	}
+//    // MARK: - Navigation
+//	override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+//		self.project = nil
+//		self.task = nil
+//	}
+
+    @IBAction func unwindToActivityView(segue: UIStoryboardSegue){
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -112,12 +148,13 @@ class ActivityViewController: UIViewController {
                 editViewControllerDestination.activity = self.task
                 
             }
+            
+            editViewControllerDestination.origin = .activityViewController
         
         }
         
         
         
     }
-	
 
 }

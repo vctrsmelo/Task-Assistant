@@ -32,4 +32,51 @@ class ProjectDAO : ActivityDAO {
 		
         return Project(title: self.title, estimatedTime: self.estimatedTime, priority: priority, startDate: self.startDate, endDate: self.endDate, finished: self.finished, containerProject: nil, uniqueID: self.uniqueID)
 	}
+    
+    static func save(_ project : Project, on location : DBType = .userDefault, update : Bool = false) -> Bool {
+        let projectDAO = ProjectDAO(project)
+        
+        return DataBaseConfig.save(projectDAO, to: location, update: update)
+    }
+
+    static func load(_ uniqueID: String, from location : DBType = .userDefault) -> Project? {
+        
+        let results =  DataBaseConfig.load(ProjectDAO.self, with: NSPredicate(format: "uniqueID = '\(uniqueID)'"))
+        
+        let projectDAO = results?.first as? ProjectDAO
+        
+        return projectDAO?.intoProject()
+        
+    }
+    
+    static func loadAll(from location : DBType = .userDefault) -> [Project]? {
+        
+        let results =  DataBaseConfig.load(ProjectDAO.self)
+        
+        var projects: [Project] = []
+        
+        if results == nil{
+            return nil
+            
+        }
+        
+        for object in results!{
+            
+            if let projectDAO = object as? ProjectDAO{
+                projects.append(projectDAO.intoProject())
+                
+            }
+            
+        }
+        
+        return projects
+        
+    }
+
+
+    static func delete(_ project: Project, from location : DBType = .userDefault) -> Bool {
+        return DataBaseConfig.delete(ProjectDAO.self, uniqueID: project.uniqueID)
+
+    }
+
 }

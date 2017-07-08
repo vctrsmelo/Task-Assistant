@@ -50,6 +50,11 @@ class UserDAO : Object {
 		
 		let userDAO = results?.first as? UserDAO
 		
-		return userDAO?.intoUser()
-	}
+        if userDAO == nil{
+            return nil
+        }
+
+        return userDAO?.intoUser()
+
+    }
 }
