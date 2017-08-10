@@ -25,7 +25,7 @@ enum DaveAction {
     
 }
 
-enum DaveFlow{
+enum DaveFlow {
     
     case none
     case creatingUserAccount
@@ -34,7 +34,7 @@ enum DaveFlow{
     
 }
 
-protocol DaveDelegate: class{
+protocol DaveDelegate: class {
     
     func actionUpdated(action: DaveAction)
     func flowUpdated(flow: DaveFlow)
@@ -42,27 +42,20 @@ protocol DaveDelegate: class{
 }
 
 struct ProjectData {
-    var name: String?
+	
+	var name: String?
     var startingDate : Date?
     var endingDate : Date?
     var estimatedSeconds: Int?
     var priority: Priority?
     
-    init() {
-        
-    }
-    
 }
 
 struct UserData {
-    
-    var name : String?
+	
+	var name : String?
     var contexts : [Context] = []
-    
-	init(){
-		
-    }
-    
+	
 }
 
 class Dave: ChatCollectionViewDelegate {
@@ -101,19 +94,19 @@ class Dave: ChatCollectionViewDelegate {
             
     }
     
-    static public func setDave(chatView: ChatCollectionView){
+    static public func setDave(chatView: ChatCollectionView) {
         
         dave = Dave(chatView: chatView)
         
     }
     
-    static public func getDave() -> Dave?{
+    static public func getDave() -> Dave? {
         
         return dave
         
     }
 	
-    public func beginCreateUserAccountFlow(){
+    public func beginCreateUserAccountFlow() {
         
         self.currentFlow = .creatingUserAccount
         self.userBeingCreated = UserData()
@@ -122,19 +115,19 @@ class Dave: ChatCollectionViewDelegate {
         indexOfNextMessageToSend = 0
         
         self.addToQueue(messages: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
-                                      "With my help, you don’t need to spend time deciding about what to do. Just do it! :)",
-                                      "If you add more tasks than you have time to complete, I’ll provide solutions so we can solve this together.",
-                                      "So, I need some information to be allowed to manage your tasks. First, how can I call you?",
-                                      "Nice to meet you",
-                                      "To precisely suggest your next task, I need to know your daily time to dedicate for your tasks. Please, insert them below according to the weekday.",
-                                      "Thank you for your information. You still have no task or project registered. You can add one now, so I can help you :)"])
+                                   "With my help, you don’t need to spend time deciding about what to do. Just do it! :)",
+                                   "If you add more tasks than you have time to complete, I’ll provide solutions so we can solve this together.",
+                                   "So, I need some information to be allowed to manage your tasks. First, how can I call you?",
+                                   "Nice to meet you",
+                                   "To precisely suggest your next task, I need to know your daily time to dedicate for your tasks. Please, insert them below according to the weekday.",
+                                   "Thank you for your information. You still have no task or project registered. You can add one now, so I can help you :)"])
         
         sendNextMessage()
         
     }
     
     
-    public func beginCreateProjectFlow(){
+    public func beginCreateProjectFlow() {
 
         self.projectBeingCreated = ProjectData()
         self.currentFlow = .creatingProject
@@ -142,15 +135,17 @@ class Dave: ChatCollectionViewDelegate {
         self.messages = []
         indexOfNextMessageToSend = 0
 
-        self.addToQueue(messages: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
-                                     "And how much time working on this project do you estimate you need to complete it?",
-                                     "A last information, how important is to complete this project until"])
+        self.addToQueue(messages: ["Ok! What is the project name?",
+                                   "Cool! And what is the starting date of the project?",
+                                   "Ok! And what is the deadline of the project?",
+                                   "And how much time working on this project do you estimate you need to complete it?",
+                                   "A last information, how important is to complete this project until"])
 
         sendNextMessage()
         
     }
     
-    private func getNextMessage()->Message{
+    private func getNextMessage()->Message {
     
         let message = messages[indexOfNextMessageToSend]
         self.indexOfNextMessageToSend += 1
@@ -172,13 +167,13 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    func received(date: Date){
+    func received(date: Date) {
         
-        if(self.currentAction == .askedProjectStartingDate){
+        if self.currentAction == .askedProjectStartingDate {
             
             self.projectBeingCreated?.startingDate = date
             
-        }else if(self.currentAction == .askedProjectEndingDate){
+        } else if self.currentAction == .askedProjectEndingDate {
             
             self.projectBeingCreated?.endingDate = date
             
@@ -188,17 +183,17 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    func received(availableDays: [AvailableDay], contextTitle: String){
+    func received(availableDays: [AvailableDay], contextTitle: String) {
         
-        if(self.currentAction == .askedWorkingDays){
+        if self.currentAction == .askedWorkingDays {
             
-            if(self.currentFlow == .creatingUserAccount){
+            if self.currentFlow == .creatingUserAccount {
                 
-                if(self.userBeingCreated == nil){
+                if self.userBeingCreated == nil {
                     print("[Error] in Dave.swift - received(availableDays, contextTitle): userBeingCreated is nil (it should have been setted in beginCreateUserFlow() method)")
                 }
                 
-                if(self.userBeingCreated!.contexts.isEmpty){
+                if self.userBeingCreated!.contexts.isEmpty {
                     
                     userBeingCreated?.contexts.append(Context(title: contextTitle, availableDays: availableDays))
                     user = User(name: userBeingCreated!.name!, contexts: userBeingCreated!.contexts)
@@ -210,11 +205,11 @@ class Dave: ChatCollectionViewDelegate {
                         print("Failed to save User")
                     }
                     
-                }else{
+                } else {
                 
-                    for context in self.userBeingCreated!.contexts{
+                    for context in self.userBeingCreated!.contexts {
 
-                        if (context.title == contextTitle){
+                        if  context.title == contextTitle {
                             
                             context.availableDays = availableDays
                             
@@ -227,7 +222,7 @@ class Dave: ChatCollectionViewDelegate {
                 sendNextMessage()
                 self.currentFlow = .none
                 
-            }else if(self.currentFlow == .creatingProject){
+            } else if self.currentFlow == .creatingProject {
                 
                 
                 // TO DO : implement creatingProject flow
@@ -238,23 +233,21 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    func received(text: String){
+    func received(text: String) {
         
         switch currentAction {
         case .askedUserName:
             self.userBeingCreated?.name = text
-            break
             
         case .askedProjectName:
             self.projectBeingCreated?.name = text
-            break
             
         default:
             break
         }
     
         
-        if(currentAction == .askedUserName && currentFlow != .none){
+        if currentAction == .askedUserName && currentFlow != .none {
             
             sendNextMessage(concatenate: " "+text+"!")
             return
@@ -265,13 +258,13 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    func received(seconds: Int){
+    func received(seconds: Int) {
         
-        switch currentAction{
+        switch currentAction {
             
         case .askedEstimatedHours:
             self.projectBeingCreated?.estimatedSeconds = seconds
-            break
+			
         default:
             break
         }
@@ -291,14 +284,14 @@ class Dave: ChatCollectionViewDelegate {
 
             sendNextMessage(concatenate: " "+dateString+"?")
             
-        }else{
+        } else {
             
             sendNextMessage()
         
         }
     }
     
-    func received(priority: Priority){
+    func received(priority: Priority) {
      
         switch currentAction{
             
@@ -364,18 +357,18 @@ class Dave: ChatCollectionViewDelegate {
 
     }
     
-    func received(newContext: Context){
+    func received(newContext: Context) {
         
         print("Dave recebeu contexto")
         
         
     }
     
-    func orderUserActivities(){
+    func orderUserActivities() {
         
-        if let user = self.user{
+        if let user = self.user {
         
-            if user.contexts.first == nil{
+            if user.contexts.first == nil {
                 
                 print("[Error] Dave - orderUserActivities(): user.contexts.first is nil")
                 
@@ -385,7 +378,7 @@ class Dave: ChatCollectionViewDelegate {
             
             self.userTimeBlocks?.sort(by: { (tb1, tb2) -> Bool in
                 
-                if tb1.getStartingDate().isAfter(dateToCompare: tb2.getStartingDate()){
+                if tb1.getStartingDate().isAfter(dateToCompare: tb2.getStartingDate()) {
                     
                     return false
                     
@@ -397,24 +390,24 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    private func clearMessagesStack(){
+    private func clearMessagesStack() {
         
         self.messages = []
         self.indexOfNextMessageToSend = 0
     }
     
-    func cancelFlow(){
+    func cancelFlow() {
         self.clearMessagesStack()
         self.sendNextActivityMessage()
         
     }
     
-    func getTimeBlocks(projects: [Project]) -> [TimeBlock]{
+    func getTimeBlocks(projects: [Project]) -> [TimeBlock] {
         
         var timeBlocks: [TimeBlock] = []
         
         
-        for project in projects{
+        for project in projects {
             
             if let user = self.user {
             
@@ -422,7 +415,7 @@ class Dave: ChatCollectionViewDelegate {
                 newTimeBlock.add(project: project)
                 timeBlocks.append(newTimeBlock)
                 
-            }else{
+            } else {
                 print("[Error] Dave: getTimeBlocks() - user not defined")
                 
             }
@@ -431,7 +424,7 @@ class Dave: ChatCollectionViewDelegate {
         
         //split nos timeBlocks
         var changed = false
-        repeat{
+        repeat {
             
             changed = false
             
@@ -439,7 +432,7 @@ class Dave: ChatCollectionViewDelegate {
                 
                 for j in i+1 ..< timeBlocks.count{ // tb1 intersecting tb2 == tb2 intersecting tb1
                     
-                    if(timeBlocks[i].isIntersecting(timeBlock: timeBlocks[j])){
+                    if timeBlocks[i].isIntersecting(timeBlock: timeBlocks[j]) {
                         
                         var newTimeBlocks = timeBlocks[i].getTimeBlocksResultingFromSplitWith(timeBlock: timeBlocks[j])
 
@@ -462,14 +455,14 @@ class Dave: ChatCollectionViewDelegate {
             }
             
             
-        }while(changed)
+        } while(changed)
 
         
         return timeBlocks
         
     }
 
-    func sendNextActivityMessage(){
+    func sendNextActivityMessage() {
         
         self.currentFlow = .none
         self.currentAction = .needToTypeNextActivity
@@ -477,15 +470,15 @@ class Dave: ChatCollectionViewDelegate {
         
     }
 
-    func sendNextMessage(){
+    func sendNextMessage() {
         
-        if self.currentAction == .needToTypeNextActivity{
+        if self.currentAction == .needToTypeNextActivity {
             
-            if let message = getNextActivityMessage(){
+            if let message = getNextActivityMessage() {
                 
                 self.addToQueue(message: message)
                 
-            }else{
+            } else {
             
             self.addToQueue(message: "Today you have no activity, \(user!.name). Add a new project or enjoy your day to relax:)")
 
@@ -506,7 +499,7 @@ class Dave: ChatCollectionViewDelegate {
 
     }
     
-    private func beginNotAvailableTimeFlow(){
+    private func beginNotAvailableTimeFlow() {
         
         self.currentFlow = .notAvailableTime
 		
@@ -516,9 +509,9 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    private func userHasAvailableTime() -> Bool{
+    private func userHasAvailableTime() -> Bool {
         
-        for tb in self.userTimeBlocks!{
+        for tb in self.userTimeBlocks! {
             
             if tb.getAvailableTimeInHours() < 0 {
                 
@@ -532,9 +525,9 @@ class Dave: ChatCollectionViewDelegate {
         
     }
 
-    private func userHasAvailableTime(timeBlocks: [TimeBlock]) -> Bool{
+    private func userHasAvailableTime(timeBlocks: [TimeBlock]) -> Bool {
         
-        for tb in timeBlocks{
+        for tb in timeBlocks {
             
             if tb.getAvailableTimeInHours() < 0 {
                 
@@ -549,21 +542,21 @@ class Dave: ChatCollectionViewDelegate {
     }
 
     
-    public func getConflictingProjects() -> [Project]{
+    public func getConflictingProjects() -> [Project] {
         
         var projects: [Project] = []
         
-        for tb in self.userTimeBlocks!{
+        for tb in self.userTimeBlocks! {
             
             if tb.getAvailableTimeInHours() < 0 {
                 
-                for subProject in tb.getProjects(){
+                for subProject in tb.getProjects() {
                     
-                    if let project = subProject.containerProject{
+                    if let project = subProject.containerProject {
                         
                         projects.append(project)
                         
-                    }else{
+                    } else {
                         
                         projects.append(subProject)
                         
@@ -575,15 +568,15 @@ class Dave: ChatCollectionViewDelegate {
             
         }
         
-        for i in 0 ..< projects.count{
+        for i in 0 ..< projects.count {
             
-            if i > projects.count{
+            if i > projects.count {
                 
                 break
                 
             }
             
-            for j in i+1 ..< projects.count{
+            for j in i+1 ..< projects.count {
                 
                 if projects[i].title == projects[j].title {
                     
@@ -605,17 +598,17 @@ class Dave: ChatCollectionViewDelegate {
         
         self.orderUserActivities()
         
-        if self.user != nil{
+        if self.user != nil {
             
-            if let nextActivity = self.userTimeBlocks?.first?.getProjects().first{
+            if let nextActivity = self.userTimeBlocks?.first?.getProjects().first {
                 
-                if let userAvailableDays = self.user?.contexts.first?.availableDays{
+                if let userAvailableDays = self.user?.contexts.first?.availableDays {
                     
                     var today: AvailableDay?
                     
-                    for availableDay in userAvailableDays{
+                    for availableDay in userAvailableDays {
                         
-                        if availableDay.weekday == Date().getWeekday(){
+                        if availableDay.weekday == Date().getWeekday() {
                             
                             today = availableDay
                             break
@@ -624,18 +617,18 @@ class Dave: ChatCollectionViewDelegate {
                         
                     }
                     
-                    if today == nil{
+                    if today == nil {
                         print("[Error] Dave - getNextActivityMessage(): current availableDay is nil")
                         
                     }
                     
-                    if !today!.available{
+                    if !today!.available {
                         
 						return "Today you have no activity, according to your available time :)"
                         
                     }
                     
-                    if let todayEndTime = today!.endTime, let todayStartTime = today!.startTime{
+                    if let todayEndTime = today!.endTime, let todayStartTime = today!.startTime {
                         
                         let todayAvailableTime = todayEndTime - todayStartTime
                         let hours = (Int(nextActivity.estimatedTime/3600) > todayAvailableTime) ? todayAvailableTime : Int(nextActivity.estimatedTime/3600)
@@ -646,7 +639,7 @@ class Dave: ChatCollectionViewDelegate {
 
 						return "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\""
                         
-                    }else{
+                    } else {
                         
                         print("[Error] Dave - getNextActivityMessage(): today endTime or today startTime is undefined")
                         
@@ -663,7 +656,7 @@ class Dave: ChatCollectionViewDelegate {
         
     }
 
-    public func sendNextMessage(concatenate concatenatedString: String){
+    public func sendNextMessage(concatenate concatenatedString: String) {
         
         if indexOfNextMessageToSend >= messages.count {
             
@@ -686,13 +679,13 @@ class Dave: ChatCollectionViewDelegate {
 		}
 	}
     
-    public func addToQueue(message : String){
+    public func addToQueue(message : String) {
         
         self.messages.append(Message(text: message, from: .Dave))
         
     }
     
-    public func addProjectCancelled(){
+    public func addProjectCancelled() {
         
         self.projectBeingCreated = nil
 
@@ -705,69 +698,64 @@ class Dave: ChatCollectionViewDelegate {
         
     }
     
-    private func updateCurrentAction(){
+    private func updateCurrentAction() {
         
-        switch (self.currentFlow){
+        switch (self.currentFlow) {
          
         case .creatingProject:
-            if self.indexOfNextMessageToSend == 1 && self.currentAction != .askedProjectName{ //asked project name
+            if self.indexOfNextMessageToSend == 1 && self.currentAction != .askedProjectName { //asked project name
                 self.currentAction = .askedProjectName
            
-            }else if self.indexOfNextMessageToSend == 2 && self.currentAction != .askedProjectStartingDate { //asked project starting date
+            } else if self.indexOfNextMessageToSend == 2 && self.currentAction != .askedProjectStartingDate { //asked project starting date
                 self.currentAction = .askedProjectStartingDate
                 
-            }else if self.indexOfNextMessageToSend == 3 && self.currentAction != .askedProjectEndingDate { //asked project ending date
+            } else if self.indexOfNextMessageToSend == 3 && self.currentAction != .askedProjectEndingDate { //asked project ending date
                 self.currentAction = .askedProjectEndingDate
                 
-            }else if self.indexOfNextMessageToSend == 4 && self.currentAction != .askedEstimatedHours { //asked estimated hours
+            } else if self.indexOfNextMessageToSend == 4 && self.currentAction != .askedEstimatedHours { //asked estimated hours
                 self.currentAction = .askedEstimatedHours
             
-            }else if self.indexOfNextMessageToSend == 5 && self.currentAction != .askedProjectImportance { //asked importance to complete project until deadline
+            } else if self.indexOfNextMessageToSend == 5 && self.currentAction != .askedProjectImportance { //asked importance to complete project until deadline
                 self.currentAction = .askedProjectImportance
 
-            }else{
+            } else {
                 
                 self.currentAction = .none
                 
             }
-            
-            break
             
         case .creatingUserAccount:
             
-            if(self.indexOfNextMessageToSend == 4 && self.currentAction != .askedUserName){ //asked user name
+            if self.indexOfNextMessageToSend == 4 && self.currentAction != .askedUserName { // Asked user name
                 self.currentAction = .askedUserName
                 
-            }else if(self.indexOfNextMessageToSend == 6 && self.currentAction != .askedWorkingDays){ //asked working days and hours
+            } else if self.indexOfNextMessageToSend == 6 && self.currentAction != .askedWorkingDays { // Asked working days and hours
                 self.currentAction = .askedWorkingDays
                 
-            }else{
+            } else {
                 self.currentAction = .none
                 
             }
-        
-            break
             
         case .notAvailableTime:
             
-            if self.currentAction != .askedToSelectAProject{
+            if self.currentAction != .askedToSelectAProject {
             
                 self.currentAction = .askedToSelectAProject
             
-            }else{
+            } else {
                 self.currentAction = .none
             }
             
         default:
             
-            if self.currentAction == .askedProjectImportance{
+            if self.currentAction == .askedProjectImportance {
                 self.currentAction = .needToTypeNextActivity
                 
-            }else{
+            } else {
                 self.currentAction = .none
             
             }
-            break
             
         }
         
