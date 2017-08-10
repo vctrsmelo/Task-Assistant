@@ -59,17 +59,17 @@ struct UserData {
     var name : String?
     var contexts : [Context] = []
     
-    init(){
-        
+	init(){
+		
     }
     
 }
 
-class Dave: NSObject, ChatCollectionViewDelegate {
+class Dave: ChatCollectionViewDelegate {
 
     private static var dave: Dave?
     
-    private(set) var messages: [Message] = []
+	private(set) var messages: [Message] = []
     private(set) var indexOfNextMessageToSend = 0
     private(set) var messagesSent = 0
     var user: User?
@@ -97,8 +97,6 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         self.currentAction = .none
         self.currentFlow = .none
         
-        super.init()
-        
         self.chatView.chatDelegate = self
             
     }
@@ -115,21 +113,15 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
 	
-	private func create(messages : [String]) {
-		for message in messages {
-			self.messages.append(Message(text: message, from: .Dave))
-		}
-	}
-	
     public func beginCreateUserAccountFlow(){
         
         self.currentFlow = .creatingUserAccount
         self.userBeingCreated = UserData()
         
-        messages = []
+        self.messages = []
         indexOfNextMessageToSend = 0
         
-        self.create(messages: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
+        self.addToQueue(messages: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
                                       "With my help, you don’t need to spend time deciding about what to do. Just do it! :)",
                                       "If you add more tasks than you have time to complete, I’ll provide solutions so we can solve this together.",
                                       "So, I need some information to be allowed to manage your tasks. First, how can I call you?",
@@ -147,10 +139,10 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         self.projectBeingCreated = ProjectData()
         self.currentFlow = .creatingProject
         
-        messages = []
+        self.messages = []
         indexOfNextMessageToSend = 0
 
-        self.create(messages: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
+        self.addToQueue(messages: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
                                      "And how much time working on this project do you estimate you need to complete it?",
                                      "A last information, how important is to complete this project until"])
 
@@ -491,11 +483,11 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             
             if let message = getNextActivityMessage(){
                 
-                self.messages.append(message)
+                self.addToQueue(message: message)
                 
             }else{
             
-            self.addMessageToQueue(messageString: "Today you have no activity, \(user!.name). Add a new project or enjoy your day to relax:)")
+            self.addToQueue(message: "Today you have no activity, \(user!.name). Add a new project or enjoy your day to relax:)")
 
             }
             
@@ -518,7 +510,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
         self.currentFlow = .notAvailableTime
 		
-        messages.append(Message(text: "You tried to add a project, but you have no time available to complete it. Select one of the projects below to delete it or to change its deadline.", from: .Dave))
+		self.addToQueue(message: "You tried to add a project, but you have no time available to complete it. Select one of the projects below to delete it or to change its deadline.")
 		
         sendNextMessage()
         
@@ -609,7 +601,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     }
 
     
-    private func getNextActivityMessage() -> Message? {
+    private func getNextActivityMessage() -> String? {
         
         self.orderUserActivities()
         
@@ -639,7 +631,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                     
                     if !today!.available{
                         
-						return Message(text: "Today you have no activity, according to your available time :)", from: .Dave)
+						return "Today you have no activity, according to your available time :)"
                         
                     }
                     
@@ -652,7 +644,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 //                        formatter.dateFormat = "MM/dd/yyyy"
 //                        let finalDateString = formatter.string(from: nextActivity.endDate)
 
-						return Message(text: "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\"", from: .Dave)
+						return "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\""
                         
                     }else{
                         
@@ -687,10 +679,16 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
         
     }
+	
+	private func addToQueue(messages : [String]) {
+		for message in messages {
+			self.addToQueue(message: message)
+		}
+	}
     
-    public func addMessageToQueue(messageString text: String){
+    public func addToQueue(message : String){
         
-        messages.append(Message(text: text, from: .Dave))
+        self.messages.append(Message(text: message, from: .Dave))
         
     }
     
@@ -699,7 +697,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         self.projectBeingCreated = nil
 
         self.currentFlow = .none
-        self.addMessageToQueue(messageString: "You have cancelled the project creation.")
+        self.addToQueue(message: "You have cancelled the project creation.")
         self.sendNextMessage()
         
         self.currentAction = .needToTypeNextActivity
