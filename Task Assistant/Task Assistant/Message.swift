@@ -15,16 +15,15 @@ enum UserType{
     
 }
 
-class Message: NSObject {
+class Message {
 
-    public let source: UserType
-    public var text : String
+	let source: UserType
+    var text : String
     
     init(text: String, from source: UserType){
         
         self.text = text
         self.source = source
-        
     }
     
 }

@@ -69,7 +69,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 
     private static var dave: Dave?
     
-    private(set) var messages: [String] = []
+    private(set) var messages: [Message] = []
     private(set) var indexOfNextMessageToSend = 0
     private(set) var messagesSent = 0
     var user: User?
@@ -114,7 +114,13 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         return dave
         
     }
-    
+	
+	private func create(messages : [String]) {
+		for message in messages {
+			self.messages.append(Message(text: message, from: .Dave))
+		}
+	}
+	
     public func beginCreateUserAccountFlow(){
         
         self.currentFlow = .creatingUserAccount
@@ -123,7 +129,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         messages = []
         indexOfNextMessageToSend = 0
         
-        messages.append(contentsOf: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
+        self.create(messages: ["Hello! I’m Dave, your personal task assistant. I’ll help you to achieve all your tasks, suggesting the next task you need to complete to be allowed to complete them all on time.",
                                       "With my help, you don’t need to spend time deciding about what to do. Just do it! :)",
                                       "If you add more tasks than you have time to complete, I’ll provide solutions so we can solve this together.",
                                       "So, I need some information to be allowed to manage your tasks. First, how can I call you?",
@@ -144,7 +150,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         messages = []
         indexOfNextMessageToSend = 0
 
-        messages.append(contentsOf: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
+        self.create(messages: ["Ok! What is the project name?","Cool! And what is the starting date of the project?","Ok! And what is the deadline of the project?",
                                      "And how much time working on this project do you estimate you need to complete it?",
                                      "A last information, how important is to complete this project until"])
 
@@ -152,7 +158,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         
     }
     
-    private func getNextMessage()->String{
+    private func getNextMessage()->Message{
     
         let message = messages[indexOfNextMessageToSend]
         self.indexOfNextMessageToSend += 1
@@ -313,10 +319,9 @@ class Dave: NSObject, ChatCollectionViewDelegate {
         }
        
         self.tryToAddProject()
-        
     }
     
-    func tryToAddProject(){
+    func tryToAddProject() {
         
         if let user = self.user {
             
@@ -486,7 +491,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             
             if let message = getNextActivityMessage(){
                 
-                self.addMessageToQueue(messageString: message)
+                self.messages.append(message)
                 
             }else{
             
@@ -502,17 +507,19 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             
         }
         
-        let msgStr = getNextMessage()
+        let currentMessage = getNextMessage()
         messagesSent += 1
         updateCurrentAction()
-        chatView.add(message: Message(text: msgStr, from: .Dave))
+        chatView.add(message: currentMessage)
 
     }
     
     private func beginNotAvailableTimeFlow(){
         
         self.currentFlow = .notAvailableTime
-        messages.append("You tried to add a project, but you have no time available to complete it. Select one of the projects below to delete it or to change its deadline.")
+		
+        messages.append(Message(text: "You tried to add a project, but you have no time available to complete it. Select one of the projects below to delete it or to change its deadline.", from: .Dave))
+		
         sendNextMessage()
         
     }
@@ -602,7 +609,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
     }
 
     
-    private func getNextActivityMessage() -> String?{
+    private func getNextActivityMessage() -> Message? {
         
         self.orderUserActivities()
         
@@ -632,7 +639,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
                     
                     if !today!.available{
                         
-                        return "Today you have no activity, according to your available time :)"
+						return Message(text: "Today you have no activity, according to your available time :)", from: .Dave)
                         
                     }
                     
@@ -645,7 +652,7 @@ class Dave: NSObject, ChatCollectionViewDelegate {
 //                        formatter.dateFormat = "MM/dd/yyyy"
 //                        let finalDateString = formatter.string(from: nextActivity.endDate)
 
-                        return "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\""
+						return Message(text: "Today, you need to dedicate \(hours) hours on project \"\(nextActivity.title)\"", from: .Dave)
                         
                     }else{
                         
@@ -672,17 +679,18 @@ class Dave: NSObject, ChatCollectionViewDelegate {
             
         }
         
-        let msgStr = getNextMessage()+concatenatedString
+        let currentMessage = getNextMessage()
+		currentMessage.text = currentMessage.text + concatenatedString
         messagesSent += 1
         updateCurrentAction()
-        chatView.add(message: Message(text: msgStr, from: .Dave))
+		chatView.add(message: currentMessage)
 
         
     }
     
     public func addMessageToQueue(messageString text: String){
         
-        messages.append(text)
+        messages.append(Message(text: text, from: .Dave))
         
     }
     

@@ -136,7 +136,7 @@ class DaveViewController: UIViewController, UICollectionViewDelegate,UICollectio
             print("projects:")
             for project in timeBlock.getProjects(){
                 
-                print("       \(project.title) - parent: \(project.containerProject?.title) - estimatedTime: \(project.estimatedTime)")
+                print("       \(project.title) - parent: \(String(describing: project.containerProject?.title)) - estimatedTime: \(project.estimatedTime)")
                 
             }
             print("========================")

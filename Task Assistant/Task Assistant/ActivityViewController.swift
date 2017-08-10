@@ -117,7 +117,7 @@ class ActivityViewController: UIViewController {
 		// TODO: Save
         if project != nil{
         
-            ProjectDAO.save(project!)
+            _ = ProjectDAO.save(project!)
         
         }
         

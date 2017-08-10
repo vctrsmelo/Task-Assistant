@@ -75,7 +75,7 @@ class EditActivityViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.tableFooterView = UIView()
         
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditActivityViewController.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
     }
@@ -301,7 +301,7 @@ class EditActivityViewController: UIViewController, UITableViewDelegate, UITable
             let projectUpdated = Project(title: title, estimatedTime: estimatedTime, priority: priority, startDate: startingDate, endDate: endingDate, uniqueID: project.uniqueID)
             
             
-            ProjectDAO.save(projectUpdated, update: true)
+            _ = ProjectDAO.save(projectUpdated, update: true)
             
         }
         
