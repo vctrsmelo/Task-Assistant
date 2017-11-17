@@ -8,18 +8,34 @@
 
 import Foundation
 
-enum Priority {
-	case canBeRescheduled, shouldNotBeRescheduled, cannotBeRescheduled
+enum Priority : Int {
+	case canBeRescheduled = 1, shouldNotBeRescheduled, cannotBeRescheduled
+	
+	func toString() -> String {
+		switch self {
+		case .canBeRescheduled:
+			return "Can be Rescheduled"
+		case .shouldNotBeRescheduled:
+			return "Should not be Rescheduled"
+		case .cannotBeRescheduled:
+			return "Cannot be Rescheduled"
+		}
+	}
 }
 
 class Activity {
 	// MARK: Private Properties
+	private var _uniqueID : String
 	private var _title : String
 	private var _estimatedTime : TimeInterval
 	private var _priority : Priority
 	private var _finished = false
 	
 	// MARK: Public Properties
+	var uniqueID : String {
+		return _uniqueID
+	}
+	
 	var title : String {
 		get {
 			return _title
@@ -54,9 +70,11 @@ class Activity {
 	}
 	
 	// MARK: Initializer
-	init(title: String, estimatedTime: TimeInterval, priority: Priority) {
+	init(title: String, estimatedTime: TimeInterval, priority: Priority, finished : Bool = false, uniqueID: String = UUID().uuidString) {
+		self._uniqueID = uniqueID
 		self._title = title
 		self._estimatedTime = estimatedTime
 		self._priority = priority
+		self._finished = finished
 	}
 }

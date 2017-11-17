@@ -7,26 +7,98 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E72036C11EE4D84500D5721E /* NHRangeSlider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E72036C01EE4D84500D5721E /* NHRangeSlider.framework */; };
+		E72036C51EE4E32500D5721E /* RangeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72036C41EE4E32500D5721E /* RangeSliderView.swift */; };
+		E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */; };
+		E72036C91EE4F71600D5721E /* AvailableDaysSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */; };
+		E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECD1EE387730082F598 /* UserDAO.swift */; };
+		E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */; };
+		E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED21EE38DE50082F598 /* ContextDAO.swift */; };
+		E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */; };
+		E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */; };
+		E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */; };
+		E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72A7EDA1EE39B770082F598 /* TaskDAO.swift */; };
 		E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBCB1EDE642E00355D99 /* Activity.swift */; };
 		E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBCF1EDE6DCF00355D99 /* AvailableDay.swift */; };
 		E73DEBD21EDE70C200355D99 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD11EDE70C200355D99 /* Context.swift */; };
 		E73DEBD41EDE726700355D99 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD31EDE726700355D99 /* User.swift */; };
 		E73DEBD61EDE731D00355D99 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD51EDE731D00355D99 /* Task.swift */; };
 		E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73DEBD71EDE78BE00355D99 /* Project.swift */; };
+		E74B878F1F0CB4C4007A9F98 /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */; };
+		E7B0A2221EE384AE008D4037 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2201EE384AE008D4037 /* Realm.framework */; };
+		E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7B0A2211EE384AE008D4037 /* RealmSwift.framework */; };
+		E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */; };
+		EE015F521EF868A500027662 /* TimeBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE015F511EF868A400027662 /* TimeBlock.swift */; };
+		EE0176041F0FD0AE007B6C0A /* ActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */; };
+		EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */; };
+		EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */; };
+		EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */; };
+		EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B751EE3B54F00EDC6D9 /* Message.swift */; };
+		EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0B0B771EE431E000EDC6D9 /* Dave.swift */; };
+		EE0F16B11EFFFD3F00E5F358 /* Task_AssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F16B01EFFFD3F00E5F358 /* Task_AssistantTests.swift */; };
+		EE0F16BB1EFFFF3600E5F358 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F16BA1EFFFF3600E5F358 /* UnitTests.swift */; };
+		EE0F16BC1EFFFF3600E5F358 /* UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0F16BA1EFFFF3600E5F358 /* UnitTests.swift */; };
 		EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */; };
 		EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2CD8601EDC43E200477F6B /* ViewController.swift */; };
 		EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8621EDC43E200477F6B /* Main.storyboard */; };
 		EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8651EDC43E200477F6B /* Assets.xcassets */; };
 		EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */; };
+		EEA536241F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */; };
+		EECB78CB1F0D109400DF4A43 /* EditActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */; };
+		EECB78CE1F0D112500DF4A43 /* EditDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */; };
+		EECB78D01F0D114A00DF4A43 /* EditTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */; };
+		EECB78D21F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */; };
+		EECB78D41F0D17F100DF4A43 /* EditTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */; };
+		EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */; };
+		EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */; };
+		FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC1AA7421F0C346400221701 /* DayMonthView.xib */; };
+		FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7451F0C3B2400221701 /* DayMonthView.swift */; };
+		FC1AA7491F0C3DFB00221701 /* XibLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1AA7481F0C3DFB00221701 /* XibLoader.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EE0F16B31EFFFD3F00E5F358 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE2CD8531EDC43E200477F6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE2CD85A1EDC43E200477F6B;
+			remoteInfo = "Task Assistant";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		E72036C01EE4D84500D5721E /* NHRangeSlider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NHRangeSlider.framework; path = Carthage/Build/iOS/NHRangeSlider.framework; sourceTree = "<group>"; };
+		E72036C41EE4E32500D5721E /* RangeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderView.swift; sourceTree = "<group>"; };
+		E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDaysSelectionView.swift; sourceTree = "<group>"; };
+		E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AvailableDaysSelectionView.xib; sourceTree = "<group>"; };
+		E72A7ECD1EE387730082F598 /* UserDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDAO.swift; sourceTree = "<group>"; };
+		E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataBaseConfig.swift; sourceTree = "<group>"; };
+		E72A7ED21EE38DE50082F598 /* ContextDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextDAO.swift; sourceTree = "<group>"; };
+		E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDayDAO.swift; sourceTree = "<group>"; };
+		E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDAO.swift; sourceTree = "<group>"; };
+		E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectDAO.swift; sourceTree = "<group>"; };
+		E72A7EDA1EE39B770082F598 /* TaskDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskDAO.swift; sourceTree = "<group>"; };
 		E73DEBCB1EDE642E00355D99 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E73DEBCF1EDE6DCF00355D99 /* AvailableDay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailableDay.swift; sourceTree = "<group>"; };
 		E73DEBD11EDE70C200355D99 /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		E73DEBD31EDE726700355D99 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E73DEBD51EDE731D00355D99 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		E73DEBD71EDE78BE00355D99 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
+		E7B0A2201EE384AE008D4037 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		E7B0A2211EE384AE008D4037 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleActivitiesDAO.swift; sourceTree = "<group>"; };
+		EE015F511EF868A400027662 /* TimeBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeBlock.swift; sourceTree = "<group>"; };
+		EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivitiesViewController.swift; sourceTree = "<group>"; };
+		EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCollectionView.swift; sourceTree = "<group>"; };
+		EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaveViewController.swift; sourceTree = "<group>"; };
+		EE0B0B751EE3B54F00EDC6D9 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EE0B0B771EE431E000EDC6D9 /* Dave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dave.swift; sourceTree = "<group>"; };
+		EE0F16AE1EFFFD3F00E5F358 /* Task AssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Task AssistantTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE0F16B01EFFFD3F00E5F358 /* Task_AssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task_AssistantTests.swift; sourceTree = "<group>"; };
+		EE0F16B21EFFFD3F00E5F358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE0F16BA1EFFFF3600E5F358 /* UnitTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitTests.swift; sourceTree = "<group>"; };
 		EE2CD85B1EDC43E200477F6B /* Task Assistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Assistant.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EE2CD8601EDC43E200477F6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -34,19 +106,55 @@
 		EE2CD8651EDC43E200477F6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE2CD8681EDC43E200477F6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EE2CD86A1EDC43E200477F6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEstimatedTimeTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditActivityViewController.swift; sourceTree = "<group>"; };
+		EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDateTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTextTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTableViewCell.swift; sourceTree = "<group>"; };
+		EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertCellView.swift; sourceTree = "<group>"; };
+		EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC1AA7421F0C346400221701 /* DayMonthView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DayMonthView.xib; sourceTree = "<group>"; };
+		FC1AA7451F0C3B2400221701 /* DayMonthView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DayMonthView.swift; path = ../DayMonthView.swift; sourceTree = "<group>"; };
+		FC1AA7481F0C3DFB00221701 /* XibLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XibLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EE2CD8581EDC43E200477F6B /* Frameworks */ = {
+		EE0F16AB1EFFFD3F00E5F358 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE2CD8581EDC43E200477F6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7B0A2221EE384AE008D4037 /* Realm.framework in Frameworks */,
+				E7B0A2231EE384AE008D4037 /* RealmSwift.framework in Frameworks */,
+				E72036C11EE4D84500D5721E /* NHRangeSlider.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E72A7ED11EE38BD10082F598 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				E72A7ECD1EE387730082F598 /* UserDAO.swift */,
+				E72A7ED21EE38DE50082F598 /* ContextDAO.swift */,
+				E72A7ED41EE398DC0082F598 /* AvailableDayDAO.swift */,
+				E72A7ED61EE398EF0082F598 /* ActivityDAO.swift */,
+				E7F570E91EE3DC8200135D79 /* PossibleActivitiesDAO.swift */,
+				E72A7ED81EE39B6E0082F598 /* ProjectDAO.swift */,
+				E72A7EDA1EE39B770082F598 /* TaskDAO.swift */,
+				E72A7ECF1EE388A40082F598 /* DataBaseConfig.swift */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
 		E73DEBD91EDE7D3200355D99 /* Core Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +164,54 @@
 				E73DEBCB1EDE642E00355D99 /* Activity.swift */,
 				E73DEBD71EDE78BE00355D99 /* Project.swift */,
 				E73DEBD51EDE731D00355D99 /* Task.swift */,
+				EE015F511EF868A400027662 /* TimeBlock.swift */,
 			);
 			name = "Core Classes";
+			sourceTree = "<group>";
+		};
+		E7B0A21F1EE384AD008D4037 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E72036C01EE4D84500D5721E /* NHRangeSlider.framework */,
+				E7B0A2201EE384AE008D4037 /* Realm.framework */,
+				E7B0A2211EE384AE008D4037 /* RealmSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EE0B0B6A1EE39A2500EDC6D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EE0B0B6F1EE39BB000EDC6D9 /* ChatCollectionView.swift */,
+				E72036C41EE4E32500D5721E /* RangeSliderView.swift */,
+				FC1AA7451F0C3B2400221701 /* DayMonthView.swift */,
+				E72036C61EE4F6E600D5721E /* AvailableDaysSelectionView.swift */,
+				FC1AA7481F0C3DFB00221701 /* XibLoader.swift */,
+				EE0B0B711EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift */,
+				EEDCB3861EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift */,
+				EE0B0B751EE3B54F00EDC6D9 /* Message.swift */,
+				EE0B0B771EE431E000EDC6D9 /* Dave.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		EE0F16AF1EFFFD3F00E5F358 /* Task AssistantTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE0F16B01EFFFD3F00E5F358 /* Task_AssistantTests.swift */,
+				EE0F16B21EFFFD3F00E5F358 /* Info.plist */,
+			);
+			path = "Task AssistantTests";
 			sourceTree = "<group>";
 		};
 		EE2CD8521EDC43E200477F6B = {
 			isa = PBXGroup;
 			children = (
+				EE0F16BA1EFFFF3600E5F358 /* UnitTests.swift */,
 				EE2CD85D1EDC43E200477F6B /* Task Assistant */,
+				EE0F16AF1EFFFD3F00E5F358 /* Task AssistantTests */,
 				EE2CD85C1EDC43E200477F6B /* Products */,
+				E7B0A21F1EE384AD008D4037 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				EE2CD85B1EDC43E200477F6B /* Task Assistant.app */,
+				EE0F16AE1EFFFD3F00E5F358 /* Task AssistantTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,10 +227,14 @@
 		EE2CD85D1EDC43E200477F6B /* Task Assistant */ = {
 			isa = PBXGroup;
 			children = (
+				EE0B0B6A1EE39A2500EDC6D9 /* View */,
+				FC1AA7471F0C3B4D00221701 /* View Controller */,
 				EE2CD85E1EDC43E200477F6B /* AppDelegate.swift */,
-				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
 				E73DEBD91EDE7D3200355D99 /* Core Classes */,
+				E72A7ED11EE38BD10082F598 /* Persistence */,
 				EE2CD8621EDC43E200477F6B /* Main.storyboard */,
+				FC1AA7421F0C346400221701 /* DayMonthView.xib */,
+				E72036C81EE4F71600D5721E /* AvailableDaysSelectionView.xib */,
 				EE2CD8671EDC43E200477F6B /* LaunchScreen.storyboard */,
 				EE2CD86A1EDC43E200477F6B /* Info.plist */,
 				EE2CD8651EDC43E200477F6B /* Assets.xcassets */,
@@ -90,9 +242,53 @@
 			path = "Task Assistant";
 			sourceTree = "<group>";
 		};
+		EECB78CC1F0D10F000DF4A43 /* EditCells */ = {
+			isa = PBXGroup;
+			children = (
+				EECB78D31F0D17F100DF4A43 /* EditTableViewCell.swift */,
+				EECB78CD1F0D112500DF4A43 /* EditDateTableViewCell.swift */,
+				EECB78CF1F0D114A00DF4A43 /* EditTextTableViewCell.swift */,
+				EECB78D11F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift */,
+				EECB78D51F0D19F400DF4A43 /* AlertCellView.swift */,
+				EEA536231F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift */,
+			);
+			name = EditCells;
+			sourceTree = "<group>";
+		};
+		FC1AA7471F0C3B4D00221701 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EECB78CC1F0D10F000DF4A43 /* EditCells */,
+				EE2CD8601EDC43E200477F6B /* ViewController.swift */,
+				EE0B0B731EE3ADEA00EDC6D9 /* DaveViewController.swift */,
+				E74B878E1F0CB4C4007A9F98 /* ActivityViewController.swift */,
+				EECB78CA1F0D109400DF4A43 /* EditActivityViewController.swift */,
+				EE0176031F0FD0AE007B6C0A /* ActivitiesViewController.swift */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		EE0F16AD1EFFFD3F00E5F358 /* Task AssistantTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE0F16B51EFFFD3F00E5F358 /* Build configuration list for PBXNativeTarget "Task AssistantTests" */;
+			buildPhases = (
+				EE0F16AA1EFFFD3F00E5F358 /* Sources */,
+				EE0F16AB1EFFFD3F00E5F358 /* Frameworks */,
+				EE0F16AC1EFFFD3F00E5F358 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE0F16B41EFFFD3F00E5F358 /* PBXTargetDependency */,
+			);
+			name = "Task AssistantTests";
+			productName = "Task AssistantTests";
+			productReference = EE0F16AE1EFFFD3F00E5F358 /* Task AssistantTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EE2CD85A1EDC43E200477F6B /* Task Assistant */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EE2CD86D1EDC43E200477F6B /* Build configuration list for PBXNativeTarget "Task Assistant" */;
@@ -100,6 +296,7 @@
 				EE2CD8571EDC43E200477F6B /* Sources */,
 				EE2CD8581EDC43E200477F6B /* Frameworks */,
 				EE2CD8591EDC43E200477F6B /* Resources */,
+				E7B0A2241EE3851A008D4037 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -120,9 +317,15 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Victor S Melo";
 				TargetAttributes = {
+					EE0F16AD1EFFFD3F00E5F358 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = Y93HUJS49V;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EE2CD85A1EDC43E200477F6B;
+					};
 					EE2CD85A1EDC43E200477F6B = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 2RF2ZQGYFL;
+						DevelopmentTeam = Y93HUJS49V;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -141,40 +344,116 @@
 			projectRoot = "";
 			targets = (
 				EE2CD85A1EDC43E200477F6B /* Task Assistant */,
+				EE0F16AD1EFFFD3F00E5F358 /* Task AssistantTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		EE0F16AC1EFFFD3F00E5F358 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE2CD8591EDC43E200477F6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EE2CD8691EDC43E200477F6B /* LaunchScreen.storyboard in Resources */,
 				EE2CD8661EDC43E200477F6B /* Assets.xcassets in Resources */,
+				E72036C91EE4F71600D5721E /* AvailableDaysSelectionView.xib in Resources */,
+				FC1AA7441F0C346400221701 /* DayMonthView.xib in Resources */,
 				EE2CD8641EDC43E200477F6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E7B0A2241EE3851A008D4037 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/NHRangeSlider.framework",
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		EE0F16AA1EFFFD3F00E5F358 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE0F16B11EFFFD3F00E5F358 /* Task_AssistantTests.swift in Sources */,
+				EE0F16BC1EFFFF3600E5F358 /* UnitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EE2CD8571EDC43E200477F6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72A7ED31EE38DE50082F598 /* ContextDAO.swift in Sources */,
 				E73DEBD01EDE6DCF00355D99 /* AvailableDay.swift in Sources */,
+				E72036C51EE4E32500D5721E /* RangeSliderView.swift in Sources */,
+				FC1AA7491F0C3DFB00221701 /* XibLoader.swift in Sources */,
+				E72A7ED71EE398EF0082F598 /* ActivityDAO.swift in Sources */,
 				E73DEBCC1EDE642E00355D99 /* Activity.swift in Sources */,
 				E73DEBD41EDE726700355D99 /* User.swift in Sources */,
 				EE2CD8611EDC43E200477F6B /* ViewController.swift in Sources */,
+				E72A7ED91EE39B6E0082F598 /* ProjectDAO.swift in Sources */,
+				EECB78D01F0D114A00DF4A43 /* EditTextTableViewCell.swift in Sources */,
+				E72036C71EE4F6E600D5721E /* AvailableDaysSelectionView.swift in Sources */,
+				EE0F16BB1EFFFF3600E5F358 /* UnitTests.swift in Sources */,
+				E72A7ED01EE388A40082F598 /* DataBaseConfig.swift in Sources */,
+				E74B878F1F0CB4C4007A9F98 /* ActivityViewController.swift in Sources */,
+				E72A7ECE1EE387730082F598 /* UserDAO.swift in Sources */,
 				E73DEBD21EDE70C200355D99 /* Context.swift in Sources */,
+				EECB78CB1F0D109400DF4A43 /* EditActivityViewController.swift in Sources */,
+				E72A7EDB1EE39B770082F598 /* TaskDAO.swift in Sources */,
 				E73DEBD61EDE731D00355D99 /* Task.swift in Sources */,
+				EE0B0B721EE39BC500EDC6D9 /* DaveMessageCollectionViewCell.swift in Sources */,
+				EE0176041F0FD0AE007B6C0A /* ActivitiesViewController.swift in Sources */,
+				EECB78D61F0D19F400DF4A43 /* AlertCellView.swift in Sources */,
+				EE015F521EF868A500027662 /* TimeBlock.swift in Sources */,
+				EE0B0B741EE3ADEA00EDC6D9 /* DaveViewController.swift in Sources */,
 				EE2CD85F1EDC43E200477F6B /* AppDelegate.swift in Sources */,
+				EE0B0B761EE3B54F00EDC6D9 /* Message.swift in Sources */,
+				EECB78D21F0D11B400DF4A43 /* EditItemSelectionTableViewCell.swift in Sources */,
+				EE0B0B701EE39BB000EDC6D9 /* ChatCollectionView.swift in Sources */,
 				E73DEBD81EDE78BE00355D99 /* Project.swift in Sources */,
+				EE0B0B781EE431E000EDC6D9 /* Dave.swift in Sources */,
+				FC1AA7461F0C3B2400221701 /* DayMonthView.swift in Sources */,
+				E72A7ED51EE398DC0082F598 /* AvailableDayDAO.swift in Sources */,
+				EECB78CE1F0D112500DF4A43 /* EditDateTableViewCell.swift in Sources */,
+				E7F570EA1EE3DC8200135D79 /* PossibleActivitiesDAO.swift in Sources */,
+				EEDCB3871EE4C1E400BF64F6 /* UserMessageCollectionViewCell.swift in Sources */,
+				EEA536241F0D5C9800030FA3 /* EditEstimatedTimeTableViewCell.swift in Sources */,
+				EECB78D41F0D17F100DF4A43 /* EditTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE0F16B41EFFFD3F00E5F358 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE2CD85A1EDC43E200477F6B /* Task Assistant */;
+			targetProxy = EE0F16B31EFFFD3F00E5F358 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		EE2CD8621EDC43E200477F6B /* Main.storyboard */ = {
@@ -196,6 +475,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		EE0F16B61EFFFD3F00E5F358 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Y93HUJS49V;
+				INFOPLIST_FILE = "Task AssistantTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.victormelo.Task-AssistantTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Task Assistant.app/Task Assistant";
+			};
+			name = Debug;
+		};
+		EE0F16B71EFFFD3F00E5F358 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = Y93HUJS49V;
+				INFOPLIST_FILE = "Task AssistantTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.victormelo.Task-AssistantTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Task Assistant.app/Task Assistant";
+			};
+			name = Release;
+		};
 		EE2CD86B1EDC43E200477F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -293,10 +600,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2RF2ZQGYFL;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Task Assistant/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "victor.melo.Task-Assistant";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.DaveTaskAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -306,10 +617,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2RF2ZQGYFL;
+				DEVELOPMENT_TEAM = Y93HUJS49V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Task Assistant/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "victor.melo.Task-Assistant";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.victormelo.DaveTaskAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -318,6 +633,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		EE0F16B51EFFFD3F00E5F358 /* Build configuration list for PBXNativeTarget "Task AssistantTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE0F16B61EFFFD3F00E5F358 /* Debug */,
+				EE0F16B71EFFFD3F00E5F358 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EE2CD8561EDC43E200477F6B /* Build configuration list for PBXProject "Task Assistant" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
